@@ -77,29 +77,29 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | — | Pending |
-| AUTH-02 | — | Pending |
-| AUTH-03 | — | Pending |
-| DISC-01 | — | Pending |
-| DISC-02 | — | Pending |
-| DISC-03 | — | Pending |
-| DISC-04 | — | Pending |
-| BEAST-01 | — | Pending |
-| BEAST-02 | — | Pending |
-| BEAST-03 | — | Pending |
-| BEAST-04 | — | Pending |
-| BEAST-05 | — | Pending |
-| BEAST-06 | — | Pending |
-| RESP-01 | — | Pending |
-| RESP-02 | — | Pending |
-| RESP-03 | — | Pending |
-| RESP-04 | — | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| RESP-03 | Phase 2 | Pending |
+| RESP-04 | Phase 2 | Pending |
+| DISC-01 | Phase 3 | Pending |
+| DISC-04 | Phase 3 | Pending |
+| DISC-02 | Phase 4 | Pending |
+| DISC-03 | Phase 4 | Pending |
+| BEAST-01 | Phase 5 | Pending |
+| BEAST-02 | Phase 5 | Pending |
+| BEAST-03 | Phase 5 | Pending |
+| BEAST-04 | Phase 6 | Pending |
+| BEAST-05 | Phase 6 | Pending |
+| BEAST-06 | Phase 6 | Pending |
+| RESP-01 | Phase 7 | Pending |
+| RESP-02 | Phase 7 | Pending |
 
 **Coverage:**
 - v1 requirements: 17 total
-- Mapped to phases: 0
-- Unmapped: 17 ⚠️ (roadmap pending)
+- Mapped to phases: 17
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-06-24*
-*Last updated: 2026-06-24 after initial definition*
+*Last updated: 2026-06-24 after roadmap creation*
