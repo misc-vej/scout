@@ -5,6 +5,7 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import NavShell from "@/components/NavShell";
 import EmailVerificationBanner from "@/components/EmailVerificationBanner";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 export default async function AppLayout({
   children,
@@ -21,9 +22,9 @@ export default async function AppLayout({
     .limit(1);
 
   return (
-    <>
+    <QueryProvider>
       <EmailVerificationBanner emailVerified={user?.emailVerified ?? null} />
       <NavShell>{children}</NavShell>
-    </>
+    </QueryProvider>
   );
 }
