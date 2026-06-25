@@ -3,7 +3,15 @@ import { auth } from '@/auth';
 import { db } from '@/lib/db';
 import { species, collections } from '@/lib/db/schema';
 import { eq, asc } from 'drizzle-orm';
-import RarityBadge from '@/components/discover/RarityBadge';
+import { BeastiaryCard } from '@/components/beastiary/BeastiaryCard';
+
+function groupLabel(taxonomyGroup: string): string {
+  const lower = taxonomyGroup.toLowerCase();
+  if (lower === 'bird') return 'Birds';
+  if (lower === 'mammal') return 'Mammals';
+  if (lower === 'reptile' || lower === 'amphibian') return 'Reptiles & Amphibians';
+  return taxonomyGroup.charAt(0).toUpperCase() + taxonomyGroup.slice(1);
+}
 
 export default async function BeastiaryPage() {
   const session = await auth();
@@ -18,11 +26,20 @@ export default async function BeastiaryPage() {
     .orderBy(asc(species.taxonomyGroup), asc(species.commonName));
 
   const userCollections = await db
-    .select({ speciesId: collections.speciesId, sightingCount: collections.sightingCount })
+    .select({
+      speciesId: collections.speciesId,
+      sightingCount: collections.sightingCount,
+      personalityTrait: collections.personalityTrait,
+    })
     .from(collections)
     .where(eq(collections.userId, userId));
 
-  const collectedMap = new Map(userCollections.map((c) => [c.speciesId, c.sightingCount]));
+  const collectedMap = new Map<string, { sightingCount: number; personalityTrait: string | null }>(
+    userCollections.map((c) => [c.speciesId, { sightingCount: c.sightingCount, personalityTrait: c.personalityTrait }])
+  );
+
+  const totalCollected = collectedMap.size;
+  const totalSpecies = allSpecies.length;
 
   // Group by taxonomyGroup
   const grouped = allSpecies.reduce<Record<string, typeof allSpecies>>((acc, s) => {
@@ -32,11 +49,11 @@ export default async function BeastiaryPage() {
     return acc;
   }, {});
 
-  const totalCollected = collectedMap.size;
-  const totalSpecies = allSpecies.length;
+  const groupKeys = Object.keys(grouped).sort();
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
+    <div className="mx-auto max-w-4xl px-4 py-8">
+      {/* Header + progress bar */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-white">Beastiary</h1>
         <p className="mt-1 text-sm text-gray-400">
@@ -50,43 +67,43 @@ export default async function BeastiaryPage() {
         </div>
       </div>
 
-      {Object.entries(grouped).map(([group, groupSpecies]) => (
+      {/* Taxonomy filter tab row (static visual chrome) */}
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-1">
+        <span className="px-3 py-1 rounded-full text-sm font-semibold bg-green-600 text-white whitespace-nowrap">
+          All
+        </span>
+        {groupKeys.map((group) => (
+          <span
+            key={group}
+            className="px-3 py-1 rounded-full text-sm bg-white/10 text-gray-400 whitespace-nowrap"
+          >
+            {groupLabel(group)}
+          </span>
+        ))}
+      </div>
+
+      {/* Card grid grouped by taxonomy */}
+      {groupKeys.map((group) => (
         <section key={group} className="mb-8">
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
-            {group}s
+            {groupLabel(group)}
           </h2>
-          <div className="flex flex-col gap-2">
-            {groupSpecies.map((s) => {
-              const count = collectedMap.get(s.id);
-              const unlocked = count !== undefined;
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {grouped[group].map((s) => {
+              const entry = collectedMap.get(s.id);
               return (
-                <div
+                <BeastiaryCard
                   key={s.id}
-                  className={`flex items-center justify-between rounded-lg border p-3 transition-colors ${
-                    unlocked
-                      ? 'border-white/15 bg-white/5'
-                      : 'border-white/5 bg-transparent opacity-40'
-                  }`}
-                >
-                  <div className="flex flex-col gap-0.5">
-                    <p className={`font-medium ${unlocked ? 'text-white' : 'text-gray-600'}`}>
-                      {unlocked ? s.commonName : '???'}
-                    </p>
-                    {unlocked ? (
-                      <p className="text-xs italic text-gray-500">{s.scientificName}</p>
-                    ) : (
-                      <p className="text-xs text-gray-600">Not yet sighted</p>
-                    )}
-                  </div>
-                  {unlocked && (
-                    <div className="flex items-center gap-2">
-                      {count && count > 1 && (
-                        <span className="text-xs font-semibold text-green-400">{count}×</span>
-                      )}
-                      <RarityBadge tier={s.rarityTier} />
-                    </div>
-                  )}
-                </div>
+                  species={{
+                    id: s.id,
+                    commonName: s.commonName,
+                    scientificName: s.scientificName,
+                    rarityTier: s.rarityTier,
+                    funFact: s.funFact ?? null,
+                  }}
+                  sightingCount={entry?.sightingCount}
+                  personalityTrait={entry?.personalityTrait ?? null}
+                />
               );
             })}
           </div>
