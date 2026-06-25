@@ -72,7 +72,11 @@ Plans:
   2. Logging the same species a second time increments the sighting counter on the existing card rather than creating a second card
   3. Sighting records are written with grid-square coordinates only — raw GPS is never sent to the server
   4. Proximity to the species location never increases collection value or sighting count speed (design constraint enforced)
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 04-01-PLAN.md — sightings + collections tables schema + Drizzle migration
+- [ ] 04-02-PLAN.md — POST /api/sightings endpoint + SpeciesCard "Log sighting" button + SpeciesList gridSquare wiring
+- [ ] 04-03-PLAN.md — Minimal Beastiary page (server component, locked/unlocked species list, grouped by taxonomyGroup)
 
 ### Phase 5: Beastiary UI + Personality
 **Goal**: Users can browse their beastiary — seeing silhouettes for uncollected species and full cards for collected ones — view playful per-card facts, and assign a personal personality trait to each animal they collect
@@ -123,7 +127,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Foundation + Auth | 2/3 | In Progress|  |
 | 2. Species Dataset + Ethics Data Model | 0/2 | Not started | - |
 | 3. Occurrence Pipeline + Discovery | 2/3 | In Progress|  |
-| 4. Collection Mechanics | 0/TBD | Not started | - |
+| 4. Collection Mechanics | 0/3 | Not started | - |
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
 | 6. Rarity Tiers + Shiny Variants | 0/TBD | Not started | - |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |
