@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: "Roadmap written; ready to run `/gsd:plan-phase 1`"
-last_updated: "2026-06-25T11:59:02.547Z"
-last_activity: 2026-06-25 -- Phase 01 planning complete
+stopped_at: "Plan 01-01 complete; ready to execute 01-02"
+last_updated: "2026-06-25T13:10:00Z"
+last_activity: 2026-06-25 -- Plan 01-01 executed (scaffold + auth + schema + E2E)
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 3
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 5
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 ## Current Position
 
 Phase: 1 of 7 (Foundation + Auth)
-Plan: 0 of TBD in current phase
-Status: Ready to execute
-Last activity: 2026-06-25 -- Phase 01 planning complete
+Plan: 1 of 3 in current phase (01-01 complete)
+Status: Executing — ready for 01-02
+Last activity: 2026-06-25 -- Plan 01-01 executed (scaffold + auth + schema + E2E)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [#░░░░░░░░░] 5%
 
 ## Performance Metrics
 
@@ -44,12 +44,12 @@ Progress: [░░░░░░░░░░] 0%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01 Foundation+Auth | 1/3 | ~20 min | ~20 min |
 
 **Recent Trend:**
 
-- Last 5 plans: —
-- Trend: —
+- Last 5 plans: 01-01 (~20 min)
+- Trend: On track
 
 *Updated after each plan completion*
 
@@ -64,6 +64,10 @@ Recent decisions affecting current work:
 - Roadmap: NBN Atlas CC-BY-NC licence audit is a hard gate in Phase 2 before the occurrence pipeline is built
 - Roadmap: Proximity must never increase collection value — enforced as a design constraint in Phase 4
 - Roadmap: Device GPS is only ever used transiently in-memory on the client; server stores grid-square resolution only
+- Plan 01-01: JWT session strategy required with Credentials provider (stateless, no sessions table needed)
+- Plan 01-01: bcryptjs (pure JS) over native bcrypt for Edge/serverless compatibility
+- Plan 01-01: proxy.ts instead of middleware.ts — Next.js 16 renamed the file convention
+- Plan 01-01: drizzle-kit generate + migrate instead of push — avoids TTY requirement in non-interactive shells
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-24
-Stopped at: Roadmap written; ready to run `/gsd:plan-phase 1`
-Resume file: None
+Last session: 2026-06-25
+Stopped at: Plan 01-01 complete — Next.js 16 scaffold, NextAuth v5, Drizzle + Neon schema live, E2E infra ready
+Resume file: .planning/phases/01-foundation-auth/01-02-PLAN.md
