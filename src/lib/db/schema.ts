@@ -114,6 +114,7 @@ export const collections = pgTable(
     sightingCount: integer("sighting_count").notNull().default(1),
     firstSightedAt: timestamp("first_sighted_at").defaultNow().notNull(),
     lastSightedAt: timestamp("last_sighted_at").defaultNow().notNull(),
+    personalityTrait: text("personality_trait"),
   },
   (table) => ({
     uniqueUserSpecies: uniqueIndex("collections_user_species_idx").on(
