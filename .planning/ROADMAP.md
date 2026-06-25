@@ -44,7 +44,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Sensitive species (Schedule 1 WCA 1981, IUCN Vulnerable+) are flagged in the data model before any sighting record is written
   3. Season-locked species have a calendar window recorded in the schema that downstream phases can query to block collection
   4. NBN Atlas CC-BY-NC licence audit is complete: affected datasets are identified, excluded or cleared, and a written record of the decision exists
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Species schema (rarityTierEnum + sensitivityLevelEnum + species table) + Drizzle migration + NBN licence audit document + db:seed script entry
+- [ ] 02-02-PLAN.md — tsx install + ~120-species seed data file + idempotent seed script + db:seed execution against Neon
 
 ### Phase 3: Occurrence Pipeline + Discovery
 **Goal**: Users can see a list of UK wildlife species plausible for their current location, whether via live GPS or a postcode; the occurrence data is pre-computed server-side and location obfuscation is enforced at every layer
@@ -118,7 +121,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation + Auth | 2/3 | In Progress|  |
-| 2. Species Dataset + Ethics Data Model | 0/TBD | Not started | - |
+| 2. Species Dataset + Ethics Data Model | 0/2 | Not started | - |
 | 3. Occurrence Pipeline + Discovery | 0/TBD | Not started | - |
 | 4. Collection Mechanics | 0/TBD | Not started | - |
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
