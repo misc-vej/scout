@@ -1,17 +1,16 @@
 # Phase 1: Foundation + Auth — Research
 
-**Written:** 2026-06-24
+**Written:** 2026-06-25 (replaces Supabase-based research)
 **Phase:** 01 — Foundation + Auth
-**Requirements addressed:** AUTH-01, AUTH-02, AUTH-03
-**Mode:** MVP Walking Skeleton
+**Stack:** Next.js 16 · NextAuth.js v5 · Neon (Postgres + PostGIS) · Drizzle ORM · bcryptjs
+**Requirements:** AUTH-01, AUTH-02, AUTH-03
 
 ---
 
-## 1. Next.js 16 App Router — Greenfield Scaffolding
+## 1. Next.js 16 App Router — Scaffold
 
-### Scaffold command
 ```bash
-npx create-next-app@latest scout \
+npx create-next-app@latest . \
   --typescript \
   --tailwind \
   --eslint \
@@ -20,557 +19,442 @@ npx create-next-app@latest scout \
   --import-alias "@/*"
 ```
 
-Next.js 16 ships with React 19 and the App Router by default. The `--tailwind` flag installs Tailwind CSS 4 in new projects (as of create-next-app 16.x). No separate Tailwind init step needed.
+Run inside the Scout repo root (`.` targets current directory). Tailwind 4 is installed automatically by create-next-app 16.x — no separate init needed.
 
 ### Route group structure
 
-Use route groups to split authenticated vs. unauthenticated surfaces with separate layouts:
-
 ```
 src/app/
-  (auth)/              # Unauthenticated — login/signup
-    layout.tsx         # Minimal layout, no nav shell
+  (auth)/
+    layout.tsx          # Unauthenticated layout (no nav shell)
     auth/
-      page.tsx         # Single combined sign-in/sign-up page (D-01)
-  (app)/               # Authenticated — protected routes
-    layout.tsx         # Full layout with nav shell (D-06)
+      page.tsx          # Combined sign-in/sign-up page (D-01)
+      actions.ts        # registerUser server action
+  (app)/
+    layout.tsx          # Authenticated layout (nav shell added Plan 03)
     home/
-      page.tsx
+      page.tsx          # Stub home (D-05)
     beastiary/
-      page.tsx         # Stub
+      page.tsx          # Stub — activated Phase 5
     discover/
-      page.tsx         # Stub
+      page.tsx          # Stub — activated Phase 3
     profile/
-      page.tsx         # Stub
-  layout.tsx           # Root layout (fonts, global CSS, providers)
-  page.tsx             # Root redirect → /auth or /home based on session
+      page.tsx          # Stub — account settings
+  api/
+    auth/
+      [...nextauth]/
+        route.ts        # NextAuth v5 handler
+  layout.tsx            # Root layout
+  page.tsx              # Root redirect → /auth or /home
+middleware.ts           # Auth-gated route protection
 ```
 
-Route groups `(auth)` and `(app)` do not affect URL paths — `/auth`, `/home`, `/beastiary` remain clean.
+---
 
-### middleware.ts — session-based route protection
+## 2. NextAuth.js v5 (Auth.js) — Credentials Provider
 
-```typescript
-// src/middleware.ts
-import { updateSession } from '@/lib/supabase/middleware'
-import type { NextRequest } from 'next/server'
+### Install
 
-export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+```bash
+npm install next-auth@beta @auth/drizzle-adapter bcryptjs
+npm install -D @types/bcryptjs
+```
+
+NextAuth v5 (`next-auth@beta`) is the current stable beta — widely production-used as of mid-2025. The `@auth/drizzle-adapter` connects to Drizzle ORM for persisting users.
+
+### Config split — Edge vs Node
+
+NextAuth v5 requires splitting config into two files because middleware runs on the Edge runtime (no Node.js APIs like `bcrypt`):
+
+**`src/auth.config.ts`** — Edge-compatible (no database, no bcrypt):
+```ts
+import type { NextAuthConfig } from "next-auth";
+
+export const authConfig: NextAuthConfig = {
+  pages: { signIn: "/auth" },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const protectedPaths = ["/home", "/beastiary", "/discover", "/profile"];
+      const isProtected = protectedPaths.some(p =>
+        nextUrl.pathname.startsWith(p)
+      );
+      if (isProtected && !isLoggedIn)
+        return Response.redirect(new URL("/auth", nextUrl));
+      if (isLoggedIn && nextUrl.pathname === "/auth")
+        return Response.redirect(new URL("/home", nextUrl));
+      return true;
+    },
+  },
+  providers: [], // Credentials added in auth.ts only
+};
+```
+
+**`src/auth.ts`** — Full config (Node runtime only — never imported in middleware):
+```ts
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import bcrypt from "bcryptjs";
+import { authConfig } from "./auth.config";
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
+  adapter: DrizzleAdapter(db),
+  session: { strategy: "jwt" }, // REQUIRED for Credentials provider
+  providers: [
+    Credentials({
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
+        const [user] = await db
+          .select()
+          .from(users)
+          .where(eq(users.email, String(credentials.email)))
+          .limit(1);
+        if (!user?.passwordHash) return null;
+        const valid = await bcrypt.compare(
+          String(credentials.password),
+          user.passwordHash
+        );
+        return valid ? user : null;
+      },
+    }),
+  ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) token.id = user.id;
+      return token;
+    },
+    session({ session, token }) {
+      if (token.id) session.user.id = token.id as string;
+      return session;
+    },
+  },
+});
+```
+
+### Route handler
+
+**`src/app/api/auth/[...nextauth]/route.ts`:**
+```ts
+import { handlers } from "@/auth";
+export const { GET, POST } = handlers;
+```
+
+### Using auth in Server Components
+
+```ts
+import { auth } from "@/auth";
+
+export default async function Page() {
+  const session = await auth();
+  if (!session) redirect("/auth");
+  // session.user.id is available
 }
+```
+
+### Triggering sign-in/out from Client Components
+
+```ts
+import { signIn, signOut } from "next-auth/react";
+
+// Sign in
+await signIn("credentials", { email, password, redirectTo: "/home" });
+
+// Sign out
+await signOut({ redirectTo: "/auth" });
+```
+
+### Environment variables
+
+```env
+AUTH_SECRET=<generate with: openssl rand -base64 32>
+AUTH_URL=http://localhost:3000   # Optional in dev; required in production
+DATABASE_URL=postgresql://...    # Neon connection string
+```
+
+### Critical gotcha — Credentials + JWT
+
+**Credentials provider only works with `session: { strategy: "jwt" }`** — not database sessions. This is a hard NextAuth v5 constraint. With JWT strategy the `sessions` table is unused; only the `users` table (and optionally `accounts`) is needed.
+
+---
+
+## 3. Neon + Drizzle ORM
+
+### Install
+
+```bash
+npm install drizzle-orm @neondatabase/serverless
+npm install -D drizzle-kit
+```
+
+### Database connection — `src/lib/db/index.ts`
+
+```ts
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
+import * as schema from "./schema";
+
+const sql = neon(process.env.DATABASE_URL!);
+export const db = drizzle(sql, { schema });
+```
+
+Use the **pooled connection string** from Neon dashboard for serverless functions. Use the **direct (unpooled) connection string** for `drizzle-kit push/migrate` only.
+
+### Schema — `src/lib/db/schema.ts`
+
+The NextAuth Drizzle adapter requires specific table shapes. With JWT + Credentials, only `users` is strictly required, but include `accounts` for future OAuth providers:
+
+```ts
+import {
+  pgTable, text, timestamp, uuid
+} from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name"),
+  email: text("email").unique().notNull(),
+  emailVerified: timestamp("email_verified", { mode: "date" }),
+  image: text("image"),
+  passwordHash: text("password_hash"), // NOT in adapter default — added for Credentials
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Required by DrizzleAdapter for future OAuth providers
+export const accounts = pgTable("accounts", {
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  type: text("type").notNull(),
+  provider: text("provider").notNull(),
+  providerAccountId: text("provider_account_id").notNull(),
+  refreshToken: text("refresh_token"),
+  accessToken: text("access_token"),
+  expiresAt: timestamp("expires_at", { mode: "date" }),
+  tokenType: text("token_type"),
+  scope: text("scope"),
+  idToken: text("id_token"),
+  sessionState: text("session_state"),
+});
+
+// App-specific user profile
+export const profiles = pgTable("profiles", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
+  displayName: text("display_name"),
+  passkeyPromptedAt: timestamp("passkey_prompted_at", { mode: "date" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+```
+
+### Drizzle config — `drizzle.config.ts` (repo root)
+
+```ts
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./src/lib/db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: process.env.DATABASE_URL!,
+  },
+});
+```
+
+### Schema management
+
+**Development:** `npx drizzle-kit push` — pushes schema directly to database, no migration files. Fast for iteration. Destructive changes require confirmation.
+
+**Production:** `npx drizzle-kit generate` → creates SQL files in `./drizzle/` → `npx drizzle-kit migrate` applies them. Tracked and reversible.
+
+For Phase 1 (greenfield dev), use `drizzle-kit push`.
+
+### Enabling PostGIS
+
+Run once in Neon SQL Editor:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS postgis;
+CREATE EXTENSION IF NOT EXISTS postgis_topology;
+```
+
+Do this in Phase 1 even though PostGIS is not used until Phase 3 — extension activation is a one-time setup.
+
+### Getting credentials from Neon dashboard
+
+1. `console.neon.tech` → your project → Connection Details
+2. Select **"Pooled connection"** → copy as `DATABASE_URL` for app code
+3. Select **"Direct connection"** → use only for `drizzle-kit push/migrate`
+4. SQL Editor → run PostGIS extension commands
+
+### `package.json` scripts to add
+
+```json
+{
+  "scripts": {
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  }
+}
+```
+
+---
+
+## 4. Password Hashing — bcryptjs
+
+`bcryptjs` is pure JavaScript — works in both Edge (middleware) and Node runtimes. Use instead of the native `bcrypt` package which is Node-only.
+
+```ts
+import bcrypt from "bcryptjs";
+
+// During registration (server action):
+const passwordHash = await bcrypt.hash(password, 12);
+
+// During sign-in (Credentials authorize):
+const isValid = await bcrypt.compare(password, user.passwordHash);
+```
+
+Cost factor 12 balances security and latency (~250ms on modern hardware).
+
+---
+
+## 5. Route Protection — Middleware
+
+**`src/middleware.ts`:**
+```ts
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
+
+export const { auth: middleware } = NextAuth(authConfig);
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)",
   ],
-}
+};
 ```
 
-The `updateSession` helper (from `@/lib/supabase/middleware`) refreshes the Supabase session on every request. Protected route enforcement lives here: if no session and path starts with `/home|/beastiary|/discover|/profile` → redirect to `/auth`. If session exists and path is `/auth` → redirect to `/home`.
+The `authorized` callback in `auth.config.ts` handles all redirect logic. The matcher excludes static assets and Next.js internals.
 
 ---
 
-## 2. Supabase + Next.js 16 SSR
+## 6. User Registration — Server Action
 
-### Package versions (2025)
+NextAuth Credentials only handles sign-in; registration is a separate server action:
+
+**`src/app/(auth)/auth/actions.ts`:**
+```ts
+"use server";
+import { db } from "@/lib/db";
+import { users, profiles } from "@/lib/db/schema";
+import bcrypt from "bcryptjs";
+import { signIn } from "@/auth";
+import { eq } from "drizzle-orm";
+
+export async function registerUser(email: string, password: string) {
+  // Check for existing user
+  const [existing] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  if (existing) throw new Error("Email already registered");
+
+  const passwordHash = await bcrypt.hash(password, 12);
+  const [user] = await db.insert(users).values({ email, passwordHash }).returning();
+  await db.insert(profiles).values({ userId: user.id });
+  await signIn("credentials", { email, password, redirectTo: "/home" });
+}
+```
+
+The auth page attempts `signIn("credentials")` first. If the user is not found (AuthError), it calls `registerUser` instead. One combined form handles both flows (D-01).
+
+---
+
+## 7. Playwright E2E Setup
 
 ```bash
-npm install @supabase/supabase-js @supabase/ssr
+npm install -D @playwright/test
+npx playwright install chromium
 ```
 
-Current versions as of mid-2025:
-- `@supabase/supabase-js`: ^2.45.x
-- `@supabase/ssr`: ^0.5.x
+**`playwright.config.ts`:**
+```ts
+import { defineConfig, devices } from "@playwright/test";
 
-### Three client patterns
-
-`@supabase/ssr` provides the correct cookie-based session handling for Next.js App Router. Three distinct clients are needed:
-
-**Browser client** — for client components (`'use client'`):
-```typescript
-// src/lib/supabase/client.ts
-import { createBrowserClient } from '@supabase/ssr'
-
-export function createClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
-}
-```
-
-**Server client** — for Server Components, Server Actions, Route Handlers:
-```typescript
-// src/lib/supabase/server.ts
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-
-export async function createClient() {
-  const cookieStore = await cookies()
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() { return cookieStore.getAll() },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            )
-          } catch {}
-        },
-      },
-    }
-  )
-}
-```
-
-**Middleware client** — for `middleware.ts`:
-```typescript
-// src/lib/supabase/middleware.ts
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
-
-export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request })
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() { return request.cookies.getAll() },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value))
-          supabaseResponse = NextResponse.next({ request })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options))
-        },
-      },
-    }
-  )
-
-  const { data: { user } } = await supabase.auth.getUser()
-
-  const isProtected = ['/home', '/beastiary', '/discover', '/profile'].some(p =>
-    request.nextUrl.pathname.startsWith(p)
-  )
-  const isAuthPage = request.nextUrl.pathname.startsWith('/auth')
-
-  if (!user && isProtected) {
-    return NextResponse.redirect(new URL('/auth', request.url))
-  }
-  if (user && isAuthPage) {
-    return NextResponse.redirect(new URL('/home', request.url))
-  }
-
-  return supabaseResponse
-}
-```
-
-**Critical:** Always use `supabase.auth.getUser()` in middleware (not `getSession()`) — `getUser()` validates the JWT server-side; `getSession()` only reads cookies and can be spoofed.
-
-### Environment variables (.env.local)
-```
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
-
-Both are NEXT_PUBLIC because they're needed client-side. The anon key is safe to expose — RLS enforces access control.
-
----
-
-## 3. Supabase Auth: Email/Password + Passkeys
-
-### Email/password sign-up and sign-in
-
-```typescript
-// Sign up
-const { data, error } = await supabase.auth.signUp({
-  email,
-  password,
-  options: {
-    emailRedirectTo: `${window.location.origin}/auth/callback`,
+export default defineConfig({
+  testDir: "./e2e",
+  fullyParallel: false,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  use: {
+    baseURL: "http://localhost:3000",
+    trace: "on-first-retry",
   },
-})
-
-// Sign in
-const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-
-// Sign out
-const { error } = await supabase.auth.signOut()
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  webServer: {
+    command: "npm run dev",
+    url: "http://localhost:3000",
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
+});
 ```
 
-### Email verification detection (D-07)
-
-After signup, `data.user.email_confirmed_at` is `null` until confirmed. Check in Server Components:
-```typescript
-const { data: { user } } = await supabase.auth.getUser()
-const isUnverified = user && !user.email_confirmed_at
-```
-
-Show a non-blocking banner when `isUnverified` is true. The user is still logged in and functional.
-
-### Email confirmation callback route
-
-```typescript
-// src/app/auth/callback/route.ts
-import { createClient } from '@/lib/supabase/server'
-import { NextResponse } from 'next/server'
-
-export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
-  const code = searchParams.get('code')
-
-  if (code) {
-    const supabase = await createClient()
-    await supabase.auth.exchangeCodeForSession(code)
-  }
-
-  return NextResponse.redirect(`${origin}/home`)
-}
-```
-
-The Supabase dashboard "Redirect URLs" setting must include `http://localhost:3000/auth/callback` for local dev and the production URL before deploying.
-
-### Passkeys (WebAuthn) in 2025
-
-Supabase has native passkey support as of late 2024 via the Web Authentication API — **no separate `@simplewebauthn` package needed**. It is built into `@supabase/supabase-js` v2.39+.
-
-```typescript
-// Passkey registration (D-03: prompted after signup)
-const { data, error } = await supabase.auth.signInWithPasskey({
-  action: 'register',
-  email,
-})
-
-// Passkey sign-in
-const { data, error } = await supabase.auth.signInWithPasskey({
-  action: 'authenticate',
-})
-```
-
-> **Note:** Supabase passkey support requires HTTPS. For local dev, `localhost` is treated as a secure context by browsers — `npm run dev` works. For testing on a device, use a tunnel (e.g., `ngrok`) or Vercel preview deployment.
-
-**Browser support (2025):** Chrome 108+, Safari 16+, Firefox 122+, Edge 108+, iOS 16+, Android 9+. Covers the vast majority of users. Graceful fallback: if `PublicKeyCredential` is not in `window`, hide the passkey option entirely.
-
-```typescript
-const supportsPasskeys = typeof window !== 'undefined' &&
-  window.PublicKeyCredential !== undefined
-```
-
-### Passkey preference storage (D-04)
-
-Track dismissal in the `profiles` table: `passkey_prompted_at timestamptz`. If null → show the prompt. If set → don't show again (can re-add from settings).
+E2E tests use unique randomised emails per run to avoid state pollution between test runs.
 
 ---
 
-## 4. Database: Profiles Table + RLS
+## 8. Environment Variables — Full List
 
-### Migration file
+```env
+# Neon
+DATABASE_URL=postgresql://user:pass@ep-xxx.region.aws.neon.tech/neondb?sslmode=require
 
-`supabase/migrations/20260624000001_create_profiles.sql`
+# NextAuth
+AUTH_SECRET=<openssl rand -base64 32>
+AUTH_URL=http://localhost:3000
 
-```sql
--- Enable UUID extension (may already be enabled)
-create extension if not exists "uuid-ossp";
-
--- Create profiles table
-create table public.profiles (
-  id uuid references auth.users(id) on delete cascade primary key,
-  email text,
-  passkey_prompted_at timestamptz,
-  created_at timestamptz default now() not null,
-  updated_at timestamptz default now() not null
-);
-
--- Enable RLS
-alter table public.profiles enable row level security;
-
--- Policies
-create policy "Users can view their own profile"
-  on public.profiles for select
-  using (auth.uid() = id);
-
-create policy "Users can update their own profile"
-  on public.profiles for update
-  using (auth.uid() = id);
-
--- Auto-create profile on signup
-create or replace function public.handle_new_user()
-returns trigger as $$
-begin
-  insert into public.profiles (id, email)
-  values (new.id, new.email);
-  return new;
-end;
-$$ language plpgsql security definer;
-
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
+# E2E test account (local only — do not commit)
+E2E_EMAIL=test@scout.dev
+E2E_PASSWORD=testpassword123
 ```
 
-### Supabase migration workflow
-
-```bash
-# Initialize Supabase (links to remote project)
-npx supabase init
-npx supabase login
-npx supabase link --project-ref <project-ref>
-
-# Apply migration to remote
-npx supabase db push
-
-# Or for local dev with Supabase local stack:
-npx supabase start
-npx supabase db reset  # applies all migrations fresh
-```
-
-Migration file naming: `YYYYMMDDHHMMSS_description.sql` — timestamp prefix ensures correct ordering.
+`.env.local` is gitignored. Commit `.env.example` with placeholder values.
 
 ---
 
-## 5. shadcn/ui v4 + Tailwind CSS 4
+## 9. Common Gotchas
 
-### Init shadcn/ui v4
-
-```bash
-npx shadcn@latest init
-```
-
-The interactive init will ask for:
-- Style: Default
-- Base colour: choose Slate or Neutral (to be overridden by Scout green)
-- CSS variables: Yes (required for theme customisation)
-
-This creates `components.json`, updates `src/app/globals.css` with CSS variable definitions, and adds `src/components/ui/` folder.
-
-### Tailwind CSS 4 — CSS-only config
-
-Tailwind 4 drops `tailwind.config.js` in favour of CSS-based configuration in `globals.css`. The `@tailwind` directives are replaced with:
-
-```css
-/* src/app/globals.css */
-@import "tailwindcss";
-
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  /* Scout accent — natural green */
-  --primary: oklch(0.45 0.15 145);      /* deep forest green */
-  --primary-foreground: oklch(0.98 0 0);
-  /* ... shadcn/ui standard variables ... */
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --primary: oklch(0.6 0.15 145);       /* lighter green for dark mode */
-  --primary-foreground: oklch(0.1 0 0);
-}
-```
-
-The Scout accent green using OKLCH: `oklch(0.45 0.15 145)` (hue 145° = nature green, chroma 0.15, lightness 0.45).
-
-### Phase 1 components to add
-
-```bash
-npx shadcn@latest add button input label form card badge
-```
-
-- `Button` — auth form submit, nav items
-- `Input` — email, password fields
-- `Label` — form field labels
-- `Form` — React Hook Form integration (shadcn/ui Form wraps RHF)
-- `Card` — auth page container
-- `Badge` — email verification banner
+| Gotcha | Fix |
+|--------|-----|
+| Credentials + database session strategy | Always use `session: { strategy: "jwt" }` with Credentials |
+| `bcrypt` (native) in middleware | Use `bcryptjs` — native bcrypt is Node-only, breaks Edge middleware |
+| Drizzle push with pooled URL | Use **direct** connection URL for `drizzle-kit push`; pooled for app queries |
+| `auth()` in Server Components | Always `await auth()` — it returns a Promise |
+| `signIn()` throws on bad credentials | Wrap in try/catch — throws `AuthError` (not just returns null) |
+| Neon cold start latency | First query after idle ~500ms on free tier — expected |
+| `passwordHash` column missing | Manually extend the `users` table — the DrizzleAdapter doesn't add it by default |
+| PostGIS not installed | Run `CREATE EXTENSION IF NOT EXISTS postgis` in Neon SQL Editor before Phase 3 |
+| `AUTH_URL` in production | Must be set to the production origin in Vercel env vars |
 
 ---
 
-## 6. Navigation Shell
+## 10. Integration Threads (End-to-End)
 
-### Layout structure for (app) routes
-
-```typescript
-// src/app/(app)/layout.tsx
-import { NavShell } from '@/components/nav-shell'
-
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex h-dvh flex-col md:flex-row">
-      <main className="flex-1 overflow-y-auto pb-16 md:pb-0 md:pl-64">
-        {children}
-      </main>
-      <NavShell />
-    </div>
-  )
-}
-```
-
-```typescript
-// src/components/nav-shell.tsx — bottom nav (mobile) + sidebar (desktop)
-'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Home, BookOpen, Compass, User } from 'lucide-react'
-
-const navItems = [
-  { href: '/home',      label: 'Home',      icon: Home },
-  { href: '/beastiary', label: 'Beastiary', icon: BookOpen },
-  { href: '/discover',  label: 'Discover',  icon: Compass },
-  { href: '/profile',   label: 'Profile',   icon: User },
-]
-
-export function NavShell() {
-  const pathname = usePathname()
-  return (
-    <>
-      {/* Mobile: fixed bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 border-t bg-background md:hidden">
-        {navItems.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href}
-            className={`flex flex-1 flex-col items-center justify-center gap-1 text-xs
-              ${pathname === href ? 'text-primary' : 'text-muted-foreground'}`}>
-            <Icon className="h-5 w-5" />
-            {label}
-          </Link>
-        ))}
-      </nav>
-      {/* Desktop: fixed left sidebar */}
-      <aside className="fixed left-0 top-0 hidden h-full w-64 flex-col border-r bg-background p-4 md:flex">
-        <div className="mb-8 px-2 text-xl font-bold text-primary">Scout</div>
-        {navItems.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm
-              ${pathname === href
-                ? 'bg-primary/10 text-primary font-medium'
-                : 'text-muted-foreground hover:bg-muted'}`}>
-            <Icon className="h-4 w-4" />
-            {label}
-          </Link>
-        ))}
-      </aside>
-    </>
-  )
-}
-```
+1. User visits `/` → middleware `authorized` → not logged in → redirect `/auth`
+2. User submits sign-up form → `registerUser` server action → bcrypt hash → insert `users` + `profiles` → `signIn("credentials")` → JWT issued → redirect `/home`
+3. User submits sign-in form → Credentials `authorize` → bcrypt compare → JWT issued → redirect `/home`
+4. User clicks sign out → `signOut()` → JWT cleared → redirect `/auth`
+5. User revisits `/home` with valid JWT → middleware allows → page renders with `session.user.id`
+6. Cross-device sync: sign in on second browser → same user row, same profiles data (AUTH-03)
 
 ---
 
-## 7. Walking Skeleton Definition
-
-The Walking Skeleton for Phase 1 is the thinnest end-to-end thread proving the stack works:
-
-**Thread:** User signs up → profile row created in Supabase → redirected to stub home screen → signs out → signs back in → still works
-
-**Minimum file set:**
-```
-src/
-  app/
-    layout.tsx                    # Root layout, providers
-    page.tsx                      # Redirect to /auth or /home
-    (auth)/
-      layout.tsx                  # Plain layout
-      auth/
-        page.tsx                  # Combined sign-in/sign-up form
-      callback/
-        route.ts                  # Email confirmation handler
-    (app)/
-      layout.tsx                  # Nav shell layout
-      home/
-        page.tsx                  # Stub home screen
-      beastiary/page.tsx          # Stub
-      discover/page.tsx           # Stub
-      profile/page.tsx            # Stub
-  middleware.ts                   # Session protection
-  lib/
-    supabase/
-      client.ts                   # Browser client
-      server.ts                   # Server client
-      middleware.ts               # updateSession helper
-  components/
-    nav-shell.tsx
-    email-verify-banner.tsx
-supabase/
-  migrations/
-    20260624000001_create_profiles.sql
-.env.local
-```
-
-**Deployment target for Phase 1:** Local development only (`npm run dev`). Vercel deployment is a Phase 8 concern. The Supabase cloud project is used (not local Supabase stack) to avoid additional setup complexity.
-
----
-
-## 8. Passkey Registration Flow (D-03)
-
-After successful email/password signup, show the passkey prompt in the same flow:
-
-1. `signUp()` completes → user object returned
-2. Modal/step appears: "Sign in faster next time — use your face or fingerprint"
-3. User clicks "Set up passkey" → `supabase.auth.signInWithPasskey({ action: 'register', email })`
-4. Browser WebAuthn dialog appears → user authenticates with biometric
-5. On success → `profiles.passkey_prompted_at` is set → redirect to `/home`
-6. User clicks "Skip for now" → `profiles.passkey_prompted_at` is set to `null` is NOT set (leave null so it could be re-prompted from settings) → redirect to `/home`
-   - Actually: set `passkey_prompted_at = now()` on skip too — this prevents re-prompting. Settings page offers "Add passkey" at any time.
-
----
-
-## Pitfalls and Gotchas
-
-1. **Hydration mismatch:** Never call `supabase.auth.getSession()` in Server Components — always `getUser()`. Use the server client from `@/lib/supabase/server.ts` (not the browser client) in Server Components and Route Handlers.
-
-2. **Cookie handling in Next.js 15+:** `cookies()` from `next/headers` is now async (`await cookies()`). The server client factory must be async.
-
-3. **Passkeys require HTTPS or localhost:** Works on `localhost:3000` in dev. Cannot test on LAN IP without a proper TLS cert.
-
-4. **Supabase email confirmation redirect:** Must configure allowed redirect URLs in Supabase dashboard → Auth → URL Configuration → Redirect URLs. Add `http://localhost:3000/**`.
-
-5. **RLS must be enabled before data is written:** The migration enables RLS immediately — never add the `enable row level security` line after the table has data.
-
-6. **Trigger security:** The `handle_new_user` function must be `SECURITY DEFINER` — it inserts into `public.profiles` from the `auth.users` trigger, which runs in the Supabase auth schema context.
-
-7. **`@supabase/ssr` vs deprecated auth-helpers:** `@supabase/auth-helpers-nextjs` is deprecated. Use `@supabase/ssr` only.
-
-8. **Tailwind 4 peer dependency:** shadcn/ui v4 requires `tailwindcss@^4.0.0`. Do not install `tailwindcss@3.x` — `create-next-app` with `--tailwind` on Next.js 16 installs v4 automatically.
-
-9. **Route group layout must not add URL segment:** `(auth)` and `(app)` folder names must stay in parentheses — without them the folder name becomes a URL segment.
-
----
-
-## Validation Architecture
-
-### What MUST work end-to-end (happy path)
-- User enters email + password on `/auth` → account created → profile row appears in Supabase → redirected to `/home`
-- User on `/home` clicks sign-out → redirected to `/auth` → `/home` now returns 302 to `/auth`
-- Returning user enters email + password on `/auth` → signed in → `/home` renders
-- New user sees passkey prompt post-signup → sets up passkey → next sign-in uses biometric
-- New user dismisses passkey prompt → lands on `/home` directly
-- User has unverified email → banner appears on `/home` → clicking verify sends email → banner hides after confirmation
-
-### Integration Points to Test
-- Supabase Auth ↔ Next.js middleware: `updateSession()` refreshes cookies on every request; if broken, session expires mid-session
-- `auth.users` insert trigger ↔ `public.profiles`: if trigger fails (missing `SECURITY DEFINER`), profile row is missing and profile-dependent features break
-- Passkey registration ↔ Supabase: if WebAuthn credential not stored, passkey sign-in fails silently
-- RLS ↔ profiles table: if policy is wrong, users see null data or get 403 from Supabase client
-- Email confirmation callback route ↔ Supabase `exchangeCodeForSession`: if missing, email links return 404
-
-### Edge Cases / Pitfalls
-- **Hydration mismatch:** Using browser client in Server Components → fix: always import from `@/lib/supabase/server.ts` in server context
-- **Passkey not supported:** `PublicKeyCredential` undefined in non-HTTPS context or old browser → show "Set up later in settings" instead of prompt
-- **Email confirmation URL not whitelisted:** Supabase rejects redirect → configure in dashboard before testing email confirmation
-- **RLS enabled after data inserted:** Existing rows become inaccessible → always enable RLS in the same migration that creates the table
-- **Async cookies() in Next.js 15+:** Missing `await` on `cookies()` → runtime error in server client factory
-
-### Tools and Commands
-- `npx supabase db push` — apply migrations to remote Supabase project
-- `npm run dev` — start local development server
-- **Manual smoke test:** Sign up → check Supabase Dashboard → Authentication → Users (user exists) + Table Editor → profiles (row exists)
-- **RLS test:** Sign in as user A, query `profiles` table via Supabase client → should return only own row
-- **Middleware test:** Open incognito → navigate to `/home` → should redirect to `/auth`
-- **Passkey test:** Chrome 108+ required; use DevTools → Application → WebAuthn to simulate authenticators
-
-## RESEARCH COMPLETE
+*Research written: 2026-06-25 | Stack: Neon + NextAuth.js v5 + Drizzle ORM*
