@@ -122,7 +122,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 |-------|----------------|--------|-----------|
 | 1. Foundation + Auth | 2/3 | In Progress|  |
 | 2. Species Dataset + Ethics Data Model | 0/2 | Not started | - |
-| 3. Occurrence Pipeline + Discovery | 0/TBD | Not started | - |
+| 3. Occurrence Pipeline + Discovery | 2/3 | In Progress|  |
 | 4. Collection Mechanics | 0/TBD | Not started | - |
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
 | 6. Rarity Tiers + Shiny Variants | 0/TBD | Not started | - |
