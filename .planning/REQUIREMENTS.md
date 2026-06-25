@@ -10,8 +10,8 @@ Requirements for initial release. Each maps to a roadmap phase.
 ### Discovery
 
 - [x] **DISC-01**: User can see a list of wildlife species plausible for their current GPS location
-- [ ] **DISC-02**: User can pick a species from the nearby list to log a sighting and unlock its card
-- [ ] **DISC-03**: User can log the same species multiple times (sighting count increments on the card)
+- [x] **DISC-02**: User can pick a species from the nearby list to log a sighting and unlock its card
+- [x] **DISC-03**: User can log the same species multiple times (sighting count increments on the card)
 - [x] **DISC-04**: User can enter a postcode to browse nearby species without sharing live GPS
 
 ### Beastiary
@@ -84,8 +84,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RESP-04 | Phase 2 | Pending |
 | DISC-01 | Phase 3 | Complete |
 | DISC-04 | Phase 3 | Complete |
-| DISC-02 | Phase 4 | Pending |
-| DISC-03 | Phase 4 | Pending |
+| DISC-02 | Phase 4 | Complete |
+| DISC-03 | Phase 4 | Complete |
 | BEAST-01 | Phase 5 | Pending |
 | BEAST-02 | Phase 5 | Pending |
 | BEAST-03 | Phase 5 | Pending |

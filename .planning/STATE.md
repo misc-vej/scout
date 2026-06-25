@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase_complete
-stopped_at: Phase 03 complete — occurrences table, proj4 OSGB grid conversion, NBN Atlas on-demand cache, /api/discover routes, Discovery UI with TanStack Query; DISC-01 + DISC-04 satisfied
-last_updated: "2026-06-25T17:00:00.000Z"
+status: planning
+stopped_at: Plan 01-03 complete — Phase 01 Foundation+Auth fully done. NavShell, EmailVerificationBanner, Beastiary/Discover stubs, E2E specs (AUTH-03, D-05, D-06, D-07) all shipped.
+last_updated: "2026-06-25T21:19:56.836Z"
 last_activity: 2026-06-25
 progress:
   total_phases: 7
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 11
   completed_plans: 11
-  percent: 43
+  percent: 57
 ---
 
 # Project State
@@ -95,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-25T20:55:48.759Z
+Last session: 2026-06-25T21:19:56.828Z
 Stopped at: Plan 01-03 complete — Phase 01 Foundation+Auth fully done. NavShell, EmailVerificationBanner, Beastiary/Discover stubs, E2E specs (AUTH-03, D-05, D-06, D-07) all shipped.
 Resume file: None

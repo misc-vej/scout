@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation + Auth** - Next.js 16 + NextAuth.js v5 + Drizzle + Neon; email/password auth; passkey prompt; nav shell (3/3 plans verified ✓)
 - [x] **Phase 2: Species Dataset + Ethics Data Model** - 115 UK species seeded; 6-tier rarity enum; sensitivity + season-lock schema; NBN licence audit complete (2/2 plans ✓)
 - [x] **Phase 3: Occurrence Pipeline + Discovery** - occurrences table; proj4 OSGB grid conversion; NBN Atlas on-demand cache; /api/discover routes; Discovery UI with TanStack Query; DISC-01 + DISC-04 (3/3 plans ✓)
-- [ ] **Phase 4: Collection Mechanics** - Sighting log (grid-snapped), card unlock, multi-sighting counter
+- [x] **Phase 4: Collection Mechanics** - Sighting log (grid-snapped), card unlock, multi-sighting counter (completed 2026-06-25)
 - [ ] **Phase 5: Beastiary UI + Personality** - Pokédex-style beastiary, per-card facts, user-assigned personality
 - [ ] **Phase 6: Rarity Tiers + Shiny Variants** - Visual rarity treatment, conservation status badge, shiny rare variants
 - [ ] **Phase 7: Responsible Spotting UX** - Spotter's Pledge onboarding gate, per-card ethics guidance, sensitive-species flagging
@@ -72,11 +72,11 @@ Plans:
   2. Logging the same species a second time increments the sighting counter on the existing card rather than creating a second card
   3. Sighting records are written with grid-square coordinates only — raw GPS is never sent to the server
   4. Proximity to the species location never increases collection value or sighting count speed (design constraint enforced)
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 Plans:
-- [ ] 04-01-PLAN.md — sightings + collections tables schema + Drizzle migration
-- [ ] 04-02-PLAN.md — POST /api/sightings endpoint + SpeciesCard "Log sighting" button + SpeciesList gridSquare wiring
-- [ ] 04-03-PLAN.md — Minimal Beastiary page (server component, locked/unlocked species list, grouped by taxonomyGroup)
+- [x] 04-01-PLAN.md — sightings + collections tables schema + Drizzle migration
+- [x] 04-02-PLAN.md — POST /api/sightings endpoint + SpeciesCard "Log sighting" button + SpeciesList gridSquare wiring
+- [x] 04-03-PLAN.md — Minimal Beastiary page (server component, locked/unlocked species list, grouped by taxonomyGroup)
 
 ### Phase 5: Beastiary UI + Personality
 **Goal**: Users can browse their beastiary — seeing silhouettes for uncollected species and full cards for collected ones — view playful per-card facts, and assign a personal personality trait to each animal they collect
@@ -127,7 +127,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Foundation + Auth | 2/3 | In Progress|  |
 | 2. Species Dataset + Ethics Data Model | 0/2 | Not started | - |
 | 3. Occurrence Pipeline + Discovery | 2/3 | In Progress|  |
-| 4. Collection Mechanics | 0/3 | Not started | - |
+| 4. Collection Mechanics | 3/3 | Complete   | 2026-06-25 |
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
 | 6. Rarity Tiers + Shiny Variants | 0/TBD | Not started | - |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |
