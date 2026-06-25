@@ -1,4 +1,4 @@
-import { boolean, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, index, integer, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -66,3 +66,24 @@ export const species = pgTable("species", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+export const occurrences = pgTable(
+  "occurrences",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    speciesId: uuid("species_id")
+      .notNull()
+      .references(() => species.id, { onDelete: "cascade" }),
+    gridSquare: text("grid_square").notNull(),
+    recordCount: integer("record_count").notNull().default(0),
+    lastFetchedAt: timestamp("last_fetched_at").defaultNow().notNull(),
+    source: text("source").notNull().default("nbn_atlas"),
+  },
+  (table) => ({
+    uniqueSpeciesGrid: uniqueIndex("occurrences_species_grid_idx").on(
+      table.speciesId,
+      table.gridSquare
+    ),
+    gridSquareIdx: index("occurrences_grid_square_idx").on(table.gridSquare),
+  })
+);
