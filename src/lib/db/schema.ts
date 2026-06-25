@@ -61,6 +61,7 @@ export const species = pgTable("species", {
   seasonLockStart: text("season_lock_start"),
   seasonLockEnd: text("season_lock_end"),
   description: text("description"),
+  funFact: text("fun_fact"),
   imageUrl: text("image_url"),
   taxonomyGroup: text("taxonomy_group"),
   createdAt: timestamp("created_at").defaultNow().notNull(),

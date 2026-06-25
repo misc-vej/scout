@@ -1,0 +1,1 @@
+ALTER TABLE "species" ADD COLUMN "fun_fact" text;
