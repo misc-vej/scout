@@ -37,6 +37,7 @@
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@types/bcryptjs": "^2.4.6",
-    "drizzle-kit": "^0.31.10"
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.22.4"
   }
 }
