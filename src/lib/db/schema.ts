@@ -87,3 +87,38 @@ export const occurrences = pgTable(
     gridSquareIdx: index("occurrences_grid_square_idx").on(table.gridSquare),
   })
 );
+
+export const sightings = pgTable("sightings", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  speciesId: uuid("species_id")
+    .notNull()
+    .references(() => species.id, { onDelete: "cascade" }),
+  gridSquare: text("grid_square").notNull(),
+  sightedAt: timestamp("sighted_at").defaultNow().notNull(),
+});
+
+export const collections = pgTable(
+  "collections",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    speciesId: uuid("species_id")
+      .notNull()
+      .references(() => species.id, { onDelete: "cascade" }),
+    sightingCount: integer("sighting_count").notNull().default(1),
+    firstSightedAt: timestamp("first_sighted_at").defaultNow().notNull(),
+    lastSightedAt: timestamp("last_sighted_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    uniqueUserSpecies: uniqueIndex("collections_user_species_idx").on(
+      table.userId,
+      table.speciesId
+    ),
+    userIdIdx: index("collections_user_id_idx").on(table.userId),
+  })
+);
