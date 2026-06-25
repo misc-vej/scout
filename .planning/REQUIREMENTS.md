@@ -26,7 +26,7 @@ Requirements for initial release. Each maps to a roadmap phase.
 ### Authentication
 
 - [ ] **AUTH-01**: User can create an account with email and password
-- [ ] **AUTH-02**: User can sign in with passkeys / biometric (Supabase passkeys)
+- [x] **AUTH-02**: User can sign in with passkeys / biometric (Supabase passkeys)
 - [ ] **AUTH-03**: User's collection is cloud-synced and accessible across devices
 
 ### Responsible Spotting
@@ -78,7 +78,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Complete |
 | AUTH-03 | Phase 1 | Pending |
 | RESP-03 | Phase 2 | Pending |
 | RESP-04 | Phase 2 | Pending |

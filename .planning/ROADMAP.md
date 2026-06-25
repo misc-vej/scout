@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Auth | 0/TBD | Not started | - |
+| 1. Foundation + Auth | 2/3 | In Progress|  |
 | 2. Species Dataset + Ethics Data Model | 0/TBD | Not started | - |
 | 3. Occurrence Pipeline + Discovery | 0/TBD | Not started | - |
 | 4. Collection Mechanics | 0/TBD | Not started | - |
