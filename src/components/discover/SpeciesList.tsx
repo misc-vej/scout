@@ -14,7 +14,7 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({ spe
     ) : (
       <div className="flex flex-col gap-3">
         {species.map((s) => (
-          <SpeciesCard key={s.id} species={s} />
+          <SpeciesCard key={s.id} species={s} gridSquare={gridSquare} />
         ))}
       </div>
     )}
