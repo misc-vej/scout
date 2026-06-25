@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -30,6 +30,39 @@ export const profiles = pgTable("profiles", {
   userId: uuid("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
   displayName: text("display_name"),
   passkeyPromptedAt: timestamp("passkey_prompted_at", { mode: "date" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const rarityTierEnum = pgEnum("rarity_tier", [
+  "common",
+  "uncommon",
+  "rare",
+  "super_rare",
+  "legendary",
+  "mythic",
+]);
+
+export const sensitivityLevelEnum = pgEnum("sensitivity_level", [
+  "none",
+  "caution",
+  "sensitive",
+  "restricted",
+]);
+
+export const species = pgTable("species", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  commonName: text("common_name").notNull(),
+  scientificName: text("scientific_name").notNull().unique(),
+  tvk: text("tvk"),
+  rarityTier: rarityTierEnum("rarity_tier").notNull(),
+  sensitivityLevel: sensitivityLevelEnum("sensitivity_level").notNull().default("none"),
+  canBeShiny: boolean("can_be_shiny").notNull().default(false),
+  seasonLockStart: text("season_lock_start"),
+  seasonLockEnd: text("season_lock_end"),
+  description: text("description"),
+  imageUrl: text("image_url"),
+  taxonomyGroup: text("taxonomy_group"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
