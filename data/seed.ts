@@ -20,6 +20,7 @@ async function seed() {
           seasonLockEnd: entry.seasonLockEnd ?? null,
           taxonomyGroup: entry.taxonomyGroup ?? null,
           description: entry.description ?? null,
+          funFact: entry.funFact ?? null,
           tvk: entry.tvk ?? null,
         },
       });
