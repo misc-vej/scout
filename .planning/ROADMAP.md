@@ -13,7 +13,7 @@ Scout delivers a UK real-world wildlife collection web app in seven phases. The 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation + Auth** - Next.js 16 + NextAuth.js v5 + Drizzle + Neon; email/password auth; passkey prompt; nav shell (3/3 plans verified ✓)
-- [ ] **Phase 2: Species Dataset + Ethics Data Model** - Curated UK species seed with rarity, sensitivity, and season-lock fields; NBN Atlas licence audit gate
+- [x] **Phase 2: Species Dataset + Ethics Data Model** - 115 UK species seeded; 6-tier rarity enum; sensitivity + season-lock schema; NBN licence audit complete (2/2 plans ✓)
 - [ ] **Phase 3: Occurrence Pipeline + Discovery** - NBN Atlas ingest into occurrences table; PostGIS radius query powering "what's near me" and postcode lookup
 - [ ] **Phase 4: Collection Mechanics** - Sighting log (grid-snapped), card unlock, multi-sighting counter
 - [ ] **Phase 5: Beastiary UI + Personality** - Pokédex-style beastiary, per-card facts, user-assigned personality
