@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Plan 01-03 complete — Phase 01 Foundation+Auth fully done. NavShell, EmailVerificationBanner, Beastiary/Discover stubs, E2E specs (AUTH-03, D-05, D-06, D-07) all shipped.
-last_updated: "2026-06-25T21:19:56.836Z"
+status: phase_complete
+stopped_at: Phase 04 complete — sightings+collections tables, POST /api/sightings, Log sighting button on SpeciesCard, minimal beastiary with progress bar; DISC-02 + DISC-03 satisfied
+last_updated: "2026-06-25T21:30:00.000Z"
 last_activity: 2026-06-25
 progress:
   total_phases: 7
   completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
+  total_plans: 14
+  completed_plans: 14
   percent: 57
 ---
 
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 
 ## Current Position
 
-Phase: 4 of 7 (Collection Mechanics)
+Phase: 5 of 7 (Beastiary UI + Personality)
 Plan: 0 of ? (planning not yet started)
-Status: Phase 03 COMPLETE ✓ — Ready to plan and execute Phase 04
+Status: Phase 04 COMPLETE ✓ — Ready to plan and execute Phase 05
 Last activity: 2026-06-25
 
 Progress: [█████████░] 88%
