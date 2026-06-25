@@ -12,7 +12,7 @@ Scout delivers a UK real-world wildlife collection web app in seven phases. The 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation + Auth** - Project skeleton, Supabase auth, cloud-synced accounts
+- [x] **Phase 1: Foundation + Auth** - Project skeleton, Supabase auth, cloud-synced accounts (3/3 plans complete)
 - [ ] **Phase 2: Species Dataset + Ethics Data Model** - Curated UK species seed with rarity, sensitivity, and season-lock fields; NBN Atlas licence audit gate
 - [ ] **Phase 3: Occurrence Pipeline + Discovery** - NBN Atlas ingest into occurrences table; PostGIS radius query powering "what's near me" and postcode lookup
 - [ ] **Phase 4: Collection Mechanics** - Sighting log (grid-snapped), card unlock, multi-sighting counter
