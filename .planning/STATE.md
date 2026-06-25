@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase_complete
-stopped_at: Phase 04 complete — sightings+collections tables, POST /api/sightings, Log sighting button on SpeciesCard, minimal beastiary with progress bar; DISC-02 + DISC-03 satisfied
-last_updated: "2026-06-25T21:30:00.000Z"
+status: in_progress
+stopped_at: "05-02 complete — personality_trait column in Neon, PATCH /api/collections/[speciesId]/personality with ALLOWED_TRAITS validation and IDOR guard"
+last_updated: "2026-06-25T22:00:00.000Z"
 last_activity: 2026-06-25
 progress:
   total_phases: 7
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 ## Current Position
 
 Phase: 5 of 7 (Beastiary UI + Personality)
-Plan: 0 of ? (planning not yet started)
-Status: Phase 04 COMPLETE ✓ — Ready to plan and execute Phase 05
+Plan: 2 of ? (05-01 + 05-02 complete)
+Status: Phase 05 in progress — 05-02 complete, ready for 05-03
 Last activity: 2026-06-25
 
 Progress: [█████████░] 88%
@@ -95,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-25T21:19:56.828Z
-Stopped at: Plan 01-03 complete — Phase 01 Foundation+Auth fully done. NavShell, EmailVerificationBanner, Beastiary/Discover stubs, E2E specs (AUTH-03, D-05, D-06, D-07) all shipped.
+Last session: 2026-06-25T22:00:00.000Z
+Stopped at: Plan 05-02 complete — personalityTrait column in Neon + PATCH /api/collections/[speciesId]/personality. Next: 05-03 PersonalityPicker component.
 Resume file: None
