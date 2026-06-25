@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-stopped_at: "05-02 complete — personality_trait column in Neon, PATCH /api/collections/[speciesId]/personality with ALLOWED_TRAITS validation and IDOR guard"
-last_updated: "2026-06-25T22:00:00.000Z"
+status: phase_complete
+stopped_at: "Phase 05 complete — funFact on species + personalityTrait on collections + BeastiaryCard grid + PersonalityPicker; BEAST-01 + BEAST-02 + BEAST-03 satisfied"
+last_updated: "2026-06-25T22:30:00.000Z"
 last_activity: 2026-06-25
 progress:
   total_phases: 7
-  completed_phases: 4
-  total_plans: 14
-  completed_plans: 14
-  percent: 57
+  completed_phases: 5
+  total_plans: 17
+  completed_plans: 17
+  percent: 71
 ---
 
 # Project State
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 
 ## Current Position
 
-Phase: 5 of 7 (Beastiary UI + Personality)
-Plan: 2 of ? (05-01 + 05-02 complete)
-Status: Phase 05 in progress — 05-02 complete, ready for 05-03
+Phase: 6 of 7 (Rarity Tiers + Shiny Variants)
+Plan: 0 of ? (planning not yet started)
+Status: Phase 05 COMPLETE ✓ — Ready to plan and execute Phase 06
 Last activity: 2026-06-25
 
 Progress: [█████████░] 88%

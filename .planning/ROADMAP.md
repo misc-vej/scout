@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Species Dataset + Ethics Data Model** - 115 UK species seeded; 6-tier rarity enum; sensitivity + season-lock schema; NBN licence audit complete (2/2 plans ✓)
 - [x] **Phase 3: Occurrence Pipeline + Discovery** - occurrences table; proj4 OSGB grid conversion; NBN Atlas on-demand cache; /api/discover routes; Discovery UI with TanStack Query; DISC-01 + DISC-04 (3/3 plans ✓)
 - [x] **Phase 4: Collection Mechanics** - Sighting log (grid-snapped), card unlock, multi-sighting counter (completed 2026-06-25)
-- [ ] **Phase 5: Beastiary UI + Personality** - Pokédex-style beastiary, per-card facts, user-assigned personality
+- [x] **Phase 5: Beastiary UI + Personality** - funFact on species; personalityTrait on collections; BeastiaryCard grid; PersonalityPicker; BEAST-01 + BEAST-02 + BEAST-03 (3/3 plans ✓)
 - [ ] **Phase 6: Rarity Tiers + Shiny Variants** - Visual rarity treatment, conservation status badge, shiny rare variants
 - [ ] **Phase 7: Responsible Spotting UX** - Spotter's Pledge onboarding gate, per-card ethics guidance, sensitive-species flagging
 
