@@ -1,12 +1,13 @@
 # Phase 1: Foundation + Auth — Context
 
 **Gathered:** 2026-06-24
+**Updated:** 2026-06-25 — stack changed from Supabase to Neon + NextAuth.js v5 + Drizzle
 **Status:** Ready for planning
 
 <domain>
 ## Phase Boundary
 
-Deliver a working Next.js + Supabase skeleton with email/password auth, passkey sign-in, cloud-synced collection storage, and a minimal authenticated stub home screen with a full nav shell. Every subsequent phase builds on this foundation. The beastiary, collection mechanics, and any feature content are out of scope — this phase is purely about getting a signed-in user into a working app shell.
+Deliver a working Next.js + Neon skeleton with email/password auth via NextAuth.js v5, Drizzle ORM schema with a users/profiles table, and a minimal authenticated stub home screen with a full nav shell. Every subsequent phase builds on this foundation. The beastiary, collection mechanics, and any feature content are out of scope — this phase is purely about getting a signed-in user into a working app shell.
 
 </domain>
 
@@ -47,8 +48,9 @@ Deliver a working Next.js + Supabase skeleton with email/password auth, passkey 
 - `.planning/ROADMAP.md` §Phase 1 — success criteria: verified account, passkey sign-in on supported device, cross-device sync, unauthenticated users cannot access collection features
 
 ### Stack & Architecture
-- `.planning/research/SUMMARY.md` — authoritative stack recommendation (Next.js 16, Supabase Auth + passkeys, Tailwind 4, shadcn/ui v4, TanStack Query v5, Zustand v5) and resolved conflicts
-- `.planning/research/STACK.md` — specific library versions, rationale, and what NOT to use
+- `.planning/research/SUMMARY.md` — authoritative stack recommendation (Next.js 16, Tailwind 4, shadcn/ui v4, TanStack Query v5, Zustand v5) — **NOTE: auth and DB sections are outdated (Supabase); new research supersedes them**
+- `.planning/research/STACK.md` — library versions and rationale — **NOTE: auth/DB sections outdated; see new research**
+- **Stack change (2026-06-25):** Supabase replaced with: Neon (Postgres + PostGIS), NextAuth.js v5 (Auth.js), Drizzle ORM + drizzle-kit migrations
 
 ### No external specs
 No ADRs or external specification documents yet — this is the first phase. All decisions are captured above.
@@ -65,8 +67,11 @@ No ADRs or external specification documents yet — this is the first phase. All
 - None yet — this phase establishes the foundational patterns all other phases will follow.
 
 ### Integration Points
-- Supabase will be the auth provider AND the database. The `users` table created by Supabase Auth is the anchor for all user-scoped data (collections, sightings, preferences). RLS policies must be applied from the first migration.
+- **Neon** is the database (Postgres + PostGIS). **NextAuth.js v5** is the auth provider using the Credentials provider (email + password, bcrypt-hashed). **Drizzle ORM** is the query layer; `drizzle-kit push` or `migrate` applies schema to Neon.
+- NextAuth v5 requires an `AUTH_SECRET` env var and a `DATABASE_URL` (Neon connection string). The Drizzle adapter for NextAuth handles session + user tables automatically.
+- Row-level data isolation: all user-scoped queries filter by `session.user.id` in server actions / route handlers — no Postgres RLS needed for v1.
 - The nav shell scaffolded here defines the route structure that Phases 3–7 will fill in. Route names established now (e.g., `/beastiary`, `/discover`, `/profile`) should be stable.
+- PostGIS extension must be enabled on the Neon database (Phase 3 dependency — do it now so the extension is available when needed).
 
 </code_context>
 
