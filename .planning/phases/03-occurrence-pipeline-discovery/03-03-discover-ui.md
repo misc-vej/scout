@@ -8,11 +8,32 @@ req_ids: [DISC-01, DISC-04]
 branching_strategy: none
 autonomous: true
 files_modified:
+  - package.json
+  - src/app/(app)/layout.tsx
   - src/components/discover/RarityBadge.tsx
   - src/components/discover/SpeciesCard.tsx
   - src/components/discover/SpeciesList.tsx
   - src/components/discover/DiscoverClient.tsx
   - src/app/(app)/discover/page.tsx
+must_haves:
+  truths:
+    - D-UI-01: /discover renders a GPS button and postcode form when in idle state
+    - D-UI-02: Entering postcode "SW1A 2AA" and submitting shows a loading skeleton then a species list
+    - D-UI-03: Rarity badges show the correct color (common=gray, rare=blue, super_rare=purple, legendary=orange, mythic=red)
+    - D-UI-04: Unauthenticated visits to /discover redirect to /auth
+    - D-UI-05: geodesy is not imported in any "use client" file created by this plan
+    - D-UI-06: DiscoverClient uses TanStack Query useMutation — not raw fetch setState patterns
+  artifacts:
+    - src/components/discover/RarityBadge.tsx
+    - src/components/discover/SpeciesCard.tsx
+    - src/components/discover/SpeciesList.tsx
+    - src/components/discover/DiscoverClient.tsx (uses useMutation from @tanstack/react-query)
+    - src/app/(app)/discover/page.tsx (replaces stub)
+  key_links:
+    - DiscoverClient → /api/discover/grid (GPS flow)
+    - DiscoverClient → /api/discover/postcode (postcode flow)
+    - DiscoverClient → /api/discover (species fetch)
+    - RarityBadge → SpeciesCard → SpeciesList → DiscoverClient
 ---
 
 ## Goal
@@ -47,6 +68,43 @@ API endpoints (created in 03-02):
 - `POST /api/discover` — body `{ gridSquare: string }` → `SpeciesResult[]`
 
 ## Tasks
+
+### Task 0: Install TanStack Query v5 and wire QueryClientProvider
+
+CLAUDE.md specifies TanStack Query v5 for caching/deduping species API responses. Install it:
+```bash
+npm install @tanstack/react-query
+```
+
+Read `src/app/(app)/layout.tsx` to see the current app layout. Add a `QueryClientProvider` wrapper around `{children}`. Create a small client component to hold the `QueryClient`:
+
+Create `src/components/providers/QueryProvider.tsx`:
+```tsx
+'use client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+
+export function QueryProvider({ children }: { children: React.ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: { queries: { staleTime: 5 * 60 * 1000 } },
+  }));
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+}
+```
+
+In `src/app/(app)/layout.tsx`, wrap the children with `<QueryProvider>`:
+```tsx
+import { QueryProvider } from '@/components/providers/QueryProvider';
+// ...
+export default function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <QueryProvider>
+      {/* existing layout structure */}
+    </QueryProvider>
+  );
+}
+```
+Read the actual file before editing — the exact structure may differ. Preserve all existing layout elements.
 
 ### Task 1: Create display components
 
@@ -117,98 +175,102 @@ Import `SpeciesResult` from `@/types/discovery` and `SpeciesCard` from `./Specie
 
 Mark `"use client"` at the top of the file.
 
-**State type:**
+Uses TanStack Query v5 `useMutation` for the API calls (per CLAUDE.md stack requirement). Each discovery flow (GPS and postcode) is a two-step mutation: first get the grid square, then fetch species. Use a single `useMutation` that runs both steps sequentially.
+
+**Imports:**
 ```ts
-type DiscoverState =
-  | { status: 'idle' }
-  | { status: 'loading' }
-  | { status: 'ready'; gridSquare: string; species: SpeciesResult[] }
-  | { status: 'error'; message: string };
+'use client';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import type { SpeciesResult } from '@/types/discovery';
+import SpeciesList from './SpeciesList';
 ```
 
-**State management:**
+**Helper — fetch species for a grid square:**
 ```ts
-const [state, setState] = useState<DiscoverState>({ status: 'idle' });
-const [postcode, setPostcode] = useState('');
-```
-
-**GPS flow (triggered by "Use my location" button click):**
-```ts
-async function handleGPS() {
-  setState({ status: 'loading' });
-  navigator.geolocation.getCurrentPosition(
-    async (pos) => {
-      try {
-        const gridRes = await fetch('/api/discover/grid', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-        });
-        if (!gridRes.ok) throw new Error('Could not determine your grid square');
-        const { gridSquare } = await gridRes.json();
-
-        const speciesRes = await fetch('/api/discover', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ gridSquare }),
-        });
-        if (!speciesRes.ok) throw new Error('Could not load nearby species');
-        const species: SpeciesResult[] = await speciesRes.json();
-
-        setState({ status: 'ready', gridSquare, species });
-      } catch (e) {
-        setState({ status: 'error', message: e instanceof Error ? e.message : 'Something went wrong' });
-      }
-    },
-    () => {
-      setState({ status: 'error', message: 'Location access denied — try entering a postcode instead.' });
-    }
-  );
+async function fetchSpeciesForGrid(gridSquare: string): Promise<SpeciesResult[]> {
+  const res = await fetch('/api/discover', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gridSquare }),
+  });
+  if (!res.ok) throw new Error('Could not load nearby species');
+  return res.json();
 }
 ```
 
-**Postcode flow (triggered by form submit):**
+**GPS mutation:**
 ```ts
-async function handlePostcode(e: React.FormEvent) {
-  e.preventDefault();
-  if (!postcode.trim()) return;
-  setState({ status: 'loading' });
-  try {
+const gpsMutation = useMutation({
+  mutationFn: async () => {
+    const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
+    const gridRes = await fetch('/api/discover/grid', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lat: position.coords.latitude, lng: position.coords.longitude }),
+    });
+    if (!gridRes.ok) throw new Error('Could not determine your grid square');
+    const { gridSquare } = await gridRes.json() as { gridSquare: string };
+    const species = await fetchSpeciesForGrid(gridSquare);
+    return { gridSquare, species };
+  },
+});
+```
+
+**Postcode state and mutation:**
+```ts
+const [postcode, setPostcode] = useState('');
+
+const postcodeMutation = useMutation({
+  mutationFn: async (pc: string) => {
     const pcRes = await fetch('/api/discover/postcode', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ postcode }),
+      body: JSON.stringify({ postcode: pc }),
     });
     if (!pcRes.ok) {
-      const err = await pcRes.json();
+      const err = await pcRes.json() as { error?: string };
       throw new Error(err.error ?? 'Postcode not found');
     }
-    const { gridSquare } = await pcRes.json();
+    const { gridSquare } = await pcRes.json() as { gridSquare: string };
+    const species = await fetchSpeciesForGrid(gridSquare);
+    return { gridSquare, species };
+  },
+});
+```
 
-    const speciesRes = await fetch('/api/discover', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gridSquare }),
-    });
-    if (!speciesRes.ok) throw new Error('Could not load nearby species');
-    const species: SpeciesResult[] = await speciesRes.json();
+**Unified state for rendering — derive from mutation state:**
+```ts
+const activeMutation = gpsMutation.isPending || gpsMutation.isSuccess || gpsMutation.isError
+  ? gpsMutation
+  : postcodeMutation;
 
-    setState({ status: 'ready', gridSquare, species });
-  } catch (e) {
-    setState({ status: 'error', message: e instanceof Error ? e.message : 'Something went wrong' });
-  }
+const isLoading = activeMutation.isPending;
+const result = activeMutation.isSuccess ? activeMutation.data : null;
+const error = activeMutation.isError ? activeMutation.error?.message : null;
+const isIdle = !activeMutation.isPending && !activeMutation.isSuccess && !activeMutation.isError;
+```
+
+**Reset (search again):**
+```ts
+function reset() {
+  gpsMutation.reset();
+  postcodeMutation.reset();
+  setPostcode('');
 }
 ```
 
 **Render:**
 
-- `status === 'idle'` or `status === 'error'`: Show the location prompt UI:
-  - A centered `<button onClick={handleGPS}>Use my location</button>` with appropriate styling (e.g. `className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-500"`)
+- `isIdle || error` state: Show the location prompt UI:
+  - A centered `<button onClick={() => gpsMutation.mutate()}>Use my location</button>` with styling `className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-500"`
   - A divider: `<div className="flex items-center gap-4 my-4"><hr className="flex-1 border-white/10" /><span className="text-sm text-gray-500">or</span><hr className="flex-1 border-white/10" /></div>`
-  - A postcode form: `<form onSubmit={handlePostcode}>` containing an `<input>` (type text, placeholder "Enter postcode", value bound to `postcode` state) and a submit `<button>`. Input styling: `className="rounded-l-lg border border-white/20 bg-white/10 px-4 py-2 text-white placeholder-gray-500 focus:outline-none"`. Submit button: `className="rounded-r-lg bg-white/20 px-4 py-2 font-semibold text-white hover:bg-white/30"`.
-  - If `status === 'error'`: show `<p className="mt-4 text-center text-sm text-red-400">{state.message}</p>` below the form.
+  - A postcode form: `<form onSubmit={(e) => { e.preventDefault(); if (postcode.trim()) postcodeMutation.mutate(postcode); }}>` containing an `<input>` (type text, placeholder "Enter postcode", value bound to `postcode` state) and a submit `<button>`. Input: `className="rounded-l-lg border border-white/20 bg-white/10 px-4 py-2 text-white placeholder-gray-500 focus:outline-none"`. Submit: `className="rounded-r-lg bg-white/20 px-4 py-2 font-semibold text-white hover:bg-white/30"`.
+  - If `error`: show `<p className="mt-4 text-center text-sm text-red-400">{error}</p>` below the form.
 
-- `status === 'loading'`: Show a skeleton — three placeholder cards with animate-pulse:
+- `isLoading` state: Show a skeleton — three placeholder cards with animate-pulse:
   ```tsx
   <div className="flex flex-col gap-3">
     {[0, 1, 2].map((i) => (
@@ -218,9 +280,7 @@ async function handlePostcode(e: React.FormEvent) {
   ```
   Add a `<p className="text-center text-sm text-gray-500 mb-4">Finding wildlife near you…</p>` above the skeleton.
 
-- `status === 'ready'`: Render `<SpeciesList species={state.species} gridSquare={state.gridSquare} />` and a `<button onClick={() => setState({ status: 'idle' })}>Search again</button>` below it.
-
-Import `SpeciesResult` from `@/types/discovery` and `SpeciesList` from `./SpeciesList`.
+- `result` ready: Render `<SpeciesList species={result.species} gridSquare={result.gridSquare} />` and a `<button onClick={reset} className="mt-4 text-sm text-gray-400 hover:text-white">Search again</button>` below it.
 
 ### Task 3: Replace `src/app/(app)/discover/page.tsx`
 
@@ -250,9 +310,11 @@ The `redirect('/auth')` path should match whatever the Phase 1 auth route is. Ch
 
 ## Verification
 
+**Note:** `npx tsc --noEmit` and `npm run build` can be verified independently of 03-02. The manual smoke tests below require 03-02 to be complete (API routes must exist). If running in parallel wave 2 and 03-02 is not yet done, skip smoke tests and verify TypeScript/build only — re-run smoke tests after 03-02 completes.
+
 - `npx tsc --noEmit` exits with 0 errors.
 - `npm run build` passes.
-- Manual smoke test (run `npm run dev`):
+- Manual smoke test (run `npm run dev` — requires 03-02 complete):
   1. Navigate to `http://localhost:3000/discover` while signed in.
   2. The page shows the "Discover" heading, a "Use my location" button, and a postcode form with an "or" divider.
   3. Enter postcode `SW1A 2AA` and submit — loading skeleton appears, then a species list.

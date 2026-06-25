@@ -10,6 +10,19 @@ autonomous: true
 files_modified:
   - src/lib/db/schema.ts
   - src/types/discovery.ts
+must_haves:
+  truths:
+    - D-OCC-01: The occurrences table exists in Neon with columns id, species_id, grid_square, record_count, last_fetched_at, source
+    - D-OCC-02: A unique index on (species_id, grid_square) exists — prevents duplicate occurrence rows
+    - D-OCC-03: A separate index on grid_square alone exists — enables fast per-grid-square discovery queries
+    - D-TYPE-01: src/types/discovery.ts exports SpeciesResult with the 8 required fields (id, commonName, scientificName, rarityTier, sensitivityLevel, canBeShiny, taxonomyGroup, recordCount)
+  artifacts:
+    - src/lib/db/schema.ts (updated with occurrences table)
+    - src/types/discovery.ts (new)
+    - drizzle/000X_*.sql (new migration SQL file)
+  key_links:
+    - occurrences.speciesId → species.id (FK with onDelete cascade)
+    - SpeciesResult type → consumed by 03-02 API routes and 03-03 UI components
 ---
 
 ## Goal

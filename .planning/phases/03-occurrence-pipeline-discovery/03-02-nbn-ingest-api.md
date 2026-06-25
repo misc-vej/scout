@@ -14,6 +14,26 @@ files_modified:
   - src/app/api/discover/route.ts
   - src/app/api/discover/grid/route.ts
   - src/app/api/discover/postcode/route.ts
+must_haves:
+  truths:
+    - D-GRID-01: latLngToGridSquare(51.503, -0.1246) returns a valid 10km OSGB grid square string matching /^[A-Z]{2}[0-9]{2}$/
+    - D-PRIV-01: Raw lat/lng is never stored or logged — only the derived grid square string is used downstream
+    - D-NBN-01: On cache miss, /api/discover calls NBN Atlas once for the grid square, inserts occurrence rows, and returns SpeciesResult[]
+    - D-NBN-02: On cache hit, /api/discover returns immediately from Neon without calling NBN Atlas
+    - D-ETHICS-01: Species with sensitivityLevel=restricted are excluded from discovery results when today falls within their seasonLockStart–seasonLockEnd window
+    - D-AUTH-01: All three /api/discover/* routes return 401 for unauthenticated requests
+    - D-POST-01: /api/discover/postcode with postcode "SW1A 2AA" returns a valid grid square
+  artifacts:
+    - src/lib/geo/grid.ts (lat/lng ↔ OSGB grid square conversion)
+    - src/lib/nbn.ts (NBN Atlas API client)
+    - src/app/api/discover/route.ts (main discovery endpoint with on-demand cache)
+    - src/app/api/discover/grid/route.ts (lat/lng → grid square)
+    - src/app/api/discover/postcode/route.ts (postcode → grid square via postcodes.io)
+  key_links:
+    - DiscoverClient → /api/discover/grid → /api/discover
+    - DiscoverClient → /api/discover/postcode → /api/discover
+    - /api/discover → nbn.ts → NBN Atlas records-ws API
+    - /api/discover → occurrences table (Neon) → species table (join)
 ---
 
 ## Goal
@@ -171,6 +191,8 @@ Logic:
    const today = new Date();
    const mmdd = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
+   // Include seasonLockStart/seasonLockEnd in the query for the filter step.
+   // They are stripped from the final SpeciesResult[] return value via the map below.
    const results = await db
      .select({
        id: species.id,
@@ -181,6 +203,8 @@ Logic:
        canBeShiny: species.canBeShiny,
        taxonomyGroup: species.taxonomyGroup,
        recordCount: occurrences.recordCount,
+       seasonLockStart: species.seasonLockStart,
+       seasonLockEnd: species.seasonLockEnd,
      })
      .from(occurrences)
      .innerJoin(species, eq(occurrences.speciesId, species.id))
@@ -188,17 +212,17 @@ Logic:
      .orderBy(desc(occurrences.recordCount));
    ```
 
-   After fetching, filter in TypeScript (not SQL) to exclude season-locked restricted species:
+   After fetching, filter in TypeScript (not SQL) to exclude season-locked restricted species,
+   then strip the lock fields before returning the `SpeciesResult[]` shape:
    ```ts
-   const filtered = results.filter((row) => {
-     if (row.sensitivityLevel !== 'restricted') return true;
-     if (!row.seasonLockStart || !row.seasonLockEnd) return true;
-     // Exclude if today falls within [seasonLockStart, seasonLockEnd]
-     return !(mmdd >= row.seasonLockStart && mmdd <= row.seasonLockEnd);
-   });
-   ```
-
-   Note: the `species` table is not in the select type for `filtered` — you will need to query seasonLockStart/seasonLockEnd in the select then remove them before returning the `SpeciesResult[]`. Add them to the select as `seasonLockStart: species.seasonLockStart` and `seasonLockEnd: species.seasonLockEnd`, apply the filter, then map to the `SpeciesResult` shape (omitting the lock fields).
+   const filtered: SpeciesResult[] = results
+     .filter((row) => {
+       if (row.sensitivityLevel !== 'restricted') return true;
+       if (!row.seasonLockStart || !row.seasonLockEnd) return true;
+       // Exclude if today falls within [seasonLockStart, seasonLockEnd]
+       return !(mmdd >= row.seasonLockStart && mmdd <= row.seasonLockEnd);
+     })
+     .map(({ seasonLockStart: _s, seasonLockEnd: _e, ...rest }) => rest);
 
 7. Return `NextResponse.json(filtered)` with status 200.
 
