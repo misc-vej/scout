@@ -1,0 +1,17 @@
+# env files
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+
+# Node
+node_modules/
+
+# Drizzle
+drizzle/meta/
+
+# Misc
+.DS_Store
