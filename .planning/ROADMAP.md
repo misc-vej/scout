@@ -131,7 +131,7 @@ Plans:
 **Plans**: 5 plans
 Plans:
 - [x] 08-01-PLAN.md — Google Fonts (Syne + Outfit) + CSS variables (Forest Night) + rarity glow keyframes + .grain class
-- [ ] 08-02-PLAN.md — speciesType schema column + Drizzle migration + AnimalIcon component + getRarityConfig utility + species-seed.ts type mapping (115 species)
+- [x] 08-02-PLAN.md — speciesType schema column + Drizzle migration + AnimalIcon component + getRarityConfig utility + species-seed.ts type mapping (115 species)
 - [ ] 08-03-PLAN.md — Logbook redesign: Collection/Not Found tabs + rarity filter pills + BeastiaryCard (SVG silhouettes, glow, Bloom chips) + DetailPanel bottom sheet
 - [ ] 08-04-PLAN.md — Nearby redesign: SpeciesRow (mini thumbnail + likelihood bar + I saw it) + LogModal bottom sheet + ConfirmBanner + discover API likelihood + SpeciesResult type
 - [ ] 08-05-PLAN.md — NavShell Forest Night (SCOUT wordmark + SVG tab icons + active dot) + PledgeModal polish + full project tsc clean
@@ -150,4 +150,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
 | 6. Rarity Tiers + Shiny Variants | 1/2 | In Progress|  |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |
-| 8. Brand + UI Polish | 1/5 | In Progress|  |
+| 8. Brand + UI Polish | 2/5 | In Progress|  |
