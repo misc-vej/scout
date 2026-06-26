@@ -1,86 +1,580 @@
-import RarityBadge from '@/components/discover/RarityBadge';
-import { PersonalityPicker } from './PersonalityPicker';
-import { ConservationBadge } from './ConservationBadge';
-import { EthicsSection } from './EthicsSection';
-import { SensitivityBadge } from './SensitivityBadge';
+"use client";
 
-const RARITY_RING: Record<string, string> = {
-  common:     'ring-1 ring-gray-500/30 shadow-sm',
-  uncommon:   'ring-1 ring-green-500/40 shadow-md shadow-green-500/20',
-  rare:       'ring-2 ring-blue-500/50 shadow-md shadow-blue-500/25',
-  super_rare: 'ring-2 ring-purple-500/60 shadow-lg shadow-purple-500/30',
-  legendary:  'ring-2 ring-amber-500/70 shadow-lg shadow-amber-500/35',
-  mythic:     'ring-2 ring-red-500/80 shadow-xl shadow-red-500/40',
+import { useState } from "react";
+import { AnimalIcon } from "@/components/shared/AnimalIcon";
+import { getRarityConfig } from "@/lib/rarity";
+// PersonalityPicker preserved — no longer rendered here; personality is set in the Nearby log modal
+import { PersonalityPicker } from "./PersonalityPicker";
+void PersonalityPicker; // kept for import preservation
+
+export type SpeciesCardData = {
+  id: string;
+  commonName: string;
+  scientificName: string;
+  rarityTier: string;
+  speciesType: string | null;
+  funFact: string | null;
+  spottingTips: string | null;
+  sensitivityLevel: string;
+  no: string;         // zero-padded card number, e.g. "#001"
+  habitat: string | null;
 };
-const SHINY_RING = 'ring-2 ring-yellow-400/80 shadow-xl shadow-yellow-400/40';
 
-type BeastiaryCardProps = {
-  species: {
-    id: string;
-    commonName: string;
-    scientificName: string;
-    rarityTier: string;
-    funFact: string | null;
-    conservationStatus: string | null;
-    spottingTips: string | null;
-    sensitivityLevel: string;
-  };
+export type BeastiaryCardProps = {
+  species: SpeciesCardData;
   sightingCount?: number;
   personalityTrait?: string | null;
   isShiny?: boolean;
+  firstSightedAt?: string | null;
+  onCardTap: (species: SpeciesCardData, personalityTrait: string | null) => void;
 };
 
-export function BeastiaryCard({ species, sightingCount, personalityTrait, isShiny = false }: BeastiaryCardProps) {
-  const unlocked = sightingCount !== undefined;
+export function BeastiaryCard({
+  species,
+  sightingCount,
+  personalityTrait,
+  isShiny = false,
+  firstSightedAt,
+  onCardTap,
+}: BeastiaryCardProps) {
+  const [hovered, setHovered] = useState(false);
+  const isCollected = sightingCount !== undefined;
 
-  if (!unlocked) {
+  if (isCollected) {
     return (
-      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] overflow-hidden opacity-30">
-        <div className="aspect-[3/4] bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center">
-          <span className="text-6xl font-black text-white/10">?</span>
-        </div>
-        <div className="p-3">
-          <p className="font-bold text-gray-600">???</p>
-          <p className="text-xs text-gray-700 mt-0.5">Not yet sighted</p>
-        </div>
-      </div>
+      <CollectedCard
+        species={species}
+        sightingCount={sightingCount!}
+        personalityTrait={personalityTrait ?? null}
+        isShiny={isShiny}
+        firstSightedAt={firstSightedAt ?? null}
+        hovered={hovered}
+        onHover={() => setHovered(true)}
+        onLeave={() => setHovered(false)}
+        onCardTap={onCardTap}
+      />
     );
   }
 
   return (
-    <div className={`${isShiny ? SHINY_RING : (RARITY_RING[species.rarityTier] ?? RARITY_RING.common)} bg-white/5 overflow-hidden flex flex-col rounded-xl`}>
-      <div className="aspect-[3/4] bg-gradient-to-b from-gray-700 to-gray-800 flex items-center justify-center relative">
-        <span className="text-8xl font-black text-white/10 select-none">
-          {species.commonName.charAt(0)}
-        </span>
-        {isShiny && (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-amber-500/20 pointer-events-none" />
-            <div className="absolute top-2 left-2 flex items-center gap-0.5 bg-yellow-400/15 rounded px-1.5 py-0.5">
-              <span className="text-yellow-400 text-xs font-bold">✦</span>
-              <span className="text-yellow-400 text-[10px] font-semibold">Shiny</span>
-            </div>
-          </>
-        )}
-        <div className="absolute bottom-2 right-2">
-          <RarityBadge tier={species.rarityTier} />
+    <LockedCard
+      species={species}
+      hovered={hovered}
+      onHover={() => setHovered(true)}
+      onLeave={() => setHovered(false)}
+    />
+  );
+}
+
+// ─── CollectedCard ──────────────────────────────────────────────────────────
+
+type CollectedCardProps = {
+  species: SpeciesCardData;
+  sightingCount: number;
+  personalityTrait: string | null;
+  isShiny: boolean;
+  firstSightedAt: string | null;
+  hovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+  onCardTap: (species: SpeciesCardData, personalityTrait: string | null) => void;
+};
+
+function CollectedCard({
+  species,
+  personalityTrait,
+  isShiny,
+  hovered,
+  onHover,
+  onLeave,
+  onCardTap,
+}: CollectedCardProps) {
+  const rarityConfig = getRarityConfig(species.rarityTier);
+  const borderColor = isShiny ? "#fff" : rarityConfig.borderColor;
+  const anim = isShiny
+    ? "white-glow 2s ease-in-out infinite"
+    : rarityConfig.glowAnimation;
+  const iconColor = isShiny
+    ? "rgba(255,255,255,.45)"
+    : rarityConfig.borderColor + "77";
+
+  return (
+    <div
+      onClick={() => onCardTap(species, personalityTrait)}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      style={{
+        cursor: "pointer",
+        borderRadius: 12,
+        overflow: "hidden",
+        position: "relative",
+        border: `2.5px solid ${borderColor}`,
+        background: rarityConfig.artBg,
+        animation: anim,
+        aspectRatio: "5/7",
+        transform: hovered ? "scale(1.04)" : "scale(1)",
+        transition: "transform .15s ease",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Shiny shimmer overlay */}
+      {isShiny && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(135deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.05) 50%,rgba(255,255,255,0) 70%)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {/* Art zone */}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
+          minHeight: 0,
+        }}
+      >
+        <AnimalIcon
+          type={species.speciesType ?? "bird"}
+          color={iconColor}
+        />
+        <div className="grain" />
+      </div>
+
+      {/* Info strip */}
+      <div
+        style={{
+          padding: "5px 7px 8px",
+          flexShrink: 0,
+          zIndex: 3,
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "Outfit,sans-serif",
+            fontSize: 9,
+            fontWeight: 600,
+            color: isShiny ? "#fff" : rarityConfig.borderColor,
+            textTransform: "uppercase",
+            letterSpacing: ".06em",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {isShiny ? "✦ Shiny" : rarityConfig.label}
         </div>
-        <div className="absolute bottom-2 left-2">
-          <ConservationBadge status={species.conservationStatus} />
+        <div
+          style={{
+            fontFamily: "Syne,sans-serif",
+            fontSize: 10.5,
+            fontWeight: 700,
+            color: "#e8f0e4",
+            textTransform: "uppercase",
+            letterSpacing: ".02em",
+            lineHeight: 1.15,
+            marginTop: 2,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {species.commonName}
+        </div>
+        {personalityTrait && (
+          <span
+            style={{
+              background: "rgba(184,120,232,.15)",
+              border: "1px solid rgba(184,120,232,.22)",
+              fontFamily: "Outfit,sans-serif",
+              fontSize: 7.5,
+              color: "#b878e8",
+              fontWeight: 600,
+              padding: "2px 6px",
+              borderRadius: 20,
+              marginTop: 3,
+              display: "inline-block",
+            }}
+          >
+            {personalityTrait}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── LockedCard ──────────────────────────────────────────────────────────────
+
+type LockedCardProps = {
+  species: SpeciesCardData;
+  hovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+};
+
+function LockedCard({ species, hovered, onHover, onLeave }: LockedCardProps) {
+  const rarityConfig = getRarityConfig(species.rarityTier);
+
+  return (
+    <div
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      style={{
+        cursor: "pointer",
+        borderRadius: 12,
+        overflow: "hidden",
+        position: "relative",
+        border: `2.5px solid ${rarityConfig.borderColor}`,
+        background: "#080e0a",
+        aspectRatio: "5/7",
+        display: "flex",
+        flexDirection: "column",
+        transform: hovered ? "scale(1.04)" : "scale(1)",
+        transition: "transform .15s ease",
+      }}
+    >
+      {/* Art zone */}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          minHeight: 0,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "Syne,sans-serif",
+            fontSize: 46,
+            fontWeight: 800,
+            color: rarityConfig.borderColor + "18",
+            lineHeight: 1,
+            position: "relative",
+            zIndex: 2,
+          }}
+        >
+          ?
+        </span>
+        <div className="grain" style={{ opacity: 0.4 }} />
+      </div>
+
+      {/* Info strip */}
+      <div style={{ padding: "5px 7px 8px", flexShrink: 0 }}>
+        <div
+          style={{
+            fontFamily: "Outfit,sans-serif",
+            fontSize: 9,
+            fontWeight: 600,
+            color: rarityConfig.borderColor,
+            textTransform: "uppercase",
+            letterSpacing: ".06em",
+            opacity: 0.5,
+          }}
+        >
+          {rarityConfig.label}
+        </div>
+        <div
+          style={{
+            fontFamily: "Outfit,sans-serif",
+            fontSize: 9,
+            color: "rgba(232,240,228,.1)",
+            marginTop: 2,
+            fontStyle: "italic",
+          }}
+        >
+          Not found
         </div>
       </div>
-      <div className="p-3 flex flex-col gap-1">
-        <p className="font-bold text-white">{species.commonName}</p>
-        <p className="text-xs italic text-gray-500">{species.scientificName}</p>
-        <SensitivityBadge level={species.sensitivityLevel} />
-        {species.funFact && (
-          <p className="text-xs text-gray-400 mt-1 italic">{species.funFact}</p>
-        )}
-        {sightingCount !== undefined && sightingCount > 1 && (
-          <p className="text-xs text-green-400 font-semibold mt-1">{sightingCount}× spotted</p>
-        )}
-        <PersonalityPicker speciesId={species.id} currentTrait={personalityTrait ?? null} />
-        {species.spottingTips && <EthicsSection tips={species.spottingTips} />}
+    </div>
+  );
+}
+
+// ─── DetailPanel ─────────────────────────────────────────────────────────────
+
+export type DetailPanelProps = {
+  species: SpeciesCardData;
+  personalityTrait: string | null;
+  firstSightedAt: string | null;
+  sightingCount: number;
+  isShiny?: boolean;
+  onClose: () => void;
+};
+
+export function DetailPanel({
+  species,
+  personalityTrait,
+  firstSightedAt,
+  sightingCount,
+  isShiny = false,
+  onClose,
+}: DetailPanelProps) {
+  const rarityConfig = getRarityConfig(species.rarityTier);
+  const borderColor = isShiny ? "#fff" : rarityConfig.borderColor;
+  const anim = isShiny
+    ? "white-glow 2s ease-in-out infinite"
+    : rarityConfig.glowAnimation;
+  const iconColor = isShiny
+    ? "rgba(255,255,255,.45)"
+    : rarityConfig.borderColor + "66";
+
+  // Format first seen date as "Jun 25"
+  let firstSeenLabel = "—";
+  if (firstSightedAt) {
+    const d = new Date(firstSightedAt);
+    firstSeenLabel = d.toLocaleDateString("en-GB", {
+      month: "short",
+      day: "numeric",
+    });
+  }
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,.8)",
+        zIndex: 200,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+      }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 390,
+          background: "#0d1c12",
+          borderRadius: "20px 20px 0 0",
+          border: `3px solid ${borderColor}`,
+          borderBottom: "none",
+          animation: anim,
+          overflow: "hidden",
+          paddingBottom: "env(safe-area-inset-bottom,16px)",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Drag handle */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "10px 0 0",
+          }}
+        >
+          <div
+            style={{
+              width: 36,
+              height: 4,
+              background: "rgba(255,255,255,.1)",
+              borderRadius: 2,
+            }}
+          />
+        </div>
+
+        {/* Art zone */}
+        <div
+          style={{
+            height: 180,
+            background: `linear-gradient(160deg,${rarityConfig.artBg},#08100a)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            margin: "8px 14px 0",
+            borderRadius: 12,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <AnimalIcon
+              type={species.speciesType ?? "bird"}
+              color={iconColor}
+            />
+          </div>
+          {/* Tier badge top-left */}
+          <div
+            style={{
+              position: "absolute",
+              top: 10,
+              left: 12,
+              background: "rgba(0,0,0,.3)",
+              border: `1px solid ${borderColor}`,
+              borderRadius: 20,
+              padding: "3px 9px",
+              zIndex: 3,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "Outfit,sans-serif",
+                fontSize: 9,
+                color: isShiny ? "#fff" : rarityConfig.borderColor,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: ".1em",
+              }}
+            >
+              {isShiny ? "✦ Shiny" : rarityConfig.label}
+            </span>
+          </div>
+          {/* Card number top-right */}
+          <div
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 12,
+              zIndex: 3,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "Outfit,sans-serif",
+                fontSize: 9,
+                color: "rgba(232,240,228,.25)",
+              }}
+            >
+              {species.no}
+            </span>
+          </div>
+          <div className="grain" />
+        </div>
+
+        {/* Info body */}
+        <div style={{ padding: "14px 18px 20px" }}>
+          {/* Name */}
+          <div
+            style={{
+              fontFamily: "Syne,sans-serif",
+              fontSize: 24,
+              fontWeight: 800,
+              color: "#e8f0e4",
+              textTransform: "uppercase",
+              letterSpacing: ".05em",
+              lineHeight: 1,
+            }}
+          >
+            {species.commonName}
+          </div>
+          {/* Latin */}
+          <div
+            style={{
+              fontFamily: "Outfit,sans-serif",
+              fontSize: 11,
+              color: "#2e5a3a",
+              fontStyle: "italic",
+              marginTop: 3,
+            }}
+          >
+            {species.scientificName}
+          </div>
+
+          {/* Chips */}
+          <div
+            style={{
+              display: "flex",
+              gap: 6,
+              marginTop: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            {personalityTrait && (
+              <span
+                style={{
+                  background: "rgba(184,120,232,.15)",
+                  border: "1px solid rgba(184,120,232,.25)",
+                  fontFamily: "Outfit,sans-serif",
+                  fontSize: 10,
+                  color: "#b878e8",
+                  fontWeight: 600,
+                  padding: "5px 12px",
+                  borderRadius: 20,
+                }}
+              >
+                {personalityTrait}
+              </span>
+            )}
+            {species.habitat && (
+              <span
+                style={{
+                  background: "rgba(114,204,74,.12)",
+                  border: "1px solid rgba(114,204,74,.2)",
+                  fontFamily: "Outfit,sans-serif",
+                  fontSize: 10,
+                  color: "#72cc4a",
+                  padding: "5px 12px",
+                  borderRadius: 20,
+                }}
+              >
+                {species.habitat}
+              </span>
+            )}
+          </div>
+
+          {/* Stats row */}
+          <div
+            style={{
+              marginTop: 14,
+              borderTop: "1px solid rgba(255,255,255,.06)",
+              paddingTop: 12,
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            {[
+              [String(sightingCount), "spotted"],
+              [firstSeenLabel, "first seen"],
+            ].map(([value, label]) => (
+              <div key={label} style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontFamily: "Syne,sans-serif",
+                    fontSize: 18,
+                    fontWeight: 800,
+                    color: "#e8f0e4",
+                    lineHeight: 1,
+                  }}
+                >
+                  {value}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Outfit,sans-serif",
+                    fontSize: 8,
+                    color: "#2e5a3a",
+                    textTransform: "uppercase",
+                    letterSpacing: ".08em",
+                    marginTop: 3,
+                  }}
+                >
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
