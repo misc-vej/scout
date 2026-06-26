@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: "Plan 05-02 complete — personalityTrait column in Neon + PATCH /api/collections/[speciesId]/personality. Next: 05-03 PersonalityPicker component."
-last_updated: "2026-06-26T08:28:32.252Z"
-last_activity: 2026-06-25
+status: phase_complete
+stopped_at: "Phase 06 complete — conservationStatus + isShiny schema; shiny roll 1-in-50 at first collection; rarity glow ring + shiny treatment + ConservationBadge on BeastiaryCard; BEAST-04 + BEAST-05 + BEAST-06 satisfied"
+last_updated: "2026-06-26T09:00:00.000Z"
+last_activity: 2026-06-26
 progress:
   total_phases: 7
-  completed_phases: 5
-  total_plans: 16
-  completed_plans: 15
-  percent: 71
+  completed_phases: 6
+  total_plans: 19
+  completed_plans: 19
+  percent: 86
 ---
 
 # Project State
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 
 ## Current Position
 
-Phase: 6 of 7 (Rarity Tiers + Shiny Variants)
+Phase: 7 of 7 (Responsible Spotting UX)
 Plan: 0 of ? (planning not yet started)
-Status: Phase 05 COMPLETE ✓ — Ready to plan and execute Phase 06
-Last activity: 2026-06-25
+Status: Phase 06 COMPLETE ✓ — Ready to plan and execute Phase 07
+Last activity: 2026-06-26
 
 Progress: [█████████░] 94%
 
