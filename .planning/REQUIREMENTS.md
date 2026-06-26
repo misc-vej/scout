@@ -36,6 +36,11 @@ Requirements for initial release. Each maps to a roadmap phase.
 - [x] **RESP-03**: Sensitive species (Schedule 1 WCA 1981, IUCN Vulnerable+) are visually flagged on their cards
 - [x] **RESP-04**: Season-locked species cannot be collected during their sensitive period (e.g. nesting season)
 
+### Visual Polish
+
+- [ ] **POLISH-01**: The entire app uses the Field Cream light palette as its primary design — parchment background (#f5f0e4), warm dividers (#e8d8c0), Forest text (#1c2e1e), signal CTA (#2a7a48)
+- [x] **POLISH-02**: Species cards with a painterly illustration assigned display it as the art zone background; cards without one fall back to the SVG silhouette
+
 ## v2 Requirements
 
 Deferred to a future release. Tracked but not in the current roadmap.
@@ -95,9 +100,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RESP-01 | Phase 7 | Complete |
 | RESP-02 | Phase 7 | Complete |
 
+| POLISH-01 | Phase 9 | Pending |
+| POLISH-02 | Phase 9 | Complete |
+
 **Coverage:**
-- v1 requirements: 17 total
-- Mapped to phases: 17
+- v1 requirements: 19 total
+- Mapped to phases: 19
 - Unmapped: 0 ✓
 
 ---

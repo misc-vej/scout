@@ -19,7 +19,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Beastiary UI + Personality** - funFact on species; personalityTrait on collections; BeastiaryCard grid; PersonalityPicker; BEAST-01 + BEAST-02 + BEAST-03 (3/3 plans ✓)
 - [x] **Phase 6: Rarity Tiers + Shiny Variants** - Visual rarity treatment, conservation status badge, shiny rare variants
 - [x] **Phase 7: Responsible Spotting UX** - Spotter's Pledge onboarding gate, per-card ethics guidance, sensitive-species flagging
-- [ ] **Phase 8: Brand + UI Polish** - Typography (Syne + Outfit), Forest Night colour system, rarity glow animations, SVG silhouettes, Logbook redesign, Nearby species rows, bottom-sheet log modal
+- [x] **Phase 8: Brand + UI Polish** - Typography (Syne + Outfit), Forest Night colour system, rarity glow animations, SVG silhouettes, Logbook redesign, Nearby species rows, bottom-sheet log modal
+- [ ] **Phase 9: Light Mode + Card Art** - Switch primary palette to Field Cream (light), painterly card illustrations as art-zone backgrounds for Red Deer and Otter
 
 ## Phase Details
 
@@ -136,6 +137,21 @@ Plans:
 - [x] 08-04-PLAN.md — Nearby redesign: SpeciesRow (mini thumbnail + likelihood bar + I saw it) + LogModal bottom sheet + ConfirmBanner + discover API likelihood + SpeciesResult type
 - [x] 08-05-PLAN.md — NavShell Forest Night (SCOUT wordmark + SVG tab icons + active dot) + PledgeModal polish + full project tsc clean
 
+### Phase 9: Light Mode + Card Art
+**Goal**: The app's primary visual design switches from the Forest Night dark theme to the Field Cream light palette; species cards with assigned painterly illustrations display them as the art zone background image
+**Depends on**: Phase 8
+**Requirements**: POLISH-01, POLISH-02
+**Success Criteria** (what must be TRUE):
+  1. App background is Field Cream (#f5f0e4); surfaces use Warm (#e8d8c0); text uses Forest (#1c2e1e); CTA uses Signal-light (#2a7a48); rarity tiers, glow animations, and personality chips remain visually correct in the light context
+  2. Red Deer and Otter species cards display their painterly PNG illustration as the art zone background in both BeastiaryCard and the SpeciesRow mini thumbnail
+  3. Species cards without an assigned illustration continue to show the SVG silhouette fallback — no broken images
+  4. tsc build passes with zero type errors
+**Plans**: 3 plans
+Plans:
+- [ ] 09-01-PLAN.md — Light mode palette switch: globals.css + NavShell + BeastiaryClient + BeastiaryCard + SpeciesCard + SpeciesList + PledgeModal (Forest Night → Field Cream, per D-01)
+- [x] 09-02-PLAN.md — Card illustration display: imageUrl in types + API routes + seed data + BeastiaryCard art zone + SpeciesRow thumbnail (per D-04/D-05/D-06)
+- [ ] 09-03-PLAN.md — TypeScript clean build: tsc --noEmit verification and error fixes after 09-01 + 09-02
+
 ## Progress
 
 **Execution Order:**
@@ -151,3 +167,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | 6. Rarity Tiers + Shiny Variants | 1/2 | In Progress|  |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |
 | 8. Brand + UI Polish | 5/5 | Complete   | 2026-06-26 |
+| 9. Light Mode + Card Art | 1/3 | In Progress|  |
