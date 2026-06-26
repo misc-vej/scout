@@ -31,10 +31,10 @@ Requirements for initial release. Each maps to a roadmap phase.
 
 ### Responsible Spotting
 
-- [ ] **RESP-01**: User must agree to a Spotter's Pledge during onboarding before collecting anything
-- [ ] **RESP-02**: Every species card includes responsible-spotting guidance (dos/don'ts, safe distance, habitat notes)
-- [ ] **RESP-03**: Sensitive species (Schedule 1 WCA 1981, IUCN Vulnerable+) are visually flagged on their cards
-- [ ] **RESP-04**: Season-locked species cannot be collected during their sensitive period (e.g. nesting season)
+- [x] **RESP-01**: User must agree to a Spotter's Pledge during onboarding before collecting anything
+- [x] **RESP-02**: Every species card includes responsible-spotting guidance (dos/don'ts, safe distance, habitat notes)
+- [x] **RESP-03**: Sensitive species (Schedule 1 WCA 1981, IUCN Vulnerable+) are visually flagged on their cards
+- [x] **RESP-04**: Season-locked species cannot be collected during their sensitive period (e.g. nesting season)
 
 ## v2 Requirements
 
@@ -80,8 +80,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-01 | Phase 1 | Complete |
 | AUTH-02 | Phase 1 | Complete |
 | AUTH-03 | Phase 1 | Complete |
-| RESP-03 | Phase 2 | Pending |
-| RESP-04 | Phase 2 | Pending |
+| RESP-03 | Phase 7 | Complete |
+| RESP-04 | Phase 7 | Complete |
 | DISC-01 | Phase 3 | Complete |
 | DISC-04 | Phase 3 | Complete |
 | DISC-02 | Phase 4 | Complete |
@@ -92,8 +92,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BEAST-04 | Phase 6 | Pending |
 | BEAST-05 | Phase 6 | Complete |
 | BEAST-06 | Phase 6 | Complete |
-| RESP-01 | Phase 7 | Pending |
-| RESP-02 | Phase 7 | Pending |
+| RESP-01 | Phase 7 | Complete |
+| RESP-02 | Phase 7 | Complete |
 
 **Coverage:**
 - v1 requirements: 17 total
