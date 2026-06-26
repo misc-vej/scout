@@ -1,1 +1,65 @@
 @import "tailwindcss";
+
+/* ─── Forest Night colour system (D-02) ─────────────────────────────────── */
+:root {
+  --void: #0d1c12;
+  --deep: #1e3828;
+  --signal: #72cc4a;
+  --bloom: #b878e8;
+  --pollen: #f0c040;
+  --mist: #e8f0e4;
+  --subtle: #2e5a3a;
+  --faint: #1e3828;
+
+  /* Rarity tier colours (D-03) */
+  --rarity-common-border:    #6a9070;
+  --rarity-uncommon-border:  #5a90d0;
+  --rarity-rare-border:      #c8922a;
+  --rarity-rare-bg:          #1c1402;
+  --rarity-veryrare-border:  #c86030;
+  --rarity-veryrare-bg:      #1c0c04;
+  --rarity-legendary-border: #9060e0;
+  --rarity-legendary-bg:     #140a24;
+  --rarity-mythic-border:    rgba(185,205,255,.8);
+  --rarity-mythic-bg:        #0e1222;
+  --rarity-shiny-border:     #ffffff;
+}
+
+/* ─── Rarity glow keyframes (D-04) ──────────────────────────────────────── */
+@keyframes gold-glow {
+  0%,100% { box-shadow: 0 0 7px rgba(200,146,42,.65), 0 0 20px rgba(200,146,42,.22); }
+  50%     { box-shadow: 0 0 15px rgba(200,146,42,.98), 0 0 34px rgba(200,146,42,.48); }
+}
+
+@keyframes orange-glow {
+  0%,100% { box-shadow: 0 0 7px rgba(200,96,48,.65), 0 0 20px rgba(200,96,48,.22); }
+  50%     { box-shadow: 0 0 15px rgba(200,96,48,.98), 0 0 34px rgba(200,96,48,.48); }
+}
+
+@keyframes purple-glow {
+  0%,100% { box-shadow: 0 0 7px rgba(144,96,224,.65), 0 0 20px rgba(144,96,224,.22); }
+  50%     { box-shadow: 0 0 15px rgba(144,96,224,.98), 0 0 34px rgba(144,96,224,.48); }
+}
+
+@keyframes silver-glow {
+  0%,100% { box-shadow: 0 0 7px rgba(185,205,255,.65), 0 0 20px rgba(185,205,255,.22); }
+  50%     { box-shadow: 0 0 15px rgba(185,205,255,.98), 0 0 34px rgba(185,205,255,.48); }
+}
+
+@keyframes white-glow {
+  0%,100% { box-shadow: 0 0 7px rgba(255,255,255,.65), 0 0 20px rgba(255,255,255,.22); }
+  50%     { box-shadow: 0 0 15px rgba(255,255,255,.98), 0 0 34px rgba(255,255,255,.48); }
+}
+
+/* ─── Grain texture utility (D-05) ──────────────────────────────────────── */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 160px;
+  background-repeat: repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.45;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}

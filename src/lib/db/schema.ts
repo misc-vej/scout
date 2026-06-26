@@ -66,6 +66,7 @@ export const species = pgTable("species", {
   spottingTips: text("spotting_tips"),
   conservationStatus: text("conservation_status"),
   imageUrl: text("image_url"),
+  speciesType: text("species_type"),
   taxonomyGroup: text("taxonomy_group"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
