@@ -129,5 +129,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Occurrence Pipeline + Discovery | 2/3 | In Progress|  |
 | 4. Collection Mechanics | 3/3 | Complete   | 2026-06-25 |
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
-| 6. Rarity Tiers + Shiny Variants | 0/TBD | Not started | - |
+| 6. Rarity Tiers + Shiny Variants | 1/2 | In Progress|  |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |

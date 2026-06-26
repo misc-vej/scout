@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase_complete
-stopped_at: "Phase 05 complete — funFact on species + personalityTrait on collections + BeastiaryCard grid + PersonalityPicker; BEAST-01 + BEAST-02 + BEAST-03 satisfied"
-last_updated: "2026-06-25T22:30:00.000Z"
+status: planning
+stopped_at: "Plan 05-02 complete — personalityTrait column in Neon + PATCH /api/collections/[speciesId]/personality. Next: 05-03 PersonalityPicker component."
+last_updated: "2026-06-26T08:28:32.252Z"
 last_activity: 2026-06-25
 progress:
   total_phases: 7
   completed_phases: 5
-  total_plans: 17
-  completed_plans: 17
+  total_plans: 16
+  completed_plans: 15
   percent: 71
 ---
 
@@ -30,7 +30,7 @@ Plan: 0 of ? (planning not yet started)
 Status: Phase 05 COMPLETE ✓ — Ready to plan and execute Phase 06
 Last activity: 2026-06-25
 
-Progress: [█████████░] 88%
+Progress: [█████████░] 94%
 
 ## Performance Metrics
 
@@ -95,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-25T22:00:00.000Z
+Last session: 2026-06-26T08:28:32.242Z
 Stopped at: Plan 05-02 complete — personalityTrait column in Neon + PATCH /api/collections/[speciesId]/personality. Next: 05-03 PersonalityPicker component.
 Resume file: None

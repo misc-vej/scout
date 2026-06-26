@@ -20,8 +20,8 @@ Requirements for initial release. Each maps to a roadmap phase.
 - [ ] **BEAST-02**: Each collected card shows playful, irreverent fun facts about the species
 - [ ] **BEAST-03**: User can assign a personality trait to each animal they collect
 - [ ] **BEAST-04**: Each card shows the species' rarity tier (Common → Mythic) with distinct visual treatment
-- [ ] **BEAST-05**: Each card shows the species' conservation status (BTO Red/Amber/Green) as a separate badge from rarity
-- [ ] **BEAST-06**: Collected animals have a random chance to come in a shiny rare visual variant
+- [x] **BEAST-05**: Each card shows the species' conservation status (BTO Red/Amber/Green) as a separate badge from rarity
+- [x] **BEAST-06**: Collected animals have a random chance to come in a shiny rare visual variant
 
 ### Authentication
 
@@ -90,8 +90,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BEAST-02 | Phase 5 | Pending |
 | BEAST-03 | Phase 5 | Pending |
 | BEAST-04 | Phase 6 | Pending |
-| BEAST-05 | Phase 6 | Pending |
-| BEAST-06 | Phase 6 | Pending |
+| BEAST-05 | Phase 6 | Complete |
+| BEAST-06 | Phase 6 | Complete |
 | RESP-01 | Phase 7 | Pending |
 | RESP-02 | Phase 7 | Pending |
 
