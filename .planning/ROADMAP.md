@@ -19,6 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Beastiary UI + Personality** - funFact on species; personalityTrait on collections; BeastiaryCard grid; PersonalityPicker; BEAST-01 + BEAST-02 + BEAST-03 (3/3 plans ✓)
 - [x] **Phase 6: Rarity Tiers + Shiny Variants** - Visual rarity treatment, conservation status badge, shiny rare variants
 - [x] **Phase 7: Responsible Spotting UX** - Spotter's Pledge onboarding gate, per-card ethics guidance, sensitive-species flagging
+- [ ] **Phase 8: Brand + UI Polish** - Typography (Syne + Outfit), Forest Night colour system, rarity glow animations, SVG silhouettes, Logbook redesign, Nearby species rows, bottom-sheet log modal
 
 ## Phase Details
 
@@ -117,10 +118,28 @@ Plans:
 **Plans**: TBD
 **UI hint**: yes
 
+### Phase 8: Brand + UI Polish
+**Goal**: The app visually matches the design handoff package — typography (Syne + Outfit), Forest Night colour system, rarity-tier borders and glow animations, SVG silhouette art zones, Logbook with Collection/Not Found tabs and rarity filters, Nearby species rows with thumbnail + likelihood bar + bottom-sheet log modal
+**Depends on**: Phase 7
+**Requirements**: BRAND-01, BRAND-02, BRAND-03, BRAND-04, BRAND-05
+**Success Criteria** (what must be TRUE):
+  1. App uses Syne 800 for display headings and Outfit 400/600 for body/labels throughout
+  2. App background is Forest Night (#0d1c12); surfaces are Deep (#1e3828); rarity tiers use correct border colours with pulsing glow animations for Rare+
+  3. Logbook shows Collection and Not Found tabs with rarity filter pills; collected cards display SVG silhouette, tier border, glow, and Bloom personality chips
+  4. Nearby shows species rows with mini card thumbnail, likelihood bar, and "I saw it" button; tapping "I saw it" opens a bottom sheet requiring personality selection before confirming
+  5. tsc build passes with zero type errors
+**Plans**: 5 plans
+Plans:
+- [ ] 08-01-PLAN.md — Google Fonts (Syne + Outfit) + CSS variables (Forest Night) + rarity glow keyframes + .grain class
+- [ ] 08-02-PLAN.md — speciesType schema column + Drizzle migration + AnimalIcon component + getRarityConfig utility + species-seed.ts type mapping (115 species)
+- [ ] 08-03-PLAN.md — Logbook redesign: Collection/Not Found tabs + rarity filter pills + BeastiaryCard (SVG silhouettes, glow, Bloom chips) + DetailPanel bottom sheet
+- [ ] 08-04-PLAN.md — Nearby redesign: SpeciesRow (mini thumbnail + likelihood bar + I saw it) + LogModal bottom sheet + ConfirmBanner + discover API likelihood + SpeciesResult type
+- [ ] 08-05-PLAN.md — NavShell Forest Night (SCOUT wordmark + SVG tab icons + active dot) + PledgeModal polish + full project tsc clean
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -131,3 +150,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 5. Beastiary UI + Personality | 0/TBD | Not started | - |
 | 6. Rarity Tiers + Shiny Variants | 1/2 | In Progress|  |
 | 7. Responsible Spotting UX | 0/TBD | Not started | - |
+| 8. Brand + UI Polish | 0/5 | Not started | - |

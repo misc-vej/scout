@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: milestone_complete
-stopped_at: "Phase 07 complete — Spotter's Pledge modal gate; spottingTips seeded for all 115 species; EthicsSection + SensitivityBadge on BeastiaryCard; season-lock flag in discover API + disabled button in SpeciesCard. ALL 7 PHASES COMPLETE — Scout v1.0 feature-complete."
-last_updated: "2026-06-26T10:00:00.000Z"
-last_activity: 2026-06-26
+status: executing
+stopped_at: "Plan 05-02 complete — personalityTrait column in Neon + PATCH /api/collections/[speciesId]/personality. Next: 05-03 PersonalityPicker component."
+last_updated: "2026-06-26T17:39:54.693Z"
+last_activity: 2026-06-26 -- Phase 8 planning complete
 progress:
-  total_phases: 7
+  total_phases: 8
   completed_phases: 7
-  total_plans: 21
-  completed_plans: 21
-  percent: 100
+  total_plans: 23
+  completed_plans: 18
+  percent: 78
 ---
 
 # Project State
@@ -27,8 +27,8 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 
 Phase: 7 of 7 (Responsible Spotting UX)
 Plan: 2 of 2
-Status: ALL PHASES COMPLETE ✓ — Scout v1.0 milestone done
-Last activity: 2026-06-26
+Status: Ready to execute
+Last activity: 2026-06-26 -- Phase 8 planning complete
 
 Progress: [█████████░] 94%
 
