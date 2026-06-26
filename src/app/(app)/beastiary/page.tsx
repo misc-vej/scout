@@ -23,6 +23,7 @@ export default async function BeastiaryPage() {
       spottingTips: species.spottingTips,
       sensitivityLevel: species.sensitivityLevel,
       taxonomyGroup: species.taxonomyGroup,
+      imageUrl: species.imageUrl,
     })
     .from(species)
     .orderBy(asc(species.id));
@@ -73,6 +74,7 @@ export default async function BeastiaryPage() {
     sensitivityLevel: s.sensitivityLevel,
     no: "#" + String(index + 1).padStart(3, "0"),
     habitat: s.taxonomyGroup ?? null,
+    imageUrl: s.imageUrl ?? null,
     // collection fields (null when not collected)
     sightingCount: collectedMap[s.id]?.sightingCount ?? undefined,
     personalityTrait: collectedMap[s.id]?.personalityTrait ?? null,

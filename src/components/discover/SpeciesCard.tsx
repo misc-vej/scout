@@ -56,11 +56,18 @@ function SpeciesRow({
           animation: rarityConfig.glowAnimation !== 'none' ? rarityConfig.glowAnimation : undefined,
           position: 'relative',
           overflow: 'hidden',
+          ...(sp.imageUrl ? {
+            backgroundImage: `url(${sp.imageUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          } : {}),
         }}
       >
-        <div style={{ width: '80%', height: '80%', opacity: 0.8 }}>
-          <AnimalIcon type={sp.speciesType ?? 'bird'} color={iconColor} />
-        </div>
+        {!sp.imageUrl && (
+          <div style={{ width: '80%', height: '80%', opacity: 0.8 }}>
+            <AnimalIcon type={sp.speciesType ?? 'bird'} color={iconColor} />
+          </div>
+        )}
       </div>
 
       {/* Info block */}
@@ -510,12 +517,20 @@ function ConfirmBanner({
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
+            overflow: 'hidden',
+            ...(species.imageUrl ? {
+              backgroundImage: `url(${species.imageUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            } : {}),
           }}
         >
-          <AnimalIcon
-            type={species.speciesType ?? 'bird'}
-            color={rarityConfig.borderColor + '66'}
-          />
+          {!species.imageUrl && (
+            <AnimalIcon
+              type={species.speciesType ?? 'bird'}
+              color={rarityConfig.borderColor + '66'}
+            />
+          )}
         </div>
 
         <div style={{ flex: 1 }}>

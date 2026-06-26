@@ -11,4 +11,5 @@ export type SpeciesResult = {
   likelihood: number;
   isSeasonLocked: boolean;
   seasonUnlocksAt: string | null;  // MM-DD format e.g. "08-31"
+  imageUrl?: string | null;
 };

@@ -84,6 +84,7 @@ export async function POST(req: NextRequest) {
       recordCount: occurrences.recordCount,
       seasonLockStart: species.seasonLockStart,
       seasonLockEnd: species.seasonLockEnd,
+      imageUrl: species.imageUrl,
     })
     .from(occurrences)
     .innerJoin(species, eq(occurrences.speciesId, species.id))

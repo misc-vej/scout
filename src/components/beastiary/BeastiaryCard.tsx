@@ -18,6 +18,7 @@ export type SpeciesCardData = {
   sensitivityLevel: string;
   no: string;         // zero-padded card number, e.g. "#001"
   habitat: string | null;
+  imageUrl?: string | null;
 };
 
 export type BeastiaryCardProps = {
@@ -97,6 +98,7 @@ function CollectedCard({
   const iconColor = isShiny
     ? "rgba(255,255,255,.45)"
     : rarityConfig.borderColor + "77";
+  const hasImage = Boolean(species.imageUrl);
 
   return (
     <div
@@ -142,12 +144,19 @@ function CollectedCard({
           position: "relative",
           overflow: "hidden",
           minHeight: 0,
+          ...(hasImage ? {
+            backgroundImage: `url(${species.imageUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          } : {}),
         }}
       >
-        <AnimalIcon
-          type={species.speciesType ?? "bird"}
-          color={iconColor}
-        />
+        {!hasImage && (
+          <AnimalIcon
+            type={species.speciesType ?? "bird"}
+            color={iconColor}
+          />
+        )}
         <div className="grain" />
       </div>
 
@@ -180,7 +189,7 @@ function CollectedCard({
             fontFamily: "Syne,sans-serif",
             fontSize: 10.5,
             fontWeight: 700,
-            color: "#e8f0e4",
+            color: "#1c2e1e",
             textTransform: "uppercase",
             letterSpacing: ".02em",
             lineHeight: 1.15,
@@ -237,7 +246,7 @@ function LockedCard({ species, hovered, onHover, onLeave }: LockedCardProps) {
         overflow: "hidden",
         position: "relative",
         border: `2.5px solid ${rarityConfig.borderColor}`,
-        background: "#080e0a",
+        background: "#e8d8c0",
         aspectRatio: "5/7",
         display: "flex",
         flexDirection: "column",
@@ -291,7 +300,7 @@ function LockedCard({ species, hovered, onHover, onLeave }: LockedCardProps) {
           style={{
             fontFamily: "Outfit,sans-serif",
             fontSize: 9,
-            color: "rgba(232,240,228,.1)",
+            color: "rgba(28,46,30,.3)",
             marginTop: 2,
             fontStyle: "italic",
           }}
@@ -330,6 +339,7 @@ export function DetailPanel({
   const iconColor = isShiny
     ? "rgba(255,255,255,.45)"
     : rarityConfig.borderColor + "66";
+  const hasImage = Boolean(species.imageUrl);
 
   // Format first seen date as "Jun 25"
   let firstSeenLabel = "—";
@@ -398,22 +408,29 @@ export function DetailPanel({
             margin: "8px 14px 0",
             borderRadius: 12,
             overflow: "hidden",
+            ...(hasImage ? {
+              backgroundImage: `url(${species.imageUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            } : {}),
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <AnimalIcon
-              type={species.speciesType ?? "bird"}
-              color={iconColor}
-            />
-          </div>
+          {!hasImage && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <AnimalIcon
+                type={species.speciesType ?? "bird"}
+                color={iconColor}
+              />
+            </div>
+          )}
           {/* Tier badge top-left */}
           <div
             style={{

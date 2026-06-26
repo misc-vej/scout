@@ -22,6 +22,7 @@ async function seed() {
           description: entry.description ?? null,
           funFact: entry.funFact ?? null,
           tvk: entry.tvk ?? null,
+          imageUrl: entry.imageUrl ?? null,
         },
       });
     count++;
