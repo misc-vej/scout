@@ -19,6 +19,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Britain's favourite garden bird — bold enough to steal chips and smart enough to look innocent.",
     funFact: "The one singing its head off in December isn't feeling festive — it's threatening rival robins to stay off the lawn. Christmas cheer, British style.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -33,6 +34,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The singer of suburban dusks. If you hear melodic fluting from a rooftop at sunset, that's him.",
     funFact: "The male is jet black with a vivid yellow bill; the female is brown and gets misidentified by beginners constantly. She has given up being offended by it.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -47,6 +49,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Tiny, fearless, and frankly a bit rude about personal space. Will absolutely barge in on your peanut feeder.",
     funFact: "Eats upside down from a nut feeder with the casual confidence of someone who has never once doubted themselves. The walnut-sized bully of the garden.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -61,6 +64,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The loudest bird in the garden by volume per gram. Its two-note call sounds like a squeaky bicycle pump.",
     funFact: "Has the most varied repertoire of any British tit — over 40 distinct call types — and uses them to confuse predators into thinking there are more birds present. A one-bird riot.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -75,6 +79,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Handsome, clever, and absolutely untrustworthy around shiny things. One for sorrow, seven for a podcast.",
     funFact: "One for sorrow, two for joy — a counting superstition attached to a bird that is simply trying to eat some chips. They can recognise themselves in a mirror, which is more than can be said for most.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -89,6 +94,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Britain's most relaxed bird. Perpetually full, perpetually cooing, perpetually in the way.",
     funFact: "The UK's most abundant bird by total biomass. Absolutely everyone has seen one. Nobody is excited about it. The wood pigeon does not care.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -103,6 +109,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "One of Britain's most common birds — males sport a dapper pink breast and slate-blue head. Easy to overlook, hard not to like.",
     funFact: "The male Chaffinch is one of Britain's most handsome birds — pink, blue, and white — yet remains almost entirely unappreciated. Fashion is wasted on this country.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -117,6 +124,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Tiny body, enormous voice — the UK's second most common bird packs more decibels per gram than almost anything else.",
     funFact: "Britain's most common breeding bird. Tiny, furious, and impossibly loud for something the size of a digestive biscuit. If volume were proportional to body size, it would shatter glass.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -131,6 +139,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The bird equivalent of a person who always shows up but never gets credit. Quietly important, subtly beautiful.",
     funFact: "Long dismissed as a 'hedge sparrow' and largely ignored by everyone. Turns out its mating system is extraordinarily complex, involving both males and females having multiple partners simultaneously. Scientists were scandalised.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -145,6 +154,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The original duck. Ancestor of almost every domestic duck breed and thoroughly unbothered about being ordinary.",
     funFact: "Ancestor of almost every domestic duck breed on the planet. An empire built on bread thrown by children at canal banks. The duck has done well for itself.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -159,6 +169,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Loud, territorial, and somehow always in a park car park. An honking force of nature with strong opinions about bread.",
     funFact: "Introduced to Britain as a decorative bird for ornamental lakes in the 1600s. Has since conquered every park, car park, and golf course in the land. The decorators were not consulted on this expansion.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -173,6 +184,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "That flicky-tailed waterbird with the red forehead you always see pottering along canal edges. Perfectly content in its niche.",
     funFact: "Flicks its tail with every single step, as if it's constantly trying to shake something off. Nobody knows why. The moorhen has declined to explain.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -187,6 +199,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Bald white shield, full black body, deeply aggressive personality. The 'as bald as a coot' expression is entirely justified.",
     funFact: "Coots will fight neighbouring coots, ducks, geese, and occasionally their own reflection. Remarkably aggressive for a bird that looks like a floating apostrophe.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -201,6 +214,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The gothic fisherman. Spreads its wings to dry them like a Victorian villain unfurling a cape.",
     funFact: "Unlike ducks, its feathers aren't fully waterproof — which is a curious design choice for a diving bird. It compensates by standing with wings spread to dry. Dramatic, but effective.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -215,6 +229,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Extravagantly dressed for a bird that mainly blunders into roads. Males look like they've lost a bet with a colour wheel.",
     funFact: "Introduced from Asia by the Romans, kept by the Normans, and now 35 million are released into British countryside every year for shooting. The pheasant did not volunteer for any of this.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -229,6 +244,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The pavement patterer. Constantly bobbing its tail as it trots along tarmac in smart monochrome plumage.",
     funFact: "Gathers in enormous city-centre roosts on winter evenings — sometimes thousands of birds in a single supermarket car park. Urban warmth, industrial quantities of company.",
+    conservationStatus: "green",
     imageUrl: null,
   },
 
@@ -245,6 +261,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A splash of red, yellow, and black that makes you question why you ever bother with other birds. Travels in 'charms'.",
     funFact: "A flock of goldfinches is called a 'charm' — possibly the most appropriately named collective noun in the British bird world. Seeing one on a thistle head is as good as it gets.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -259,6 +276,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The sound of drumming on a dead tree is your clue. Pied in bold black and white with an eye-catching red patch.",
     funFact: "Drumming at 20 hits per second, the woodpecker's brain is cushioned in the skull by shock-absorbing tissue. Engineers have studied it to design better crash helmets. Nature filed the patent first.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -273,6 +291,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Laughs at you from lawns. Its 'yaffle' call sounds like a maniacal giggle from a bird that's found the best anthill.",
     funFact: "Unlike its spotted cousin, the green woodpecker barely drums at all — it prefers to just stand on lawns eating ants and laughing. Its 'yaffle' call sounds exactly like it's having the time of its life.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -287,6 +306,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A corvid in a fancy waistcoat. Those electric blue wing patches are a shock every time you spot them in the autumn woodland.",
     funFact: "Buries up to 5,000 acorns each autumn and can remember where most of them are. This behaviour has planted more British oak trees than any conservation programme. Entirely accidental. Entirely magnificent.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -301,6 +321,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The only UK bird that walks headfirst down tree trunks. Boldly patterned with a dagger bill and absolute disregard for gravity.",
     funFact: "The only British bird that habitually walks headfirst down trees. It doesn't hop, it walks — downward, with complete contempt for the concept of falling. Gravity has simply never applied.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -315,6 +336,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A pink-and-white fluffball on a stick. Travels in chattering family parties and is frankly too cute for this world.",
     funFact: "Builds a stretchy nest woven from cobwebs, lichen, and around 2,000 feathers. The cobwebs allow it to expand as the chicks grow. A civil engineering miracle by a bird that weighs 8 grams.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -329,6 +351,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The smallest tit and the sneakiest. Grabs seeds and hides them in bark crevices like it's running a tiny food bank.",
     funFact: "Consistently outcompeted at feeders by blue and great tits, so instead of fighting it just steals seeds and hides them elsewhere. The smartest strategy at the bird table and it knows it.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -343,6 +366,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A tiny brown mouse that spirals up tree trunks. Easy to miss, impossible not to be charmed by once you've found one.",
     funFact: "Always spirals UP tree trunks, never down. When it reaches the top it simply flies to the bottom of the next tree and starts again. An efficient, if repetitive, career.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -357,6 +381,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The 'northern nightingale' — its rich, fluty song punches well above its weight for such an unassuming-looking warbler.",
     funFact: "Some blackcaps now winter in Britain instead of migrating to Africa — they've discovered British bird feeders are substantially more comfortable than the Sahel. Can't blame them, really.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -371,6 +396,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The 'stormcock' — big, bold, and sings defiantly from treetops in wind and rain. Not afraid of a bit of weather.",
     funFact: "Called the 'stormcock' because it sings loudest in wild winter weather from exposed treetops. The one bird that genuinely looks like it enjoys a bit of horizontal rain.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -385,6 +411,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A winter visitor that arrives in noisy flocks to strip berry bushes bare. Grey head, chestnut back, absolutely ravenous.",
     funFact: "Arrives from Scandinavia in October, strips every hawthorn berry in the hedgerow by January, and leaves again without so much as a thank you. An extremely Viking approach to dining.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -399,6 +426,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Smallest of the UK thrushes and a winter migrant. That flash of red under the wing is the tell-tale sign.",
     funFact: "The high, thin 'seep' call you hear overhead on autumn nights is thousands of redwings migrating in darkness. Britain's skies are busier at 2am in October than most people realise.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -413,6 +441,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The official herald of summer. Flies 10,000 miles from Africa to swoop over your garden and make you feel things.",
     funFact: "Flies over 10,000 miles from South Africa to get back to the same British barn every year. Returns the first week of April and expects the same parking space. The loyalty is deeply moving.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -427,6 +456,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Regal and ancient, technically property of the Crown, and will absolutely use that status to hiss at you.",
     funFact: "Can break your arm, allegedly. This is almost certainly an exaggeration, but the mute swan is actively invested in you believing it. The Crown technically owns most of them. They are aware.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -441,6 +471,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Victorian ladies were nearly the death of this bird — its elegant plumes were fashionable hat decorations. Now thriving.",
     funFact: "Was nearly hunted to extinction in the Victorian era for its head plumes — used to decorate ladies' hats. Public outrage led directly to the founding of the RSPB. The grebe saved British birdwatching by almost disappearing.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -455,6 +486,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Prehistoric-looking and magnificently still. Will stand motionless for hours, then strike faster than you can blink.",
     funFact: "Stands motionless for so long that pond owners mistake it for a garden ornament — until their goldfish mysteriously disappear. It has been emptying British garden ponds since before you were born.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -469,6 +501,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Snow-white and elegant at the water's edge. Colonised Britain from Europe in the 1980s and promptly made itself at home.",
     funFact: "First bred in Britain in 1996, having been absent for centuries. Has since colonised almost every estuary and wetland in England. A genuinely self-starting immigrant success story.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -483,6 +516,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The loudest bird on any beach, bar none. Pied plumage, carrot-orange bill, zero volume control.",
     funFact: "Primarily eats mussels and cockles, not oysters — whoever named it was either misinformed or optimistic. The carrot-orange bill is used to chisel shellfish open with a technique that takes years to learn.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -497,6 +531,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Constantly bobs its rear end like it's listening to a song nobody else can hear. A cheerful summer visitor to upland streams.",
     funFact: "Bobs its rear end up and down with every step — constantly, compulsively, never stopping. Why? Scientists have studied it extensively and mostly just conclude that it bobs. Classic British approach: keep going regardless.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -511,6 +546,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A white torpedo that hits the water at 60 mph. Massive seabird colonies on UK clifftops are one of nature's great spectacles.",
     funFact: "Hits the water at 60mph and reaches a depth of 10 metres in under two seconds. Air sacs under the skin cushion the impact. The word 'gannet' has meant 'greedy person' in British slang since at least the 1800s.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -525,6 +561,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The 'motorway hawk' — soaring over roundabouts and A-roads with supreme indifference to human activity below.",
     funFact: "The UK's most common bird of prey, now seen soaring over motorway junctions and retail parks across most of England. Persecuted almost to extinction and now entirely back. One of conservation's quiet victories.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -539,6 +576,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Despite the name, what catches the eye is the yellow. Elegant and energetic along fast streams and weirs.",
     funFact: "Named 'grey' despite being primarily yellow — the ornithologist who named it was apparently looking at the wrong bit of the bird. Still causing mild confusion to beginners 200 years later.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -553,6 +591,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A skulking, chattering summer visitor hidden deep in reedbed. You'll hear it long before you ever see it.",
     funFact: "The cuckoo's preferred host in southern Britain — the reed warbler will dutifully raise a cuckoo chick three times its own size without ever questioning the arrangement. Devoted to a fault.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -567,6 +606,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Loud, stream-of-consciousness singer in marshy scrub. Will mimic other birds mid-flow and seemingly not notice.",
     funFact: "Males with the most complex songs — incorporating the most mimic phrases from other species — attract mates faster. Jazz improvisation as a mating strategy. It works.",
+    conservationStatus: "green",
     imageUrl: null,
   },
 
@@ -583,6 +623,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Once Britain's most common bird, now in serious decline. Finding a noisy sparrow colony is genuinely exciting.",
     funFact: "Once so abundant it was considered a pest and there were bounties on its head. Now red-listed and declining sharply. The sparrow genuinely did not see that coming.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -597,6 +638,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Iridescent green and purple close-up, and forms murmurations — one of nature's most extraordinary aerial displays.",
     funFact: "A murmuration of starlings — thousands of birds moving as one liquid mass — has no leader. Each bird responds only to its seven nearest neighbours. Emergent complexity from pure instinct. Scientists keep studying it. Nobody has fully cracked it.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -611,6 +653,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Looks exactly like a Willow Tit — a fact that exasperates birdwatchers everywhere. Now genuinely uncommon in many areas.",
     funFact: "Virtually identical to the willow tit — the two species can only be reliably separated by call and a very small glossy vs matt cap difference. Has caused more birdwatcher arguments than almost any other species in Britain.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -625,6 +668,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Smashes snails on favourite stones and sings each phrase twice. One of Britain's finest singers, now sadly declining.",
     funFact: "Has 'anvil' stones where it habitually smashes snail shells — you can find them scattered with shell fragments if you know where to look. One of Britain's finest singers, now in steep decline. Entirely undeserved.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -639,6 +683,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Builds mud nests under house eaves. Has the audacity to disappear to sub-Saharan Africa each winter and expect its nest to still be there.",
     funFact: "Collects mud pellets from puddles one beak-full at a time to build its nest under your eaves, then flies to sub-Saharan Africa for the winter and fully expects the nest to still be there in April. The entitlement is extraordinary.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -653,6 +698,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Spends its entire life airborne, even sleeping on the wing. Only touches land to breed. The UK's most aerial bird.",
     funFact: "Eats, sleeps, bathes, and mates on the wing. A young swift leaves its nest hole, ascends into the sky, and does not land again for two to three years. Nothing about this is normal.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -667,6 +713,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A bolt of electric blue along a clean river. One of the UK's most spectacular birds — worth every hour of patient waiting.",
     funFact: "Flies so fast along river channels that most people just see a blue streak. Blinks with a transparent eyelid before diving to protect its eyes. Has a bill longer than its body proportionally. Wildly overqualified for the job of eating small fish.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -681,6 +728,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The 'twit-twoo' owl of British folklore. Mostly heard, rarely seen, as it hunts silently through woodland at night.",
     funFact: "The classic 'twit-twoo' is actually two owls. One bird calls 'ke-wick', another responds 'hoo-hoo'. You've been hearing a conversation and attributing it to a single, improbably theatrical individual your entire life.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -695,6 +743,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Introduced from continental Europe in the 1800s and now entirely naturalised. Remarkably fierce for something the size of a tennis ball.",
     funFact: "Introduced to Britain by a Victorian naturalist who thought we needed more owls. Has since settled into the countryside with such thoroughness that most people assume it was always here. A successful relocation by any measure.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -709,6 +758,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The roadside hoverer. Hangs motionless in the wind watching the verge below — Britain's most recognisable raptor.",
     funFact: "Can hold perfectly still in the air while its head remains locked on a single point below. Motorway verges are prime hunting ground. The kestrel was Britain's most common raptor before the buzzard overtook it. Still formidable.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -723,6 +773,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Low-flying ambush predator that flips over garden fences in a heartbeat. A blurred grey ghost that makes garden birds panic.",
     funFact: "Uses hedgerows and fences as cover to ambush garden birds — flips over obstacles at the last second, grabs prey in midair, and is gone before you've processed what you saw. Garden feeders are essentially delivery services for sparrowhawks.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -737,6 +788,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A summer falcon fast enough to catch swallows and swifts in flight. Elegant, dashing, and inspiring a board game.",
     funFact: "Fast enough to catch swallows and swifts in flight — few birds on earth can make that claim. Also lent its name to the Subbuteo table football game. The most culturally significant bird of prey in Britain, arguably.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -751,6 +803,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Iceland's finest export. Arrives in autumn with a bugling call that announces winter has truly arrived.",
     funFact: "Arrives from Iceland each October with a bugling, trumpeting call that sounds absolutely enormous coming from a bird in the sky above you. Unlike the mute swan, it has earned its dramatic entrance.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -765,6 +818,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A mottled gold wader of upland moorland, gathering in large flocks on winter farmland. Haunting whistle, beautiful plumage.",
     funFact: "Its mournful, fluting whistle across moorland is one of the most evocative sounds in the British uplands. Winter flocks on lowland fields can reach thousands. Somehow simultaneously common and deeply moving.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -779,6 +833,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Britain's conservation success story — brought back from extinction in the 1940s. The RSPB chose it as their logo for good reason.",
     funFact: "Extinct as a British breeding bird by the 1840s, returned naturally in the 1940s when Minsmere was flooded as a wartime defence measure. An accidental rewilding success so beautiful the RSPB put it on its badge.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -793,6 +848,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Goes-back-back-back when flushed from heather moorland. The sound of a Scottish grouse moor on an August morning.",
     funFact: "A subspecies found only in Britain and Ireland — found nowhere else on earth. The Glorious Twelfth is named after the date its shooting season starts. The grouse remains entirely unimpressed by the tradition.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -807,6 +863,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The original farmland bird — now in steep decline and genuinely hard to find. Coveys scuttle along field margins at dawn.",
     funFact: "Has declined by over 90% since the 1950s due to agricultural intensification. If you find one, you are in genuinely good farmland habitat. The partridge is now an indicator species for countryside health. And a pear tree. But mostly an indicator species.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -821,6 +878,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The only songbird that can walk underwater. Bobs on midstream boulders and plunges in to feed on the riverbed.",
     funFact: "The only songbird in the world that can walk along the riverbed underwater. Has dense feathers, extra-large oil glands, and dips its beak and bobs constantly even when not diving. Entirely committed to its niche.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -835,6 +893,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Bright yellow head, farmland hedgerows, and a song described as 'a little bit of bread and no cheese'. Sadly disappearing.",
     funFact: "Its song — a run of repeated notes ending in a longer wheeze — was transcribed by Victorians as 'a little bit of bread and no cheese'. Beethoven may have borrowed it for his Fifth Symphony. The yellowhammer achieved more than it will ever know.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -849,6 +908,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Stunning pink and black with a soft, melancholy piping call. Shy woodland bird whose declining numbers make every sighting count.",
     funFact: "The male is one of the most vividly coloured birds in Britain — rose-pink breast, black cap, bold white rump — yet manages to be genuinely difficult to find. Shy, quiet, and declining. A bird you have to earn.",
+    conservationStatus: "red",
     imageUrl: null,
   },
 
@@ -865,6 +925,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Britain's most beloved seabird. A clown-faced, fish-stacking wonder that nests in clifftop burrows. Ocean-going legends.",
     funFact: "Spends most of its life on the open ocean, surfacing only to breed. Extremely introverted for something that looks like a party trick. Can hold multiple fish crossways in its bill simultaneously — a skill with no obvious off-season use.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -879,6 +940,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A white ghost drifting over winter meadows at dusk. Silent, ethereal, and one of the most beautiful birds in Britain.",
     funFact: "Can locate prey by sound alone in total darkness — its heart-shaped face acts as a parabolic sound dish. Also looks perpetually surprised by everything. These two facts are not unrelated.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -893,6 +955,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The day-flying owl. Hunts voles over open moorland and coastal marshes with those intense yellow stare-down eyes.",
     funFact: "Hunts openly in daylight over moorland and coastal marshes — the only owl you're likely to watch working for an extended period. Those yellow eyes track movement at extraordinary distances. Slightly unsettling even when you know you're not prey.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -906,7 +969,8 @@ export const seedData: SpeciesSeed[] = [
     seasonLockEnd: "07-31",
     taxonomyGroup: "bird",
     description: "Britain's smallest falcon, named after Arthurian legend and equally as fierce. Low-level pursuit hunter of upland moors.",
-    funFact: "Britain's smallest falcon, it hunts by low-level pursuit — flying just above the heather at speed, forcing prey birds into the open. Named after the wizard, not the other way around. The association is not accidental.",
+    funFact: "Britain's smallest falcon, it hunts by low-level pursuit �� flying just above the heather at speed, forcing prey birds into the open. Named after the wizard, not the other way around. The association is not accidental.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -921,6 +985,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "That haunting, cascading call across moorland or estuary is one of the UK's most evocative sounds. Now urgently endangered.",
     funFact: "Its cascading, bubbling call has been described as the most haunting sound in British wildlife. Now Europe's most threatened wading bird. There is an active campaign to save it. The call makes it easy to understand why.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -935,6 +1000,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The 'peewit' of farmland — iridescent green with that ridiculous wispy crest. A farmland bird now fighting for survival.",
     funFact: "Has an iridescent green back that shimmers in sunlight, a preposterous wispy crest, and makes a sound like its name — 'peewit'. Was once so common across British farmland it was background noise. Now urgently threatened. Classic.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -949,6 +1015,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Males in breeding plumage have extraordinary neck ruffs that make them look absolutely ridiculous. That's the point.",
     funFact: "Male ruffs in breeding plumage develop enormous, wildly varied neck frills — no two are identical. They gather at 'leks' to display competitively while females walk past evaluating. The whole setup looks like a very small, very serious costume competition.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -963,6 +1030,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Inspires poets, breaks hearts, and sings mostly at night. An unassuming brown bird with the most extraordinary voice in Europe.",
     funFact: "Completely unremarkable to look at — small, brown, anonymous. Sings at night with a voice that has made poets weep for centuries. The contrast between appearance and output is the most extreme in British natural history.",
+    conservationStatus: "red",
     imageUrl: null,
   },
   {
@@ -977,6 +1045,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A parrot of the pinewoods with crossed mandibles — evolved specifically to extract seeds from conifer cones. A delightful oddity.",
     funFact: "Its crossed beak looks like a manufacturing error but is a finely tuned tool for levering open pine cones — a food source almost nothing else can access. Irrupts into Britain from Scandinavia in irregular invasion years. Turns up without warning. Makes no apologies.",
+    conservationStatus: "green",
     imageUrl: null,
   },
 
@@ -993,6 +1062,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The fish hawk. Plunges feet-first into water from height, grabs a fish, shakes itself dry mid-flight, and flies off triumphant.",
     funFact: "Extinct in Britain for 50 years before returning naturally to Scotland in 1954. Now breeding across England and Wales too. Plunges into water feet-first and rotates its grip mid-flight so the fish faces forward aerodynamically. Nature's precision delivery service.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -1007,6 +1077,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Rescued from extinction in Wales and reintroduced across England. Forked tail, russet body — one of Britain's greatest conservation wins.",
     funFact: "Was extinct in England for 200 years. Reintroduced to the Chilterns in 1989 and is now so common there that local residents report kites stealing sandwiches from garden tables. A conservation win almost too successful to believe.",
+    conservationStatus: "green",
     imageUrl: null,
   },
   {
@@ -1021,6 +1092,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The fastest animal on Earth in a stoop — 240 mph. Found on city cathedral spires and coastal cliffs alike.",
     funFact: "The fastest animal on the planet in a stoop — over 240mph. A second eyelid protects its eyes against wind blast at speed. Now breeds on Tate Modern, Chichester Cathedral, and various London office blocks. Completely unbothered by the commuters below.",
+    conservationStatus: "green",
     imageUrl: null,
   },
 
@@ -1037,6 +1109,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "A booming from the reedbed that nobody can quite explain to someone who hasn't heard it. The bird itself is almost never seen.",
     funFact: "Makes a booming call in spring that sounds exactly like someone blowing across the top of a large bottle — it carries for miles across reedbed. Was extinct as a British breeder and has made a slow, agonising comeback. About 200 booming males now. Every one counts.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -1051,6 +1124,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Rasping call from tall meadow grass, bird almost never seen. Clinging on in the Western Isles — incredibly rare and precious.",
     funFact: "Makes a sound like raking gravel — 'crex crex' — from within tall grass, and will call through the night. Has been calling from British meadows for millennia. Almost impossible to actually see. A ghost with a strong opinion about sleep.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -1065,6 +1139,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "Europe's largest eagle — a flying barn door. Reintroduced to Scotland and now England. Seeing one is a landmark wildlife moment.",
     funFact: "Has a wingspan of up to 2.4 metres — wider than most people are tall. Extinct in England for 240 years before reintroduction began in 2019. Buzzards look like sparrows next to it. No scale works. You have to see it.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
   {
@@ -1079,6 +1154,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "bird",
     description: "The lord of the Scottish Highlands. Immense, powerful, and the embodiment of true wilderness. Requires a pilgrimage to see.",
     funFact: "Holds a territory of up to 100 square kilometres in the Scottish Highlands. A pair may raise only one chick every two years. Has been the emblem of kingdoms, armies, and nations. Seeing one in the wild remains one of the most profound experiences in British natural history.",
+    conservationStatus: "amber",
     imageUrl: null,
   },
 
@@ -1097,6 +1173,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "North American immigrant who has made itself a little too at home. Omnipresent, acrobatic, and a genuine threat to native red squirrels.",
     funFact: "Introduced from North America in 1876 as a fashionable garden ornament. Has since displaced the red squirrel from almost all of England. The Victorians meant well. They were wrong.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1113,6 +1190,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "The UK's most recognisable predator. Adapts to everything from Dartmoor to Dalston — always watching, always judging.",
     funFact: "Urban foxes have learned to open bins, navigate traffic, and find food in places that should be inaccessible. Scientists are genuinely baffled by the speed of behavioural adaptation. The fox is not waiting for science to catch up.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1127,6 +1205,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Faster, fiercer, and more reckless than its size suggests. Some turn white in winter — the royal ermine of heraldry.",
     funFact: "The white winter coat — 'ermine' — has adorned royal robes and heraldic mantles for centuries. The stoat itself is entirely unaware of the tradition and would probably try to bite anyone who tried to explain it.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1141,6 +1220,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Britain's smallest carnivore and utterly ferocious about it. Will take on prey several times its own size without hesitation.",
     funFact: "Britain's smallest carnivore, weighing as little as 40g — about the same as a bag of crisps. Will attack rabbits. There is a well-worn riddle about what distinguishes it from a stoat. The weasel does not find it funny.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1155,6 +1235,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "The bat flickering around street lights at dusk. Weighs 3-8g and eats 3,000 midges a night. The nation's smallest but most common bat.",
     funFact: "Eats up to 3,000 insects a night and weighs less than a 20p coin. Roosts in house roof spaces across Britain. The scratching you hear in the walls in summer is almost certainly pipistrelles, which is considerably less alarming once you know that.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1169,6 +1250,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Petite, elegant, and native to Britain. Often glimpsed at woodland edges at dawn — then gone before you've quite registered it.",
     funFact: "The only deer native to Britain that has been here continuously since the last Ice Age. Exceptionally delicate and alert — glimpsing one at a woodland edge at dusk and having it vanish instantly is a rite of passage for British naturalists.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1183,6 +1265,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Dappled and decorative — introduced by the Normans and now the most widespread deer in England. Magnificent rutting displays in autumn.",
     funFact: "Introduced by the Normans for hunting and have been running around British parkland ever since. The autumn rut involves bucks groaning, clashing antlers, and generally making a scene across the country's finest estates.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1197,6 +1280,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Dog-sized deer from China, escaped from Woburn in 1900s and colonised southern England. Barks like a dog and breeds year-round.",
     funFact: "Escaped from Woburn Abbey deer park around 1925 and has since quietly colonised most of southern England. Barks like a dog when alarmed, which causes considerable confusion among dog walkers. Breeds continuously throughout the year with no seasonal constraint. A deer that simply did not read the rules.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1211,6 +1295,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Britain is home to about 40% of the world population. Hauls out on rocky coasts and looks at you with enormous dark eyes.",
     funFact: "About 40% of the world's entire grey seal population lives on British and Irish coasts. They triple in weight in three weeks as pups, then get abandoned on the beach to figure it out. Classic British parenting. They invariably figure it out.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1225,6 +1310,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Escaped from fur farms and established itself in British waterways. Excellent swimmer, a problematic invasive, but undeniably striking.",
     funFact: "Escaped from fur farms during raids and storms through the mid-20th century and established self-sustaining populations across Britain. Has since contributed significantly to the collapse of the water vole population. The fur trade's most consequential legacy in British wildlife.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1241,6 +1327,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Britain's spikiest garden visitor. Once everywhere, now in real decline — finding one shuffling through your garden is a special moment.",
     funFact: "Britain's most huggable road casualty. Hibernates October to April and genuinely does not care about your plans for spring. Has declined by a third in the UK since 2000 — the small mammal equivalent of a national emergency.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1255,6 +1342,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Famously nocturnal and surprisingly large. A watched sett at dusk is one of the great wildlife experiences in Britain.",
     funFact: "Has lived in the same sett as its ancestors for hundreds of years — some badger setts are known to be over 100 years old. Your flat-share is temporary. The badger's accommodation situation is considerably more stable.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1269,6 +1357,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Europe's smallest rodent, weighing 4-6g. Weaves tennis-ball nests in tall grass. You'll rarely see one unless you're looking very hard.",
     funFact: "Europe's smallest rodent, weighing about the same as a 2p coin. Weaves a perfectly spherical nest among grass stems. Has a prehensile tail it uses to grip stems while feeding. Extraordinary engineering from something that barely exists.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1283,6 +1372,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Long-legged and wild-eyed, boxing in spring fields. A pagan symbol of fertility and still genuinely magical to encounter.",
     funFact: "The 'Mad March Hare' — females box males to fend off unwanted attention, not males competing with each other as was long assumed. A correction that took centuries to reach the popular imagination. The hare was right all along.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1297,6 +1387,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Turns white in winter on Scottish mountains. The original British hare — the brown hare was introduced. Looks absolutely spectacular in snow.",
     funFact: "The original British hare — it was here before the last Ice Age and the brown hare was introduced later. Turns white in winter to match snow, which is very effective until the snow melts early and leaves a conspicuous white hare sitting on brown heather. Climate change has made this considerably more awkward.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1311,6 +1402,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Britain's largest land animal. Stags in full roar during the October rut are one of the UK's most primordial spectacles.",
     funFact: "Britain's largest land animal, and the roaring of stags across Scottish glens in October is one of the most ancient sounds still audible in these islands. The stags are bellowing about territory. It sounds like the entire landscape is arguing.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1325,6 +1417,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Once nearly extinct, now spreading from Wales eastward. Ancestor of the ferret, with a distinctive dark mask and rather potent musk glands.",
     funFact: "Almost wiped out in Britain by the early 20th century — confined to a small part of mid-Wales. Has since expanded steadily eastward and is now found across much of England. The ancestor of the domestic ferret, which it both resembles and would deeply resent being compared to.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1339,6 +1432,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Smaller and rounder-faced than the grey seal — the 'common seal' is actually less common in UK waters. Often seen in estuaries.",
     funFact: "Called the 'common seal' despite being considerably less common than the grey seal in UK waters. A naming anomaly that has persisted since it was observed to be common in certain specific harbours. The grey seal has never forgiven this branding oversight.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1355,6 +1449,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "The native squirrel, largely displaced by the grey. Finding one in its last strongholds — Northumberland, Scotland, Brownsea — feels like a privilege.",
     funFact: "Forgets where it buried most of its nuts. Scotland's most relatable resident. Has been squeezed into increasingly small island refuges by the grey squirrel — the saddest real estate story in British wildlife.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1369,6 +1464,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Ratty from Wind in the Willows. Plops into waterways with the most satisfying sound in nature. Desperately declining due to mink.",
     funFact: "The 'plop' of a water vole entering the water — that specific, unmistakable sound — is one of the great wildlife sounds of the British countryside. One of the UK's fastest-declining mammals. Every plop matters enormously.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1383,6 +1479,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Britain's smallest cetacean — shy, rarely leaping, just a dark fin and a puffing sound. The secret whale of UK coastal waters.",
     funFact: "Britain's smallest cetacean and the least showy. Doesn't leap, rarely surfaces clearly, and mostly just makes a small puffing sound before disappearing. Has been quietly living in UK coastal waters for millennia. Getting a proper look is a genuine achievement.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1399,6 +1496,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "The UK's most elusive mammal. Spotting one is pure luck, or very early mornings by a clean river. Worth every cold dawn.",
     funFact: "Holds hands with its partner while sleeping on the water so they don't drift apart. Relationship goals. Also: nearly wiped out by pesticides in the 1960s, fully recovered across England by 2010. The comeback story of the century.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1413,6 +1511,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Asleep for half the year, nocturnal for the other half, and living in hazel coppice. Glimpsing one is considered extremely lucky.",
     funFact: "Asleep for seven months of the year. When awake it is nocturnal and lives in dense hazel coppice. Finding one requires a specialist nest-box scheme and a lot of patience. The dormouse has achieved the career aspiration most humans quietly harbour.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1427,6 +1526,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Extinct for 300 years, escaped from farms in the 1980s and re-established in the Forest of Dean and Kent. Prehistoric, powerful, unpredictable.",
     funFact: "Extinct in Britain for 300 years, then escaped from specialist farms in the 1990s and recolonised the Forest of Dean entirely on their own terms. The British countryside said yes, the planning department was not consulted. The boar remains indifferent to the paperwork.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1441,6 +1541,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Cat-sized mustelid of ancient woodland. Nearly wiped out, now slowly recovering in Scotland and Wales. A biscuit-brown flash in the trees.",
     funFact: "Leaves conspicuous scent-marked 'sweet seats' — piles of droppings placed in prominent locations as a calling card. Classy. Was nearly eradicated from Britain by the Victorian era, now slowly recovering. Also, its presence in Ireland has caused grey squirrel populations to collapse — and red squirrels to return. Consequential beyond expectations.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1455,6 +1556,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "Cardigan Bay and the Moray Firth hold resident pods. Bow-riding and leaping, their intelligence is almost uncomfortably evident.",
     funFact: "The resident pods in Cardigan Bay and the Moray Firth are among the best-studied dolphin populations in the world. Individual dolphins have been tracked for decades. Their intelligence is almost uncomfortably evident — studying them feels increasingly like a two-way process.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1471,6 +1573,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "mammal",
     description: "The most commonly sighted large whale in UK waters — which still means it's incredibly rare. A surfacing minke whale is a life moment.",
     funFact: "The most frequently sighted whale off British coasts — usually spotted solo, looking busy, surfacing briefly off the bow of a Hebridean ferry. The word 'commonly' in 'most commonly sighted' is doing extraordinary heavy lifting given how rarely anyone actually sees one.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1489,6 +1592,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "The frog of garden ponds everywhere. Arrives for a brief, loud, overcrowded mating session each February-March then disappears again.",
     funFact: "Spawns in the same pond it was born in — sometimes returning to a puddle that barely exists as an adult. Every garden pond in Britain is potentially a frog nursery. The frog will find it whether you want it to or not.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1505,6 +1609,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "Britain's only truly native lizard. Basks on sunny banks and fence posts — gives birth to live young rather than laying eggs.",
     funFact: "Unlike most lizards, gives birth to live young rather than laying eggs — a remarkable adaptation to Britain's unreliable summers. Has apparently assessed British weather and decided that incubation was too optimistic a strategy.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1519,6 +1624,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "Not a worm, not a snake — a legless lizard that lives under garden compost heaps. Smooth, coppery, and utterly harmless.",
     funFact: "Not a worm, not a snake — a legless lizard that can live for up to 30 years and can detach its tail if grabbed. Can be found under almost every compost heap in Britain. A useful, harmless garden companion that people have been treading on accidentally for centuries.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1533,6 +1639,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "The most common newt in British ponds. Males develop a wavy crest in spring — a tiny, improbable dragon in your garden pond.",
     funFact: "In spring the male develops a wavy dorsal crest and orange-spotted belly to impress females. For the rest of the year it looks like a small brown stick. The transformation is seasonal and the male commits to it fully.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1547,6 +1654,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "Males have webbed hind feet in breeding season and a distinctive filament tail tip. Prefers acidic upland ponds.",
     funFact: "Males develop fully webbed hind feet in breeding season and a distinctive thread-like tail filament — features that disappear entirely after mating. Britain's most seasonally committed amphibian. The feet come and go annually, apparently without drama.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1561,6 +1669,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "Warty, wise-looking, and makes long migrations to breeding ponds every spring. Toad patrols are a thing — volunteers carry them across roads.",
     funFact: "Makes an annual migration back to its birth pond every spring — crossing roads if necessary, regardless of traffic. Hundreds of volunteers run 'toad patrols' on specific nights to carry them across. Britain takes this seriously. The toad accepts the assistance with dignity.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1577,6 +1686,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "Britain's longest snake — completely harmless, plays dead when threatened. The yellow collar is the ID mark. Fond of garden compost heaps.",
     funFact: "Plays dead when threatened — rolls over, goes limp, and produces a foul-smelling liquid to complete the illusion. Britain's largest snake and completely harmless. The dramatic death performance is entirely convincing and has alarmed many a gardener.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1591,6 +1701,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "Britain's only venomous snake and frankly reluctant about it. Basking on sunny heathland paths, but gone before you can blink.",
     funFact: "Britain's only venomous snake, and bites are extremely rare — almost always the result of someone picking one up. It is basking on heathland, trying to warm up, and would strongly prefer to be left to it. The adder is far more afraid of you than you are of it.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1607,6 +1718,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "The UK's rarest lizard — males turn vivid green in spring. Restricted to a handful of lowland heaths and sand dunes. A legal treasure.",
     funFact: "Males turn vivid green along their flanks in spring — one of the most dramatic colour transformations of any British reptile. Restricted to a handful of lowland heaths in Surrey, Dorset, and Lancashire. Legally protected. Seeing one feels like finding something that wasn't supposed to still exist.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1621,6 +1733,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "reptile",
     description: "Britain's rarest reptile. Non-venomous, constricts prey like a tiny boa. Found only on Dorset and Surrey heathland. Genuinely mythical.",
     funFact: "Britain's rarest reptile and found on a handful of Dorset and Surrey heaths. Constricts its prey like a miniature boa constrictor. Most serious herpetologists in Britain have never seen one in the wild. This is not an exaggeration.",
+    conservationStatus: null,
     imageUrl: null,
   },
   {
@@ -1635,6 +1748,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "The dragon newt. Males in spring have a serrated crest and bright orange belly. Legally protected — even disturbing their pond requires a licence.",
     funFact: "Has more legal protection than most buildings in Britain — disturbing its pond requires a licence from Natural England. Has delayed more housing developments than any other British amphibian. The planning department knows its name personally.",
+    conservationStatus: null,
     imageUrl: null,
   },
 
@@ -1651,6 +1765,7 @@ export const seedData: SpeciesSeed[] = [
     taxonomyGroup: "amphibian",
     description: "The loudest amphibian in Europe for its size, and critically rare. Yellow stripe, running gait, and a call that carries for miles across coastal dunes.",
     funFact: "Britain's loudest amphibian — its call carries over two kilometres on still nights across coastal dune systems. Runs rather than hops. Has a bright yellow stripe down its back. Restricted to about 60 sites in the UK. Tiny, loud, no regrets whatsoever.",
+    conservationStatus: null,
     imageUrl: null,
   },
 ];

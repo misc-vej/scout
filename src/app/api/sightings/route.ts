@@ -29,28 +29,26 @@ export async function POST(req: NextRequest) {
   // Insert sighting event (append-only)
   await db.insert(sightings).values({ userId, speciesId, gridSquare });
 
-  // Upsert collection (first sighting = insert, repeat = increment)
+  // Upsert collection (first sighting = insert with shiny roll, repeat = increment)
   const existing = await db
-    .select({ sightingCount: collections.sightingCount })
+    .select({ sightingCount: collections.sightingCount, isShiny: collections.isShiny })
     .from(collections)
     .where(and(eq(collections.userId, userId), eq(collections.speciesId, speciesId)))
     .limit(1);
 
   let sightingCount: number;
-  let firstSighting: boolean;
 
   if (existing.length === 0) {
-    await db.insert(collections).values({ userId, speciesId, sightingCount: 1 });
-    sightingCount = 1;
-    firstSighting = true;
+    // First collection — roll shiny (1-in-50 chance, server-side only)
+    const isShiny = Math.random() < 0.02;
+    await db.insert(collections).values({ userId, speciesId, sightingCount: 1, isShiny });
+    return NextResponse.json({ sightingCount: 1, firstSighting: true, isShiny });
   } else {
     sightingCount = existing[0].sightingCount + 1;
     await db
       .update(collections)
       .set({ sightingCount, lastSightedAt: new Date() })
       .where(and(eq(collections.userId, userId), eq(collections.speciesId, speciesId)));
-    firstSighting = false;
+    return NextResponse.json({ sightingCount, firstSighting: false, isShiny: existing[0].isShiny });
   }
-
-  return NextResponse.json({ sightingCount, firstSighting });
 }
