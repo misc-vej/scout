@@ -9,8 +9,16 @@ export default async function DiscoverPage() {
   }
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-white">Discover</h1>
+    <div
+      style={{
+        background: '#0a1410',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: 390,
+        margin: '0 auto',
+      }}
+    >
       <DiscoverClient />
     </div>
   );
