@@ -17,19 +17,87 @@ export function PledgeModal() {
   if (accepted) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-gray-900 p-8 shadow-2xl">
-        <h2 className="mb-1 text-xl font-bold text-white">The Scout&apos;s Pledge</h2>
-        <p className="mb-6 text-sm text-gray-400">Before you start collecting, please commit to responsible spotting.</p>
-        <div className="mb-6 rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-gray-300 leading-relaxed">
-          I promise to observe wildlife without disturbing it. I will keep a safe distance,
-          never touch nests or young, stay on paths, and follow the Wildlife &amp; Countryside
-          Act 1981. If I see something rare, I&apos;ll keep the location to myself.
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,.85)", backdropFilter: "blur(4px)" }}
+    >
+      <div
+        style={{
+          background: "#0d1c12",
+          border: "1px solid rgba(114,204,74,.15)",
+          borderRadius: 18,
+          padding: 32,
+          maxWidth: 400,
+          width: "100%",
+          boxShadow: "0 20px 60px rgba(0,0,0,.6)",
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: "Syne, sans-serif",
+            fontSize: 20,
+            fontWeight: 800,
+            color: "#e8f0e4",
+            textTransform: "uppercase",
+            letterSpacing: ".04em",
+            marginBottom: 4,
+            margin: 0,
+          }}
+        >
+          The Scout&apos;s Pledge
+        </h2>
+        <p
+          style={{
+            fontFamily: "Outfit, sans-serif",
+            fontSize: 13,
+            color: "#2e5a3a",
+            marginBottom: 24,
+            lineHeight: 1.6,
+            marginTop: 4,
+          }}
+        >
+          Before you start collecting, please commit to responsible spotting.
+        </p>
+        <div
+          style={{
+            background: "rgba(114,204,74,.06)",
+            border: "1px solid rgba(114,204,74,.1)",
+            borderRadius: 10,
+            padding: "12px 14px",
+            marginBottom: 24,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "Outfit, sans-serif",
+              fontSize: 13,
+              color: "#3a6040",
+              lineHeight: 1.7,
+            }}
+          >
+            I promise to observe wildlife without disturbing it. I will keep a safe distance,
+            never touch nests or young, stay on paths, and follow the Wildlife &amp; Countryside
+            Act 1981. If I see something rare, I&apos;ll keep the location to myself.
+          </span>
         </div>
         <button
           onClick={() => mutation.mutate()}
           disabled={mutation.isPending}
-          className="w-full rounded-xl bg-green-600 py-3 font-semibold text-white hover:bg-green-500 disabled:opacity-50 transition-colors"
+          style={{
+            background: "#72cc4a",
+            color: "#0d1c12",
+            borderRadius: 14,
+            padding: "14px 0",
+            width: "100%",
+            fontFamily: "Syne, sans-serif",
+            fontSize: 15,
+            fontWeight: 800,
+            textTransform: "uppercase",
+            letterSpacing: ".05em",
+            border: "none",
+            cursor: mutation.isPending ? "default" : "pointer",
+            opacity: mutation.isPending ? 0.5 : 1,
+          }}
         >
           {mutation.isPending ? 'Saving…' : 'I Accept the Pledge'}
         </button>

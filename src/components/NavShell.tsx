@@ -1,13 +1,32 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BookOpen, Compass, User } from "lucide-react";
+
+function IconNearby({ active }: { active: boolean }) {
+  const s = active ? "#72cc4a" : "#2e5a3a";
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="10" r="3.5" stroke={s} strokeWidth="1.7"/>
+      <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8z" stroke={s} strokeWidth="1.7" fill="none"/>
+    </svg>
+  );
+}
+
+function IconLogbook({ active }: { active: boolean }) {
+  const s = active ? "#72cc4a" : "#2e5a3a";
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7"/>
+      <rect x="13" y="3" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7"/>
+      <rect x="3" y="13" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7"/>
+      <rect x="13" y="13" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7"/>
+    </svg>
+  );
+}
 
 const navItems = [
-  { label: "Home", href: "/home", icon: Home },
-  { label: "Beastiary", href: "/beastiary", icon: BookOpen },
-  { label: "Discover", href: "/discover", icon: Compass },
-  { label: "Profile", href: "/profile", icon: User },
+  { label: "Nearby", href: "/discover", Icon: IconNearby },
+  { label: "Logbook", href: "/beastiary", Icon: IconLogbook },
 ];
 
 interface NavShellProps {
@@ -18,30 +37,42 @@ export default function NavShell({ children }: NavShellProps) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div style={{ minHeight: "100vh", background: "#0a1410", display: "flex", flexDirection: "column", maxWidth: 390, margin: "0 auto" }}>
       {/* Desktop sidebar */}
       <nav
-        className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:left-0 md:w-56 md:border-r md:border-gray-100 md:bg-white md:z-40"
+        className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:left-0 md:w-56 md:z-40"
+        style={{ background: "#0d1c12", borderRight: "1px solid rgba(114,204,74,.1)" }}
         aria-label="Main navigation"
       >
-        <div className="px-6 py-6 mb-4">
-          <span className="text-2xl font-bold text-green-500">Scout</span>
+        <div style={{ padding: "24px 24px 16px" }}>
+          <span style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800, color: "#e8f0e4", letterSpacing: ".07em", textTransform: "uppercase" }}>
+            SCOUT
+          </span>
         </div>
-        <ul className="flex-1 px-3 space-y-1">
-          {navItems.map(({ label, href, icon: Icon }) => {
+        <ul style={{ flex: 1, padding: "0 12px", display: "flex", flexDirection: "column", gap: 4 }}>
+          {navItems.map(({ label, href, Icon }) => {
             const active = pathname.startsWith(href);
             return (
               <li key={href}>
                 <Link
                   href={href}
                   aria-label={label}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    active
-                      ? "bg-green-50 text-green-600"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                  }`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    padding: "10px 12px",
+                    borderRadius: 8,
+                    textDecoration: "none",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    fontFamily: "Outfit, sans-serif",
+                    background: active ? "rgba(114,204,74,.1)" : "transparent",
+                    color: active ? "#72cc4a" : "#2e5a3a",
+                    transition: "color 0.15s, background 0.15s",
+                  }}
                 >
-                  <Icon size={18} strokeWidth={active ? 2.5 : 2} />
+                  <Icon active={active} />
                   {label}
                 </Link>
               </li>
@@ -50,29 +81,67 @@ export default function NavShell({ children }: NavShellProps) {
         </ul>
       </nav>
 
-      {/* Main content — offset for sidebar on desktop */}
-      <main className="flex-1 md:ml-56 pb-20 md:pb-0">
+      {/* Top nav bar — mobile (hidden on desktop via md:hidden equivalent) */}
+      <div
+        className="md:hidden"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          height: 56,
+          background: "linear-gradient(180deg,#0d1c12,#091410)",
+          borderBottom: "1px solid rgba(114,204,74,.1)",
+          padding: "0 20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexShrink: 0,
+        }}
+      >
+        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 17, fontWeight: 800, color: "#e8f0e4", letterSpacing: ".07em", textTransform: "uppercase" }}>
+          SCOUT
+        </span>
+      </div>
+
+      {/* Main content area — offset for desktop sidebar */}
+      <main className="md:ml-56" style={{ flex: 1, paddingBottom: 80 }}>
         {children}
       </main>
 
       {/* Mobile bottom tab bar */}
       <nav
-        className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 flex md:hidden"
+        className="md:hidden"
         aria-label="Tab bar"
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "100%",
+          maxWidth: 390,
+          background: "linear-gradient(to top,#0a1410 65%,rgba(10,20,16,0))",
+          padding: "8px 0 20px",
+          display: "flex",
+          justifyContent: "space-around",
+          zIndex: 40,
+        }}
       >
-        {navItems.map(({ label, href, icon: Icon }) => {
+        {navItems.map(({ label, href, Icon }) => {
           const active = pathname.startsWith(href);
           return (
             <Link
               key={href}
               href={href}
               aria-label={label}
-              className={`flex-1 flex flex-col items-center gap-1 py-2.5 text-xs font-medium transition-colors ${
-                active ? "text-green-600" : "text-gray-400 hover:text-gray-600"
-              }`}
+              style={{ textAlign: "center", cursor: "pointer", minWidth: 80, padding: "4px 0", textDecoration: "none" }}
             >
-              <Icon size={20} strokeWidth={active ? 2.5 : 2} />
-              <span>{label}</span>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Icon active={active} />
+              </div>
+              <div style={{ fontFamily: "Outfit, sans-serif", fontSize: 9, fontWeight: 600, color: active ? "#72cc4a" : "#2e5a3a", marginTop: 4, letterSpacing: ".06em", textTransform: "uppercase" }}>
+                {label}
+              </div>
+              {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#72cc4a", margin: "3px auto 0" }} />}
             </Link>
           );
         })}
