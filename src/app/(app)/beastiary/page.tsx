@@ -30,12 +30,13 @@ export default async function BeastiaryPage() {
       speciesId: collections.speciesId,
       sightingCount: collections.sightingCount,
       personalityTrait: collections.personalityTrait,
+      isShiny: collections.isShiny,
     })
     .from(collections)
     .where(eq(collections.userId, userId));
 
-  const collectedMap = new Map<string, { sightingCount: number; personalityTrait: string | null }>(
-    userCollections.map((c) => [c.speciesId, { sightingCount: c.sightingCount, personalityTrait: c.personalityTrait }])
+  const collectedMap = new Map<string, { sightingCount: number; personalityTrait: string | null; isShiny: boolean | null }>(
+    userCollections.map((c) => [c.speciesId, { sightingCount: c.sightingCount, personalityTrait: c.personalityTrait, isShiny: c.isShiny }])
   );
 
   const totalCollected = collectedMap.size;
@@ -100,9 +101,11 @@ export default async function BeastiaryPage() {
                     scientificName: s.scientificName,
                     rarityTier: s.rarityTier,
                     funFact: s.funFact ?? null,
+                    conservationStatus: s.conservationStatus ?? null,
                   }}
                   sightingCount={entry?.sightingCount}
                   personalityTrait={entry?.personalityTrait ?? null}
+                  isShiny={entry?.isShiny ?? false}
                 />
               );
             })}
