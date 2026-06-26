@@ -21,6 +21,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The one singing its head off in December isn't feeling festive — it's threatening rival robins to stay off the lawn. Christmas cheer, British style.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Robins often approach gardeners for disturbed worms — enjoy it, but resist the urge to encourage by hand-feeding.",
   },
   {
@@ -37,6 +38,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The male is jet black with a vivid yellow bill; the female is brown and gets misidentified by beginners constantly. She has given up being offended by it.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for alarm calls to locate birds feeding in undergrowth. Avoid disturbing nest sites in hedges and shrubs, especially April through July.",
   },
   {
@@ -53,6 +55,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Eats upside down from a nut feeder with the casual confidence of someone who has never once doubted themselves. The walnut-sized bully of the garden.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Feeders with small holes attract blue tits while excluding larger birds. Keep feeders clean and rotate positions every few weeks to prevent disease build-up.",
   },
   {
@@ -69,6 +72,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has the most varied repertoire of any British tit — over 40 distinct call types — and uses them to confuse predators into thinking there are more birds present. A one-bird riot.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Follow the insistent two-note call to find great tits foraging in woodland canopy. Nest box hole size of 28mm suits great tits; check boxes only outside breeding season.",
   },
   {
@@ -85,6 +89,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "One for sorrow, two for joy — a counting superstition attached to a bird that is simply trying to eat some chips. They can recognise themselves in a mirror, which is more than can be said for most.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Observe from a comfortable distance — magpies are wary and will move off if approached. Best watched from a stationary position near woodland edges in morning hours.",
   },
   {
@@ -101,6 +106,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The UK's most abundant bird by total biomass. Absolutely everyone has seen one. Nobody is excited about it. The wood pigeon does not care.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Look for wood pigeons foraging on agricultural fields and parkland grass. They are tolerant of human proximity in towns but avoid sudden movements near nesting birds.",
   },
   {
@@ -117,6 +123,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The male Chaffinch is one of Britain's most handsome birds — pink, blue, and white — yet remains almost entirely unappreciated. Fashion is wasted on this country.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Chaffinches feed readily under garden feeders on scattered seed. Listen for the bright, descending song in spring woodland to pinpoint males on song perches.",
   },
   {
@@ -133,6 +140,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's most common breeding bird. Tiny, furious, and impossibly loud for something the size of a digestive biscuit. If volume were proportional to body size, it would shatter glass.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Sit quietly near dense low vegetation and wait — wrens will often investigate of their own accord. Follow the explosive rattling song to low tangles in hedgerows and woodland edge.",
   },
   {
@@ -149,6 +157,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Long dismissed as a 'hedge sparrow' and largely ignored by everyone. Turns out its mating system is extraordinarily complex, involving both males and females having multiple partners simultaneously. Scientists were scandalised.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Look low in hedgerow bases and garden borders where dunnocks creep along the ground. Move slowly — they are easily flushed but will return if you stay still.",
   },
   {
@@ -165,6 +174,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Ancestor of almost every domestic duck breed on the planet. An empire built on bread thrown by children at canal banks. The duck has done well for itself.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "duck",
     spottingTips: "Avoid feeding bread to mallards — it is nutritionally poor and contributes to 'angel wing' deformity. Observe from canal or pond banks without approaching nesting females.",
   },
   {
@@ -181,6 +191,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Introduced to Britain as a decorative bird for ornamental lakes in the 1600s. Has since conquered every park, car park, and golf course in the land. The decorators were not consulted on this expansion.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Keep a generous distance from nesting pairs — Canada geese are strongly territorial and will challenge perceived threats. Goslings should never be approached or handled.",
   },
   {
@@ -197,6 +208,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Flicks its tail with every single step, as if it's constantly trying to shake something off. Nobody knows why. The moorhen has declined to explain.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Watch quietly from canal or pond banks — moorhens are confiding but will retreat if approached directly. Chicks should be observed without disturbing bankside vegetation.",
   },
   {
@@ -213,6 +225,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Coots will fight neighbouring coots, ducks, geese, and occasionally their own reflection. Remarkably aggressive for a bird that looks like a floating apostrophe.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Coots are best observed from a distance on open water. Give nesting birds on their floating reed platforms a wide berth — aggression peaks during breeding season.",
   },
   {
@@ -229,6 +242,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Unlike ducks, its feathers aren't fully waterproof — which is a curious design choice for a diving bird. It compensates by standing with wings spread to dry. Dramatic, but effective.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Cormorants tolerate observers at reasonable distances on waterway perches. Approach colony roost sites quietly and avoid flushing roosting birds, especially in cold weather.",
   },
   {
@@ -245,6 +259,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Introduced from Asia by the Romans, kept by the Normans, and now 35 million are released into British countryside every year for shooting. The pheasant did not volunteer for any of this.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Look along woodland edges and hedgerow bases at dawn and dusk. Move slowly on country lanes — pheasants are infamously prone to bolting into traffic.",
   },
   {
@@ -261,6 +276,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Gathers in enormous city-centre roosts on winter evenings — sometimes thousands of birds in a single supermarket car park. Urban warmth, industrial quantities of company.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Pied wagtails are approachable on car parks and playing fields. Avoid disturbing nests in building crevices or low stonework — check ledges carefully before maintenance work.",
   },
 
@@ -279,6 +295,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "A flock of goldfinches is called a 'charm' — possibly the most appropriately named collective noun in the British bird world. Seeing one on a thistle head is as good as it gets.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Plant teasel or leave thistle seed heads to attract feeding charms. Watch without sudden movements — goldfinches spook easily from flower heads but return quickly if you stay still.",
   },
   {
@@ -295,6 +312,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Drumming at 20 hits per second, the woodpecker's brain is cushioned in the skull by shock-absorbing tissue. Engineers have studied it to design better crash helmets. Nature filed the patent first.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for drumming on dead branches in early spring and follow the sound. Avoid touching nest trees or blocking nest holes — woodpeckers abandon if disturbed during incubation.",
   },
   {
@@ -311,6 +329,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Unlike its spotted cousin, the green woodpecker barely drums at all — it prefers to just stand on lawns eating ants and laughing. Its 'yaffle' call sounds exactly like it's having the time of its life.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Scan open lawns and pasture near mature trees — green woodpeckers feed on anthills and flush readily. Approach slowly across open ground to get a clear view before they fly.",
   },
   {
@@ -327,6 +346,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Buries up to 5,000 acorns each autumn and can remember where most of them are. This behaviour has planted more British oak trees than any conservation programme. Entirely accidental. Entirely magnificent.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Walk quietly through oak woodland in autumn to spot jays collecting and caching acorns. They are shy around humans — stay on the path and avoid sudden movements.",
   },
   {
@@ -343,6 +363,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The only British bird that habitually walks headfirst down trees. It doesn't hop, it walks — downward, with complete contempt for the concept of falling. Gravity has simply never applied.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the loud whistling 'pee-pee-pee' call in mature deciduous woodland. Position yourself near a large oak or beech and wait — nuthatches return to the same foraging areas repeatedly.",
   },
   {
@@ -359,6 +380,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Builds a stretchy nest woven from cobwebs, lichen, and around 2,000 feathers. The cobwebs allow it to expand as the chicks grow. A civil engineering miracle by a bird that weighs 8 grams.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the high-pitched 'see-see-see' contact calls that precede a flock moving through. Stand still as they pass and they will often come very close before moving on.",
   },
   {
@@ -375,6 +397,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Consistently outcompeted at feeders by blue and great tits, so instead of fighting it just steals seeds and hides them elsewhere. The smartest strategy at the bird table and it knows it.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Coal tits favour conifers — look in spruce and pine branches for small birds creeping on outer twigs. They visit garden feeders briefly before caching seeds in bark or soil nearby.",
   },
   {
@@ -391,6 +414,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Always spirals UP tree trunks, never down. When it reaches the top it simply flies to the bottom of the next tree and starts again. An efficient, if repetitive, career.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Scan tree trunks from base upward rather than scanning the canopy — treecreepers blend almost perfectly into bark. Move quietly and look for tiny upward spiralling movement.",
   },
   {
@@ -407,6 +431,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Some blackcaps now winter in Britain instead of migrating to Africa — they've discovered British bird feeders are substantially more comfortable than the Sahel. Can't blame them, really.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Follow the rich, fluting song into scrubby woodland or dense garden hedges in summer. Male blackcaps are persistent singers and can be watched patiently from a fixed position.",
   },
   {
@@ -423,6 +448,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Called the 'stormcock' because it sings loudest in wild winter weather from exposed treetops. The one bird that genuinely looks like it enjoys a bit of horizontal rain.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the loud, bold song from exposed treetops on grey winter mornings. Scan large lawns and parkland grass for the upright, spotted thrush that stands distinctly larger than a song thrush.",
   },
   {
@@ -439,6 +465,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Arrives from Scandinavia in October, strips every hawthorn berry in the hedgerow by January, and leaves again without so much as a thank you. An extremely Viking approach to dining.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Scan berry-laden hawthorn hedges in late October onwards for large thrush flocks. Keep 30m+ distance — fieldfares are skittish and flush the whole flock with loud 'chack-chack' calls.",
   },
   {
@@ -455,6 +482,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The high, thin 'seep' call you hear overhead on autumn nights is thousands of redwings migrating in darkness. Britain's skies are busier at 2am in October than most people realise.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Look along hedgerow bases and short grass for redwings feeding alongside fieldfares in winter. They are less flighty than fieldfares but still need quiet, slow approaches.",
   },
   {
@@ -471,6 +499,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Flies over 10,000 miles from South Africa to get back to the same British barn every year. Returns the first week of April and expects the same parking space. The loyalty is deeply moving.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Swallows nest in farm buildings and require access year-round — keep barn doors open during the breeding season. Never block nest entrances or handle young birds.",
   },
   {
@@ -487,6 +516,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Can break your arm, allegedly. This is almost certainly an exaggeration, but the mute swan is actively invested in you believing it. The Crown technically owns most of them. They are aware.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Stay at least 10m from nesting swans — the cob (male) will defend vigorously. Observe from the opposite bank where possible and avoid loitering near ground-level nests.",
   },
   {
@@ -503,6 +533,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Was nearly hunted to extinction in the Victorian era for its head plumes — used to decorate ladies' hats. Public outrage led directly to the founding of the RSPB. The grebe saved British birdwatching by almost disappearing.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Observe courtship dances from the bank using binoculars — the head-shaking display is best seen from a stable, low position. Avoid kayaking or paddling near nesting vegetation.",
   },
   {
@@ -519,6 +550,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Stands motionless for so long that pond owners mistake it for a garden ornament — until their goldfish mysteriously disappear. It has been emptying British garden ponds since before you were born.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "heron",
     spottingTips: "Grey herons tolerate patient observers at 20m+ on riverbanks. Heronries in tall trees are best watched with binoculars from below — avoid entering woodland near active nests.",
   },
   {
@@ -535,6 +567,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "First bred in Britain in 1996, having been absent for centuries. Has since colonised almost every estuary and wetland in England. A genuinely self-starting immigrant success story.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "heron",
     spottingTips: "Watch from estuary banks or coastal pools without approaching — little egrets flush easily when actively fishing. Early morning visits in calm conditions give the best close sightings.",
   },
   {
@@ -551,6 +584,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Primarily eats mussels and cockles, not oysters — whoever named it was either misinformed or optimistic. The carrot-orange bill is used to chisel shellfish open with a technique that takes years to learn.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Keep dogs on leads near oystercatcher nest scrapes on shingle beaches — nests are barely visible and chicks are at serious risk from off-lead dogs between April and July.",
   },
   {
@@ -567,6 +601,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Bobs its rear end up and down with every step — constantly, compulsively, never stopping. Why? Scientists have studied it extensively and mostly just conclude that it bobs. Classic British approach: keep going regardless.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Walk upland streamsides quietly and scan gravel bars. Common sandpipers fly low over water on bowed wings when flushed — if you flush one, wait and it will often return.",
   },
   {
@@ -583,6 +618,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Hits the water at 60mph and reaches a depth of 10 metres in under two seconds. Air sacs under the skin cushion the impact. The word 'gannet' has meant 'greedy person' in British slang since at least the 1800s.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Watch gannets from clifftop viewpoints at Bass Rock, Bempton, or Hermaness — stay behind fences near colony edges. Never approach birds on the ground at colonies.",
   },
   {
@@ -599,6 +635,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The UK's most common bird of prey, now seen soaring over motorway junctions and retail parks across most of England. Persecuted almost to extinction and now entirely back. One of conservation's quiet victories.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Scan the sky above valley sides and woodland edges on warm sunny mornings when thermals develop. Buzzards are tolerant of distant observers; use binoculars rather than approaching perched birds.",
   },
   {
@@ -615,6 +652,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Named 'grey' despite being primarily yellow — the ornithologist who named it was apparently looking at the wrong bit of the bird. Still causing mild confusion to beginners 200 years later.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Look along fast-flowing rivers and weirs, especially near bridges. Approach streamside slowly and low — grey wagtails are sensitive to movement on the bank.",
   },
   {
@@ -631,6 +669,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The cuckoo's preferred host in southern Britain — the reed warbler will dutifully raise a cuckoo chick three times its own size without ever questioning the arrangement. Devoted to a fault.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Stand quietly at the reedbed edge and wait for the persistent churring song to reveal a singing bird near a stem top. Never enter reeds — disturbance causes nest abandonment.",
   },
   {
@@ -647,6 +686,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Males with the most complex songs — incorporating the most mimic phrases from other species — attract mates faster. Jazz improvisation as a mating strategy. It works.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Position yourself at a scrubby wetland margin and wait for a singing male to pop up onto an exposed stem. Patience beats chasing — they return to the same song posts repeatedly.",
   },
 
@@ -665,6 +705,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Once so abundant it was considered a pest and there were bounties on its head. Now red-listed and declining sharply. The sparrow genuinely did not see that coming.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the communal chirping of a sparrow colony in dense hedges near buildings. Avoid disturbing nesting colonies in roof spaces — a colony's noise is a good sign, not a nuisance.",
   },
   {
@@ -681,6 +722,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "A murmuration of starlings — thousands of birds moving as one liquid mass — has no leader. Each bird responds only to its seven nearest neighbours. Emergent complexity from pure instinct. Scientists keep studying it. Nobody has fully cracked it.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Murmurations form at dusk near large reed beds, piers, or woodland roosts — arrive 30 minutes before sunset. Keep quiet and still to avoid flushing the flock before they settle.",
   },
   {
@@ -697,6 +739,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Virtually identical to the willow tit — the two species can only be reliably separated by call and a very small glossy vs matt cap difference. Has caused more birdwatcher arguments than almost any other species in Britain.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Learn the 'pitchou' call to distinguish marsh tit from willow tit before heading out. Seek damp deciduous woodland with alder and willow — move slowly to avoid flushing birds.",
   },
   {
@@ -713,6 +756,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has 'anvil' stones where it habitually smashes snail shells — you can find them scattered with shell fragments if you know where to look. One of Britain's finest singers, now in steep decline. Entirely undeserved.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Song thrushes sing from high perches in gardens and hedgerows — listen for the characteristic repeated phrases. Avoid disturbance near low nest sites in ivy and dense shrubs April through July.",
   },
   {
@@ -729,6 +773,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Collects mud pellets from puddles one beak-full at a time to build its nest under your eaves, then flies to sub-Saharan Africa for the winter and fully expects the nest to still be there in April. The entitlement is extraordinary.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "House martin nests under eaves are protected by law while occupied. Never wash down nests between May and September — check with the RSPB before any building work affecting occupied nests.",
   },
   {
@@ -745,6 +790,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Eats, sleeps, bathes, and mates on the wing. A young swift leaves its nest hole, ascends into the sky, and does not land again for two to three years. Nothing about this is normal.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Swifts nest in roof spaces of older buildings — never seal swift entry holes without checking they are vacant, and avoid work on rooflines between May and August.",
   },
   {
@@ -761,6 +807,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Flies so fast along river channels that most people just see a blue streak. Blinks with a transparent eyelid before diving to protect its eyes. Has a bill longer than its body proportionally. Wildly overqualified for the job of eating small fish.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Watch quietly from riverbanks without sudden movements. Kingfishers are very sensitive to disturbance at nest burrows — never linger near river-bank nest entrances or probe sandy bank faces.",
   },
   {
@@ -777,6 +824,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The classic 'twit-twoo' is actually two owls. One bird calls 'ke-wick', another responds 'hoo-hoo'. You've been hearing a conversation and attributing it to a single, improbably theatrical individual your entire life.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "owl",
     spottingTips: "Walk quietly through mature woodland at dusk and listen. Never use playback calls near tawny owls — it causes unnecessary stress and can disrupt territorial behaviour.",
   },
   {
@@ -793,6 +841,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Introduced to Britain by a Victorian naturalist who thought we needed more owls. Has since settled into the countryside with such thoroughness that most people assume it was always here. A successful relocation by any measure.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "owl",
     spottingTips: "Scan fence posts and stone walls at the edges of farmland and rough pasture at dusk. Little owls often bob their heads when they spot you — watch from 30m without approaching.",
   },
   {
@@ -809,6 +858,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Can hold perfectly still in the air while its head remains locked on a single point below. Motorway verges are prime hunting ground. The kestrel was Britain's most common raptor before the buzzard overtook it. Still formidable.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Watch hovering kestrels from your car on motorway verges — the car acts as a hide and birds tolerate it well. Avoid approaching nest sites in old crow nests, buildings, or kestrel boxes.",
   },
   {
@@ -825,6 +875,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Uses hedgerows and fences as cover to ambush garden birds — flips over obstacles at the last second, grabs prey in midair, and is gone before you've processed what you saw. Garden feeders are essentially delivery services for sparrowhawks.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Never disturb a sparrowhawk carrying prey or at a plucking post — let it feed undisturbed. Approach nest woods only with extreme care May through July; disturbance causes nest failure.",
   },
   {
@@ -841,6 +892,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Fast enough to catch swallows and swifts in flight — few birds on earth can make that claim. Also lent its name to the Subbuteo table football game. The most culturally significant bird of prey in Britain, arguably.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Watch hobbies hunting over heathland or reservoirs in summer evenings, using binoculars from the open. As a Schedule 1 species, never approach or linger near known nest trees — nest disturbance is a criminal offence.",
   },
   {
@@ -857,6 +909,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Arrives from Iceland each October with a bugling, trumpeting call that sounds absolutely enormous coming from a bird in the sky above you. Unlike the mute swan, it has earned its dramatic entrance.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Observe whooper swans from WWT reserve hides or field edges without approaching. Keep dogs on leads near roosting flocks — disturbance forces flight and wastes critical winter energy reserves.",
   },
   {
@@ -873,6 +926,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Its mournful, fluting whistle across moorland is one of the most evocative sounds in the British uplands. Winter flocks on lowland fields can reach thousands. Somehow simultaneously common and deeply moving.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Watch winter flocks from field edges without flushing them — golden plovers are particularly skittish and flying repeatedly wastes vital energy. On upland breeding grounds, stay on paths.",
   },
   {
@@ -889,6 +943,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Extinct as a British breeding bird by the 1840s, returned naturally in the 1940s when Minsmere was flooded as a wartime defence measure. An accidental rewilding success so beautiful the RSPB put it on its badge.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Visit RSPB reserves with managed lagoons — Minsmere, Titchwell, or Exe Estuary. As a sensitive breeding species, always use designated hides and marked paths; never enter scrapes or approach nest areas.",
   },
   {
@@ -905,6 +960,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "A subspecies found only in Britain and Ireland — found nowhere else on earth. The Glorious Twelfth is named after the date its shooting season starts. The grouse remains entirely unimpressed by the tradition.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Walk moorland tracks slowly and scan heather for red grouse crouching. Avoid flushing birds off nests between April and July — low-flying flushes of adult birds often indicate nearby chicks.",
   },
   {
@@ -921,6 +977,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has declined by over 90% since the 1950s due to agricultural intensification. If you find one, you are in genuinely good farmland habitat. The partridge is now an indicator species for countryside health. And a pear tree. But mostly an indicator species.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Scan field margins and stubble fields at dawn in autumn and winter for coveys. Move along field edges rather than through crops and report sightings to your local BTO atlas survey.",
   },
   {
@@ -937,6 +994,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The only songbird in the world that can walk along the riverbed underwater. Has dense feathers, extra-large oil glands, and dips its beak and bobs constantly even when not diving. Entirely committed to its niche.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Position yourself upstream and downwind of a likely boulder midstream. Wade carefully — dippers nest in riverbank crevices and bridges and are sensitive to bank disturbance between February and May.",
   },
   {
@@ -953,6 +1011,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Its song — a run of repeated notes ending in a longer wheeze — was transcribed by Victorians as 'a little bit of bread and no cheese'. Beethoven may have borrowed it for his Fifth Symphony. The yellowhammer achieved more than it will ever know.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the ringing song from hedgerow tops on sunny spring mornings. Leave stubble fields unploughed over winter where possible — yellowhammers depend on winter seed availability.",
   },
   {
@@ -969,6 +1028,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The male is one of the most vividly coloured birds in Britain — rose-pink breast, black cap, bold white rump — yet manages to be genuinely difficult to find. Shy, quiet, and declining. A bird you have to earn.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Move slowly through scrubby woodland edges and listen for the soft, melancholy 'peu' call. Bullfinches are very shy — any abrupt movement or noise will cause them to vanish into dense cover instantly.",
   },
 
@@ -987,6 +1047,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Spends most of its life on the open ocean, surfacing only to breed. Extremely introverted for something that looks like a party trick. Can hold multiple fish crossways in its bill simultaneously — a skill with no obvious off-season use.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Maintain 10m distance on clifftops. Burrow disturbance causes colony abandonment — stay on marked paths and never run, as it causes mass flushing that leaves eggs and chicks exposed.",
   },
   {
@@ -1003,6 +1064,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Can locate prey by sound alone in total darkness — its heart-shaped face acts as a parabolic sound dish. Also looks perpetually surprised by everything. These two facts are not unrelated.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "owl",
     spottingTips: "Never use torches near nesting sites. Barn owls are Schedule 1 — disturbance at the nest is a criminal offence. Watch from a parked car on a quiet lane at dusk for the safest approach.",
   },
   {
@@ -1019,6 +1081,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Hunts openly in daylight over moorland and coastal marshes — the only owl you're likely to watch working for an extended period. Those yellow eyes track movement at extraordinary distances. Slightly unsettling even when you know you're not prey.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "owl",
     spottingTips: "Watch from a fixed position on moorland or coastal grassland — short-eared owls will hunt in circuits past the same point. Avoid walking into areas where you can see one hunting; it will simply move away.",
   },
   {
@@ -1035,6 +1098,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's smallest falcon, it hunts by low-level pursuit — flying just above the heather at speed, forcing prey birds into the open. Named after the wizard, not the other way around. The association is not accidental.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "As a Schedule 1 species, never approach a merlin on its nest or knowingly linger near nest areas on upland moorland. Observe hunting birds from a distance using binoculars, especially April through July.",
   },
   {
@@ -1051,6 +1115,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Its cascading, bubbling call has been described as the most haunting sound in British wildlife. Now Europe's most threatened wading bird. There is an active campaign to save it. The call makes it easy to understand why.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Keep dogs on leads on moorland and farmland during curlew breeding season (April–July) — chicks are highly vulnerable. A displaying curlew is a genuine conservation event; observe from a field edge without encroaching.",
   },
   {
@@ -1067,6 +1132,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has an iridescent green back that shimmers in sunlight, a preposterous wispy crest, and makes a sound like its name — 'peewit'. Was once so common across British farmland it was background noise. Now urgently threatened. Classic.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Observe displaying lapwings from field edges and tracks without entering fields in spring. Nest scrapes are invisible on bare ground — a flushed lapwing performing injury display means you are dangerously close to eggs or chicks.",
   },
   {
@@ -1083,6 +1149,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Male ruffs in breeding plumage develop enormous, wildly varied neck frills — no two are identical. They gather at 'leks' to display competitively while females walk past evaluating. The whole setup looks like a very small, very serious costume competition.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Visit known lek sites at managed reserves with public hides. As a sensitive breeding species, never approach a lek on foot — any flush disrupts the breeding display and may cause permanent abandonment.",
   },
   {
@@ -1099,6 +1166,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Completely unremarkable to look at — small, brown, anonymous. Sings at night with a voice that has made poets weep for centuries. The contrast between appearance and output is the most extreme in British natural history.",
     conservationStatus: "red",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Visit known nightingale sites in Kent and Sussex in late April and May — stand quietly at the edge of scrub after dusk and listen. Never use playback calls, which disrupts territorial behaviour.",
   },
   {
@@ -1115,6 +1183,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Its crossed beak looks like a manufacturing error but is a finely tuned tool for levering open pine cones — a food source almost nothing else can access. Irrupts into Britain from Scandinavia in irregular invasion years. Turns up without warning. Makes no apologies.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Listen for the loud 'chip-chip-chip' call overhead in conifer plantations and follow it upward. Crossbills feed in the canopy and can be watched with binoculars without any need for approach.",
   },
 
@@ -1133,6 +1202,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Extinct in Britain for 50 years before returning naturally to Scotland in 1954. Now breeding across England and Wales too. Plunges into water feet-first and rotates its grip mid-flight so the fish faces forward aerodynamically. Nature's precision delivery service.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Ospreys are Schedule 1 protected — nest sites are heavily wardened and must never be approached. Use designated viewpoints at Loch Garten, Rutland Water, or Dyfi Osprey Project. Watch fishing birds from reservoir banks with binoculars.",
   },
   {
@@ -1149,6 +1219,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Was extinct in England for 200 years. Reintroduced to the Chilterns in 1989 and is now so common there that local residents report kites stealing sandwiches from garden tables. A conservation win almost too successful to believe.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Enjoy from below — binoculars are all you need. Never approach nest sites during breeding season (March–July), as red kites are sensitive to nest disturbance and can be scared off eggs.",
   },
   {
@@ -1165,6 +1236,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The fastest animal on the planet in a stoop — over 240mph. A second eyelid protects its eyes against wind blast at speed. Now breeds on Tate Modern, Chichester Cathedral, and various London office blocks. Completely unbothered by the commuters below.",
     conservationStatus: "green",
     imageUrl: null,
+    speciesType: "raptor",
     spottingTips: "Use binoculars from 100m+. Peregrine falcons are Schedule 1 protected — nest disturbance, even accidental, carries criminal penalties. Never approach cliff nest faces or cathedral ledge sites between April and July.",
   },
 
@@ -1183,6 +1255,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Makes a booming call in spring that sounds exactly like someone blowing across the top of a large bottle — it carries for miles across reedbed. Was extinct as a British breeder and has made a slow, agonising comeback. About 200 booming males now. Every one counts.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "heron",
     spottingTips: "Bitterns are Schedule 1 protected with very few UK breeding males — never enter reedbed during the breeding season. Listen from designated hides at RSPB reserves only; any reedbed disturbance April–July risks nest failure.",
   },
   {
@@ -1199,6 +1272,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Makes a sound like raking gravel — 'crex crex' — from within tall grass, and will call through the night. Has been calling from British meadows for millennia. Almost impossible to actually see. A ghost with a strong opinion about sleep.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Corncrakes are Schedule 1 protected and extremely rare — only listen from roadsides in the Western Isles; never enter hay meadows or machair during the calling season. Playback is strictly prohibited and illegal near nesting birds.",
   },
   {
@@ -1215,6 +1289,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has a wingspan of up to 2.4 metres — wider than most people are tall. Extinct in England for 240 years before reintroduction began in 2019. Buzzards look like sparrows next to it. No scale works. You have to see it.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "White-tailed eagles are Schedule 1 protected — nest sites are kept confidential and approaching them is a criminal offence. Watch from designated viewpoints on Mull, the Isle of Wight, or the Chilterns reintroduction area.",
   },
   {
@@ -1231,6 +1306,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Holds a territory of up to 100 square kilometres in the Scottish Highlands. A pair may raise only one chick every two years. Has been the emblem of kingdoms, armies, and nations. Seeing one in the wild remains one of the most profound experiences in British natural history.",
     conservationStatus: "amber",
     imageUrl: null,
+    speciesType: "bird",
     spottingTips: "Golden eagles are Schedule 1 protected — nest eyries must never be approached. Scan Highland glen skies from valley floors using a telescope; use Scottish Wildlife Trust viewpoints where available March through August.",
   },
 
@@ -1251,6 +1327,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Introduced from North America in 1876 as a fashionable garden ornament. Has since displaced the red squirrel from almost all of England. The Victorians meant well. They were wrong.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "squirrel",
     spottingTips: "Enjoy grey squirrels in parks and woodland from a comfortable distance. Never feed them by hand — it encourages habituation to humans, which can cause problems for the squirrel and visitors.",
   },
 
@@ -1269,6 +1346,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Urban foxes have learned to open bins, navigate traffic, and find food in places that should be inaccessible. Scientists are genuinely baffled by the speed of behavioural adaptation. The fox is not waiting for science to catch up.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "fox",
     spottingTips: "Observe from a distance — urban foxes may seem tame but stay 10m+. Never feed them as it can disrupt natural behaviour and create dependency on human food sources.",
   },
   {
@@ -1285,6 +1363,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The white winter coat — 'ermine' — has adorned royal robes and heraldic mantles for centuries. The stoat itself is entirely unaware of the tradition and would probably try to bite anyone who tried to explain it.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Watch quietly from dry-stone walls and field edges — stoats are intensely curious and will often pause to assess you. Move slowly and avoid sudden movements to extend viewing time.",
   },
   {
@@ -1301,6 +1380,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's smallest carnivore, weighing as little as 40g — about the same as a bag of crisps. Will attack rabbits. There is a well-worn riddle about what distinguishes it from a stoat. The weasel does not find it funny.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Weasels are lightning-fast and easily missed — look along stone walls and hedgerows for the sinuous brown dart between cover. Never attempt to handle one; their bite is disproportionate to their size.",
   },
   {
@@ -1317,6 +1397,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Eats up to 3,000 insects a night and weighs less than a 20p coin. Roosts in house roof spaces across Britain. The scratching you hear in the walls in summer is almost certainly pipistrelles, which is considerably less alarming once you know that.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "All UK bats and their roosts are legally protected — never block a bat roost entrance or disturb roosting bats. Watch pipistrelles at dusk with a bat detector along woodland edges without using torches near roost sites.",
   },
   {
@@ -1333,6 +1414,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The only deer native to Britain that has been here continuously since the last Ice Age. Exceptionally delicate and alert — glimpsing one at a woodland edge at dusk and having it vanish instantly is a rite of passage for British naturalists.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Approach woodland edges very slowly at dawn or dusk, moving into the wind. Never touch a roe fawn left alone in vegetation — the mother is nearby and will abandon a scent-contaminated fawn.",
   },
   {
@@ -1349,6 +1431,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Introduced by the Normans for hunting and have been running around British parkland ever since. The autumn rut involves bucks groaning, clashing antlers, and generally making a scene across the country's finest estates.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Keep at least 30m from rutting bucks in October — testosterone-driven males are unpredictable and will charge perceived threats. Observe rut displays from behind a tree or field gate.",
   },
   {
@@ -1365,6 +1448,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Escaped from Woburn Abbey deer park around 1925 and has since quietly colonised most of southern England. Barks like a dog when alarmed, which causes considerable confusion among dog walkers. Breeds continuously throughout the year with no seasonal constraint. A deer that simply did not read the rules.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Muntjac are very tolerant of stationary observers — sit quietly on a woodland path at dusk. Move slowly and they will often pass very close; abrupt movement causes the distinctive alarm bark and they vanish.",
   },
   {
@@ -1381,6 +1465,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "About 40% of the world's entire grey seal population lives on British and Irish coasts. They triple in weight in three weeks as pups, then get abandoned on the beach to figure it out. Classic British parenting. They invariably figure it out.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Keep 100m from seal haul-out groups and 150m from pupping beaches (October–January). Never approach or touch a pup — even well-intentioned contact can cause the mother to permanently abandon it.",
   },
   {
@@ -1397,6 +1482,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Escaped from fur farms during raids and storms through the mid-20th century and established self-sustaining populations across Britain. Has since contributed significantly to the collapse of the water vole population. The fur trade's most consequential legacy in British wildlife.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Watch quietly from riverbanks — mink are active in early morning along watercourses. They can be aggressive if cornered; observe from 5m without approaching, and never attempt to handle one.",
   },
 
@@ -1415,6 +1501,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's most huggable road casualty. Hibernates October to April and genuinely does not care about your plans for spring. Has declined by a third in the UK since 2000 — the small mammal equivalent of a national emergency.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "hedgehog",
     spottingTips: "Best spotted at dusk near garden edges. Never disturb hibernating animals — if a hedgehog is out in daylight in winter, it needs help; contact the British Hedgehog Preservation Society immediately.",
   },
   {
@@ -1431,6 +1518,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has lived in the same sett as its ancestors for hundreds of years — some badger setts are known to be over 100 years old. Your flat-share is temporary. The badger's accommodation situation is considerably more stable.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "badger",
     spottingTips: "Watch badger setts from at least 20m, downwind, at dusk. Disturbing setts is illegal under the Protection of Badgers Act 1992 — never dig near entrance holes or block them, even temporarily.",
   },
   {
@@ -1447,6 +1535,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Europe's smallest rodent, weighing about the same as a 2p coin. Weaves a perfectly spherical nest among grass stems. Has a prehensile tail it uses to grip stems while feeding. Extraordinary engineering from something that barely exists.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Search carefully in tall grass margins and rough uncut areas in late summer — their woven nests are easiest to spot after autumn harvest. Avoid trampling margins; harvest mouse habitat is already severely reduced.",
   },
   {
@@ -1463,6 +1552,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The 'Mad March Hare' — females box males to fend off unwanted attention, not males competing with each other as was long assumed. A correction that took centuries to reach the popular imagination. The hare was right all along.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Scan open fields at dawn from a parked car — hares are less spooked by vehicles than on-foot observers. Never run towards a hare in a field; leverets (young) crouch in vegetation and are easily trodden on.",
   },
   {
@@ -1479,6 +1569,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The original British hare — it was here before the last Ice Age and the brown hare was introduced later. Turns white in winter to match snow, which is very effective until the snow melts early and leaves a conspicuous white hare sitting on brown heather. Climate change has made this considerably more awkward.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Scan upland heather moorland in Scotland from tracks without leaving paths. In winter, white hares on snow are obvious — maintain 30m+ distance; flushing hares in harsh weather wastes critical energy reserves.",
   },
   {
@@ -1495,6 +1586,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's largest land animal, and the roaring of stags across Scottish glens in October is one of the most ancient sounds still audible in these islands. The stags are bellowing about territory. It sounds like the entire landscape is arguing.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Keep 50m from rutting red deer stags in October — they are highly aggressive and unpredictable. Use a telescope from high ground and avoid getting between hinds and stags during the rut.",
   },
   {
@@ -1511,6 +1603,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Almost wiped out in Britain by the early 20th century — confined to a small part of mid-Wales. Has since expanded steadily eastward and is now found across much of England. The ancestor of the domestic ferret, which it both resembles and would deeply resent being compared to.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Polecats are mostly nocturnal and very rarely seen — a road casualty or a glance at night near a stream or hedgerow edge are typical encounters. Do not handle road casualties without gloves; musk glands remain active after death.",
   },
   {
@@ -1527,6 +1620,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Called the 'common seal' despite being considerably less common than the grey seal in UK waters. A naming anomaly that has persisted since it was observed to be common in certain specific harbours. The grey seal has never forgiven this branding oversight.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Observe harbour seals from at least 80m at haul-out sites, approaching slowly and quietly. During pupping season (June–July), give haul-out beaches a very wide berth and keep dogs on leads.",
   },
 
@@ -1545,6 +1639,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Forgets where it buried most of its nuts. Scotland's most relatable resident. Has been squeezed into increasingly small island refuges by the grey squirrel — the saddest real estate story in British wildlife.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "squirrel",
     spottingTips: "Visit dedicated red squirrel reserves such as Formby, Northumberland or Brownsea Island — never bring grey squirrels or contaminated feeders into red squirrel areas. Report any grey squirrel sightings within red squirrel zones to the local conservation project.",
   },
   {
@@ -1561,6 +1656,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The 'plop' of a water vole entering the water — that specific, unmistakable sound — is one of the great wildlife sounds of the British countryside. One of the UK's fastest-declining mammals. Every plop matters enormously.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Sit extremely still at the waterside and wait — water voles return to feeding platforms if you remain motionless and silent. As a sensitive and declining species, never disturb bankside vegetation or enter the water near burrow sites.",
   },
   {
@@ -1577,6 +1673,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's smallest cetacean and the least showy. Doesn't leap, rarely surfaces clearly, and mostly just makes a small puffing sound before disappearing. Has been quietly living in UK coastal waters for millennia. Getting a proper look is a genuine achievement.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Watch from clifftops or headlands using binoculars — do not kayak or swim towards porpoises. Powerboats should slow to 5 knots within 100m; approach by vessel disturbs feeding and nursing behaviour.",
   },
 
@@ -1595,6 +1692,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Holds hands with its partner while sleeping on the water so they don't drift apart. Relationship goals. Also: nearly wiped out by pesticides in the 1960s, fully recovered across England by 2010. The comeback story of the century.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "otter",
     spottingTips: "Watch quietly from riverbanks. Otters are legally protected under the WCA 1981 — never approach a holt or disturb bankside vegetation near active holts, especially when cubs are present.",
   },
   {
@@ -1611,6 +1709,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Asleep for seven months of the year. When awake it is nocturnal and lives in dense hazel coppice. Finding one requires a specialist nest-box scheme and a lot of patience. The dormouse has achieved the career aspiration most humans quietly harbour.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Hazel dormice are strictly protected under the WCA 1981 — handling them requires a Natural England licence. Participate only in licensed nest-box surveys; never check boxes alone or outside survey protocols.",
   },
   {
@@ -1627,6 +1726,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Extinct in Britain for 300 years, then escaped from specialist farms in the 1990s and recolonised the Forest of Dean entirely on their own terms. The British countryside said yes, the planning department was not consulted. The boar remains indifferent to the paperwork.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Keep at least 30m from wild boar in the Forest of Dean — sows with piglets are highly aggressive. Never feed them; habituated boar become a serious safety hazard and are often culled as a consequence.",
   },
   {
@@ -1643,6 +1743,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Leaves conspicuous scent-marked 'sweet seats' — piles of droppings placed in prominent locations as a calling card. Classy. Was nearly eradicated from Britain by the Victorian era, now slowly recovering. Also, its presence in Ireland has caused grey squirrel populations to collapse — and red squirrels to return. Consequential beyond expectations.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "marten",
     spottingTips: "Pine martens are protected under the WCA 1981 — never disturb den sites or interfere with nest boxes. In Scotland, visit dedicated wildlife hides at dawn or dusk; use food bait platforms only at licenced sites.",
   },
   {
@@ -1659,6 +1760,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The resident pods in Cardigan Bay and the Moray Firth are among the best-studied dolphin populations in the world. Individual dolphins have been tracked for decades. Their intelligence is almost uncomfortably evident — studying them feels increasingly like a two-way process.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "Watch from clifftops or boat decks using binoculars. Powered vessels must follow WiSe accredited operator guidelines near resident pods — do not approach within 100m and never attempt to swim with wild dolphins.",
   },
 
@@ -1677,6 +1779,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "The most frequently sighted whale off British coasts — usually spotted solo, looking busy, surfacing briefly off the bow of a Hebridean ferry. The word 'commonly' in 'most commonly sighted' is doing extraordinary heavy lifting given how rarely anyone actually sees one.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "mammal",
     spottingTips: "All UK cetaceans are protected — vessels must not approach within 100m or accelerate towards a whale. Report all sightings to the Sea Watch Foundation; stay on deck and use binoculars rather than leaning overboard.",
   },
 
@@ -1697,6 +1800,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Spawns in the same pond it was born in — sometimes returning to a puddle that barely exists as an adult. Every garden pond in Britain is potentially a frog nursery. The frog will find it whether you want it to or not.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Watch spawning frogs from the pond edge without wading in. Never move frogspawn between ponds — it can transfer chytrid fungus disease, which is devastating amphibian populations across Britain.",
   },
 
@@ -1715,6 +1819,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Unlike most lizards, gives birth to live young rather than laying eggs — a remarkable adaptation to Britain's unreliable summers. Has apparently assessed British weather and decided that incubation was too optimistic a strategy.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Approach basking spots slowly and low in warm mid-morning sunshine. Common lizards flush at any sudden shadow — crouch before the final approach and stop moving once you can see them.",
   },
   {
@@ -1731,6 +1836,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Not a worm, not a snake — a legless lizard that can live for up to 30 years and can detach its tail if grabbed. Can be found under almost every compost heap in Britain. A useful, harmless garden companion that people have been treading on accidentally for centuries.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Lift refugia (flat stones, corrugated sheets) slowly and replace them carefully. Never grab a slow worm by the tail — the tail detachment reflex is a genuine defence mechanism and causes real harm to the animal.",
   },
   {
@@ -1747,6 +1853,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "In spring the male develops a wavy dorsal crest and orange-spotted belly to impress females. For the rest of the year it looks like a small brown stick. The transformation is seasonal and the male commits to it fully.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Torch-survey ponds on still warm nights (April–June) by shining a torch at a shallow angle — newts appear as silhouettes just under the surface. Never drain or disturb pond edges during the breeding season.",
   },
   {
@@ -1763,6 +1870,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Males develop fully webbed hind feet in breeding season and a distinctive thread-like tail filament — features that disappear entirely after mating. Britain's most seasonally committed amphibian. The feet come and go annually, apparently without drama.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Survey upland moorland ponds on calm evenings in spring. Use a net only if licensed for survey work — casual netting harms amphibians and is unnecessary for visual identification by torchlight.",
   },
   {
@@ -1779,6 +1887,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Makes an annual migration back to its birth pond every spring — crossing roads if necessary, regardless of traffic. Hundreds of volunteers run 'toad patrols' on specific nights to carry them across. Britain takes this seriously. The toad accepts the assistance with dignity.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Volunteer for a local Toad Patrol to help toads cross roads safely — check toadpatrol.org.uk. Do not move toads casually between ponds; migration routes are precise and individuals must return to their specific natal pond.",
   },
 
@@ -1797,6 +1906,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Plays dead when threatened — rolls over, goes limp, and produces a foul-smelling liquid to complete the illusion. Britain's largest snake and completely harmless. The dramatic death performance is entirely convincing and has alarmed many a gardener.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Never handle a grass snake unless necessary — the musk and faecal secretion it produces as defence is genuinely unpleasant and distressing for the animal. Provide a compost heap as a warm egg-laying site to encourage garden residence.",
   },
   {
@@ -1813,6 +1923,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's only venomous snake, and bites are extremely rare — almost always the result of someone picking one up. It is basking on heathland, trying to warm up, and would strongly prefer to be left to it. The adder is far more afraid of you than you are of it.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Observe from at least 2m. If an adder feels cornered it may strike — give it space to move away on its own and never pick one up, even if it appears dead.",
   },
 
@@ -1831,6 +1942,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Males turn vivid green along their flanks in spring — one of the most dramatic colour transformations of any British reptile. Restricted to a handful of lowland heaths in Surrey, Dorset, and Lancashire. Legally protected. Seeing one feels like finding something that wasn't supposed to still exist.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Sand lizards are strictly protected under the WCA 1981 — never handle them or disturb basking areas, and stay on marked paths at known heathland sites. Access to many sand lizard sites is managed; check for permit requirements before visiting.",
   },
   {
@@ -1847,6 +1959,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's rarest reptile and found on a handful of Dorset and Surrey heaths. Constricts its prey like a miniature boa constrictor. Most serious herpetologists in Britain have never seen one in the wild. This is not an exaggeration.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "reptile",
     spottingTips: "Smooth snakes are strictly protected under the WCA 1981 — handling or disturbing them without a licence is a criminal offence. Visit managed Dorset heathland reserves and report any sightings to the local county recorder.",
   },
   {
@@ -1863,6 +1976,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Has more legal protection than most buildings in Britain — disturbing its pond requires a licence from Natural England. Has delayed more housing developments than any other British amphibian. The planning department knows its name personally.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Never handle or disturb pond edges during breeding season (Feb–May). Great crested newts are strictly protected under the WCA 1981 — survey work requires a Natural England licence; torch surveys must follow CIEEM protocols.",
   },
 
@@ -1881,6 +1995,7 @@ export const seedData: SpeciesSeed[] = [
     funFact: "Britain's loudest amphibian — its call carries over two kilometres on still nights across coastal dune systems. Runs rather than hops. Has a bright yellow stripe down its back. Restricted to about 60 sites in the UK. Tiny, loud, no regrets whatsoever.",
     conservationStatus: null,
     imageUrl: null,
+    speciesType: "amphibian",
     spottingTips: "Natterjack toads are strictly protected under the WCA 1981 — disturbing their breeding pools or handling individuals without a licence is a criminal offence. Listen from dune footpaths at night; never enter breeding pools or surrounding dune slack habitat.",
   },
 ];
