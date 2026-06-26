@@ -103,8 +103,8 @@ export default function NavShell({ children }: NavShellProps) {
         </span>
       </div>
 
-      {/* Main content area — offset for desktop sidebar */}
-      <main className="md:ml-56" style={{ flex: 1, paddingBottom: 80 }}>
+      {/* Main content area */}
+      <main style={{ flex: 1, paddingBottom: 80 }}>
         {children}
       </main>
 
