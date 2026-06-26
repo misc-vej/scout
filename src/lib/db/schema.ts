@@ -30,6 +30,7 @@ export const profiles = pgTable("profiles", {
   userId: uuid("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
   displayName: text("display_name"),
   passkeyPromptedAt: timestamp("passkey_prompted_at", { mode: "date" }),
+  pledgeAcceptedAt: timestamp("pledge_accepted_at", { mode: "date" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -62,6 +63,7 @@ export const species = pgTable("species", {
   seasonLockEnd: text("season_lock_end"),
   description: text("description"),
   funFact: text("fun_fact"),
+  spottingTips: text("spotting_tips"),
   conservationStatus: text("conservation_status"),
   imageUrl: text("image_url"),
   taxonomyGroup: text("taxonomy_group"),
