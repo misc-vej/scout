@@ -7,4 +7,6 @@ export type SpeciesResult = {
   canBeShiny: boolean;
   taxonomyGroup: string | null;
   recordCount: number;
+  isSeasonLocked: boolean;
+  seasonUnlocksAt: string | null;  // MM-DD format e.g. "08-31"
 };

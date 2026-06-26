@@ -89,15 +89,21 @@ export async function POST(req: NextRequest) {
     .where(eq(occurrences.gridSquare, gridSquare))
     .orderBy(desc(occurrences.recordCount));
 
-  // Filter out season-locked restricted species, then strip lock fields from response
-  const filtered: SpeciesResult[] = results
-    .filter((row) => {
-      if (row.sensitivityLevel !== 'restricted') return true;
-      if (!row.seasonLockStart || !row.seasonLockEnd) return true;
-      // Exclude if today falls within the season-lock window
-      return !(mmdd >= row.seasonLockStart && mmdd <= row.seasonLockEnd);
-    })
-    .map(({ seasonLockStart: _s, seasonLockEnd: _e, ...rest }) => rest);
+  // Include all species but flag season-locked restricted ones instead of filtering them out
+  const filtered: SpeciesResult[] = results.map((row) => {
+    const { seasonLockStart: _s, seasonLockEnd, ...rest } = row;
+
+    let isSeasonLocked = false;
+    if (row.sensitivityLevel === 'restricted' && row.seasonLockStart && seasonLockEnd) {
+      isSeasonLocked = mmdd >= row.seasonLockStart && mmdd <= seasonLockEnd;
+    }
+
+    return {
+      ...rest,
+      isSeasonLocked,
+      seasonUnlocksAt: isSeasonLocked ? seasonLockEnd : null,
+    };
+  });
 
   return NextResponse.json(filtered);
 }

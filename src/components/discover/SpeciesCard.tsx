@@ -6,6 +6,11 @@ import { useMutation } from '@tanstack/react-query';
 import type { SpeciesResult } from '@/types/discovery';
 import RarityBadge from './RarityBadge';
 
+function formatMMDD(mmdd: string): string {
+  const [month, day] = mmdd.split('-').map(Number);
+  return new Date(2000, month - 1, day).toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+}
+
 const SpeciesCard: FC<{ species: SpeciesResult; gridSquare: string }> = ({ species, gridSquare }) => {
   const [confirmMsg, setConfirmMsg] = useState<string | null>(null);
 
@@ -44,7 +49,11 @@ const SpeciesCard: FC<{ species: SpeciesResult; gridSquare: string }> = ({ speci
         </div>
       </div>
       <div className="mt-3 flex justify-end">
-        {confirmMsg ? (
+        {species.isSeasonLocked ? (
+          <div className="rounded-md bg-white/5 px-3 py-1 text-xs text-gray-500 cursor-not-allowed">
+            {species.seasonUnlocksAt ? `Unavailable until ${formatMMDD(species.seasonUnlocksAt)}` : 'Unavailable this season'}
+          </div>
+        ) : confirmMsg ? (
           <span className="text-xs font-semibold text-green-400">{confirmMsg}</span>
         ) : (
           <button
