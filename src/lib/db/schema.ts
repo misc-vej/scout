@@ -62,6 +62,7 @@ export const species = pgTable("species", {
   seasonLockEnd: text("season_lock_end"),
   description: text("description"),
   funFact: text("fun_fact"),
+  conservationStatus: text("conservation_status"),
   imageUrl: text("image_url"),
   taxonomyGroup: text("taxonomy_group"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -115,6 +116,7 @@ export const collections = pgTable(
     firstSightedAt: timestamp("first_sighted_at").defaultNow().notNull(),
     lastSightedAt: timestamp("last_sighted_at").defaultNow().notNull(),
     personalityTrait: text("personality_trait"),
+    isShiny: boolean("is_shiny").notNull().default(false),
   },
   (table) => ({
     uniqueUserSpecies: uniqueIndex("collections_user_species_idx").on(
