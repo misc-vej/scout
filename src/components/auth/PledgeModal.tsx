@@ -23,8 +23,8 @@ export function PledgeModal() {
     >
       <div
         style={{
-          background: "#0d1c12",
-          border: "1px solid rgba(114,204,74,.15)",
+          background: "#f5f0e4",
+          border: "1px solid rgba(42,122,72,.12)",
           borderRadius: 18,
           padding: 32,
           maxWidth: 400,
@@ -37,7 +37,7 @@ export function PledgeModal() {
             fontFamily: "Syne, sans-serif",
             fontSize: 20,
             fontWeight: 800,
-            color: "#e8f0e4",
+            color: "#1c2e1e",
             textTransform: "uppercase",
             letterSpacing: ".04em",
             marginBottom: 4,
@@ -50,7 +50,7 @@ export function PledgeModal() {
           style={{
             fontFamily: "Outfit, sans-serif",
             fontSize: 13,
-            color: "#2e5a3a",
+            color: "#6a9a78",
             marginBottom: 24,
             lineHeight: 1.6,
             marginTop: 4,
@@ -60,8 +60,8 @@ export function PledgeModal() {
         </p>
         <div
           style={{
-            background: "rgba(114,204,74,.06)",
-            border: "1px solid rgba(114,204,74,.1)",
+            background: "rgba(42,122,72,.05)",
+            border: "1px solid rgba(42,122,72,.08)",
             borderRadius: 10,
             padding: "12px 14px",
             marginBottom: 24,
@@ -71,7 +71,7 @@ export function PledgeModal() {
             style={{
               fontFamily: "Outfit, sans-serif",
               fontSize: 13,
-              color: "#3a6040",
+              color: "#2a7a48",
               lineHeight: 1.7,
             }}
           >
@@ -84,8 +84,8 @@ export function PledgeModal() {
           onClick={() => mutation.mutate()}
           disabled={mutation.isPending}
           style={{
-            background: "#72cc4a",
-            color: "#0d1c12",
+            background: "#2a7a48",
+            color: "#f5f0e4",
             borderRadius: 14,
             padding: "14px 0",
             width: "100%",

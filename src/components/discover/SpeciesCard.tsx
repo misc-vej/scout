@@ -33,8 +33,8 @@ function SpeciesRow({
         alignItems: 'center',
         gap: 12,
         padding: '11px 16px',
-        borderBottom: '1px solid rgba(255,255,255,.04)',
-        background: hovered ? 'rgba(114,204,74,.04)' : 'transparent',
+        borderBottom: '1px solid rgba(28,46,30,.06)',
+        background: hovered ? 'rgba(42,122,72,.04)' : 'transparent',
         transition: 'background .1s',
         cursor: 'default',
       }}
@@ -77,7 +77,7 @@ function SpeciesRow({
             fontFamily: 'Syne, sans-serif',
             fontSize: 13,
             fontWeight: 700,
-            color: '#e8f0e4',
+            color: '#1c2e1e',
             textTransform: 'uppercase',
             letterSpacing: '.03em',
             whiteSpace: 'nowrap',
@@ -92,7 +92,7 @@ function SpeciesRow({
           style={{
             fontFamily: 'Outfit, sans-serif',
             fontSize: 9,
-            color: '#2e5a3a',
+            color: '#6a9a78',
             fontStyle: 'italic',
             marginBottom: 5,
           }}
@@ -125,11 +125,11 @@ function SpeciesRow({
           {/* Habitat chip */}
           <span
             style={{
-              background: 'rgba(114,204,74,.1)',
-              border: '1px solid rgba(114,204,74,.16)',
+              background: 'rgba(42,122,72,.08)',
+              border: '1px solid rgba(42,122,72,.15)',
               fontFamily: 'Outfit, sans-serif',
               fontSize: 8,
-              color: '#72cc4a',
+              color: '#2a7a48',
               padding: '2px 7px',
               borderRadius: 20,
             }}
@@ -172,7 +172,7 @@ function SpeciesRow({
           style={{
             width: 40,
             height: 3,
-            background: 'rgba(255,255,255,.07)',
+            background: 'rgba(28,46,30,.1)',
             borderRadius: 2,
             overflow: 'hidden',
           }}
@@ -191,10 +191,10 @@ function SpeciesRow({
         {sp.isSeasonLocked ? (
           <div
             style={{
-              background: 'rgba(255,255,255,.05)',
+              background: 'rgba(28,46,30,.06)',
               fontFamily: 'Outfit, sans-serif',
               fontSize: 8,
-              color: '#3a3a3a',
+              color: '#a0b8a0',
               padding: '4px 8px',
               borderRadius: 12,
             }}
@@ -205,8 +205,8 @@ function SpeciesRow({
           <button
             onClick={() => onLog(sp)}
             style={{
-              background: '#72cc4a',
-              color: '#0d1c12',
+              background: '#2a7a48',
+              color: '#f5f0e4',
               fontFamily: 'Outfit, sans-serif',
               fontSize: 9,
               fontWeight: 700,
@@ -289,7 +289,7 @@ function LogModal({
         style={{
           width: '100%',
           maxWidth: 390,
-          background: '#0d1c12',
+          background: '#f5f0e4',
           borderRadius: '20px 20px 0 0',
           border: `3px solid ${rarityConfig.borderColor}`,
           borderBottom: 'none',
@@ -304,7 +304,7 @@ function LogModal({
             style={{
               width: 36,
               height: 4,
-              background: 'rgba(255,255,255,.1)',
+              background: 'rgba(28,46,30,.08)',
               borderRadius: 2,
             }}
           />
@@ -316,7 +316,7 @@ function LogModal({
             style={{
               fontFamily: 'Outfit, sans-serif',
               fontSize: 9,
-              color: '#2e5a3a',
+              color: '#6a9a78',
               textTransform: 'uppercase',
               letterSpacing: '.14em',
               marginBottom: 4,
@@ -331,7 +331,7 @@ function LogModal({
               fontFamily: 'Syne, sans-serif',
               fontSize: 26,
               fontWeight: 800,
-              color: '#e8f0e4',
+              color: '#1c2e1e',
               textTransform: 'uppercase',
               letterSpacing: '.05em',
               lineHeight: 1,
@@ -345,7 +345,7 @@ function LogModal({
             style={{
               fontFamily: 'Outfit, sans-serif',
               fontSize: 10,
-              color: '#2e5a3a',
+              color: '#6a9a78',
               fontStyle: 'italic',
               marginTop: 3,
               marginBottom: 16,
@@ -357,8 +357,8 @@ function LogModal({
           {/* Prompt box */}
           <div
             style={{
-              background: 'rgba(114,204,74,.06)',
-              border: '1px solid rgba(114,204,74,.12)',
+              background: 'rgba(42,122,72,.05)',
+              border: '1px solid rgba(42,122,72,.1)',
               borderRadius: 10,
               padding: '10px 14px',
               marginBottom: 16,
@@ -368,7 +368,7 @@ function LogModal({
               style={{
                 fontFamily: 'Outfit, sans-serif',
                 fontSize: 10,
-                color: '#3a6040',
+                color: '#2a7a48',
                 lineHeight: 1.65,
               }}
             >
@@ -423,11 +423,11 @@ function LogModal({
               borderRadius: 14,
               border: 'none',
               cursor: chosen ? 'pointer' : 'default',
-              background: chosen ? '#72cc4a' : 'rgba(114,204,74,.1)',
+              background: chosen ? '#2a7a48' : 'rgba(42,122,72,.08)',
               fontFamily: 'Syne, sans-serif',
               fontSize: 15,
               fontWeight: 800,
-              color: chosen ? '#0d1c12' : '#1e3828',
+              color: chosen ? '#f5f0e4' : '#6a9a78',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
               transition: 'all .15s',
@@ -495,7 +495,7 @@ function ConfirmBanner({
     >
       <div
         style={{
-          background: '#0d1c12',
+          background: '#f5f0e4',
           border: `2px solid ${rarityConfig.borderColor}`,
           borderRadius: 14,
           padding: '14px 16px',
@@ -538,7 +538,7 @@ function ConfirmBanner({
             style={{
               fontFamily: 'Outfit, sans-serif',
               fontSize: 9,
-              color: '#72cc4a',
+              color: '#2a7a48',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '.1em',
@@ -552,7 +552,7 @@ function ConfirmBanner({
               fontFamily: 'Syne, sans-serif',
               fontSize: 14,
               fontWeight: 800,
-              color: '#e8f0e4',
+              color: '#1c2e1e',
               textTransform: 'uppercase',
               letterSpacing: '.04em',
             }}

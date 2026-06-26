@@ -13,9 +13,9 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
       {/* List header */}
       <div
         style={{
-          background: '#091410',
+          background: '#f5f0e4',
           padding: '12px 16px 10px',
-          borderBottom: '1px solid rgba(255,255,255,.04)',
+          borderBottom: '1px solid rgba(28,46,30,.06)',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
@@ -28,7 +28,7 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
               fontFamily: 'Syne, sans-serif',
               fontSize: 14,
               fontWeight: 700,
-              color: '#e8f0e4',
+              color: '#1c2e1e',
               textTransform: 'uppercase',
               letterSpacing: '.05em',
             }}
@@ -39,7 +39,7 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
             style={{
               fontFamily: 'Outfit, sans-serif',
               fontSize: 10,
-              color: '#2e5a3a',
+              color: '#6a9a78',
               marginTop: 2,
             }}
           >
@@ -50,7 +50,7 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
           style={{
             fontFamily: 'Outfit, sans-serif',
             fontSize: 9,
-            color: '#1e3828',
+            color: '#a0b8a0',
             textTransform: 'uppercase',
             letterSpacing: '.1em',
           }}
@@ -68,7 +68,7 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
               textAlign: 'center',
               fontFamily: 'Outfit, sans-serif',
               fontSize: 12,
-              color: '#2e5a3a',
+              color: '#6a9a78',
             }}
           >
             No species recorded nearby

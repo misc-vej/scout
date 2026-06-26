@@ -34,14 +34,14 @@ const RARITY_FILTERS = [
 ];
 
 function getRarityFilterColor(value: string): string {
-  if (value === "all") return "#3a6a48";
+  if (value === "all") return "#2a7a48";
   return getRarityConfig(value).borderColor;
 }
 
 // ─── Nav icons ────────────────────────────────────────────────────────────────
 
 function IconNearby({ active }: { active: boolean }) {
-  const s = active ? "#72cc4a" : "#2e5a3a";
+  const s = active ? "#2a7a48" : "#a0b8a0";
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="10" r="3.5" stroke={s} strokeWidth="1.7" />
@@ -56,7 +56,7 @@ function IconNearby({ active }: { active: boolean }) {
 }
 
 function IconLogbook({ active }: { active: boolean }) {
-  const s = active ? "#72cc4a" : "#2e5a3a";
+  const s = active ? "#2a7a48" : "#a0b8a0";
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <rect x="3" y="3" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7" />
@@ -105,7 +105,7 @@ export function BeastiaryClient({
     <div
       style={{
         minHeight: "100vh",
-        background: "#0a1410",
+        background: "#f5f0e4",
         fontFamily: "Outfit,sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -116,8 +116,8 @@ export function BeastiaryClient({
       {/* ── Nav bar ── */}
       <div
         style={{
-          background: "linear-gradient(180deg,#0d1c12,#091410)",
-          borderBottom: "1px solid rgba(114,204,74,.1)",
+          background: "#f5f0e4",
+          borderBottom: "1px solid rgba(28,46,30,.06)",
           padding: "0 20px",
           display: "flex",
           alignItems: "center",
@@ -134,7 +134,7 @@ export function BeastiaryClient({
             fontFamily: "Syne,sans-serif",
             fontSize: 17,
             fontWeight: 800,
-            color: "#e8f0e4",
+            color: "#1c2e1e",
             letterSpacing: ".07em",
             textTransform: "uppercase",
           }}
@@ -143,13 +143,13 @@ export function BeastiaryClient({
         </span>
         <div
           style={{
-            background: "rgba(114,204,74,.12)",
-            border: "1px solid rgba(114,204,74,.2)",
+            background: "rgba(42,122,72,.1)",
+            border: "1px solid rgba(42,122,72,.18)",
             borderRadius: 20,
             padding: "4px 10px",
             fontFamily: "Outfit,sans-serif",
             fontSize: 11,
-            color: "#72cc4a",
+            color: "#2a7a48",
             fontWeight: 600,
           }}
         >
@@ -160,7 +160,7 @@ export function BeastiaryClient({
       {/* ── Tab bar ── */}
       <div
         style={{
-          background: "#091410",
+          background: "#f5f0e4",
           padding: "12px 16px 0",
           display: "flex",
           gap: 6,
@@ -181,13 +181,13 @@ export function BeastiaryClient({
               padding: "10px 0",
               borderRadius: 10,
               cursor: "pointer",
-              background: tab === key ? "#72cc4a" : "rgba(114,204,74,.07)",
+              background: tab === key ? "#2a7a48" : "rgba(42,122,72,.06)",
               border:
-                tab === key ? "none" : "1px solid rgba(114,204,74,.12)",
+                tab === key ? "none" : "1px solid rgba(42,122,72,.1)",
               fontFamily: "Syne,sans-serif",
               fontSize: 13,
               fontWeight: 700,
-              color: tab === key ? "#0d1c12" : "#2e5a3a",
+              color: tab === key ? "#f5f0e4" : "#6a9a78",
               transition: "all .15s",
             }}
           >
@@ -209,7 +209,7 @@ export function BeastiaryClient({
       {/* ── Rarity filter pills ── */}
       <div
         style={{
-          background: "#091410",
+          background: "#f5f0e4",
           padding: "10px 16px 12px",
           display: "flex",
           gap: 5,
@@ -233,11 +233,11 @@ export function BeastiaryClient({
                 background: active ? color + "22" : "transparent",
                 border: active
                   ? `1px solid ${color}`
-                  : "1px solid rgba(255,255,255,.06)",
+                  : "1px solid rgba(28,46,30,.12)",
                 fontFamily: "Outfit,sans-serif",
                 fontSize: 10,
                 fontWeight: 600,
-                color: active ? color : "#2e5a3a",
+                color: active ? color : "#6a9a78",
                 transition: "all .15s",
               }}
             >
@@ -293,7 +293,7 @@ export function BeastiaryClient({
                 fontFamily: "Syne,sans-serif",
                 fontSize: 15,
                 fontWeight: 700,
-                color: "#1e3828",
+                color: "#1c2e1e",
                 textTransform: "uppercase",
                 letterSpacing: ".05em",
               }}
@@ -304,7 +304,7 @@ export function BeastiaryClient({
               style={{
                 fontFamily: "Outfit,sans-serif",
                 fontSize: 12,
-                color: "#162218",
+                color: "#6a9a78",
                 marginTop: 6,
               }}
             >
@@ -324,7 +324,7 @@ export function BeastiaryClient({
           width: "100%",
           maxWidth: 390,
           background:
-            "linear-gradient(to top,#0a1410 65%,rgba(10,20,16,0))",
+            "linear-gradient(to top,#f5f0e4 65%,rgba(245,240,228,0))",
           padding: "8px 0 20px",
           display: "flex",
           justifyContent: "space-around",
@@ -349,7 +349,7 @@ export function BeastiaryClient({
               fontFamily: "Outfit,sans-serif",
               fontSize: 9,
               fontWeight: 600,
-              color: "#2e5a3a",
+              color: "#a0b8a0",
               marginTop: 4,
               letterSpacing: ".06em",
               textTransform: "uppercase",
@@ -374,7 +374,7 @@ export function BeastiaryClient({
               fontFamily: "Outfit,sans-serif",
               fontSize: 9,
               fontWeight: 600,
-              color: "#72cc4a",
+              color: "#2a7a48",
               marginTop: 4,
               letterSpacing: ".06em",
               textTransform: "uppercase",
@@ -387,7 +387,7 @@ export function BeastiaryClient({
               width: 4,
               height: 4,
               borderRadius: "50%",
-              background: "#72cc4a",
+              background: "#2a7a48",
               margin: "3px auto 0",
             }}
           />

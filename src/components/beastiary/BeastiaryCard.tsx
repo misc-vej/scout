@@ -368,7 +368,7 @@ export function DetailPanel({
         style={{
           width: "100%",
           maxWidth: 390,
-          background: "#0d1c12",
+          background: "#f5f0e4",
           borderRadius: "20px 20px 0 0",
           border: `3px solid ${borderColor}`,
           borderBottom: "none",
@@ -390,7 +390,7 @@ export function DetailPanel({
             style={{
               width: 36,
               height: 4,
-              background: "rgba(255,255,255,.1)",
+              background: "rgba(28,46,30,.08)",
               borderRadius: 2,
             }}
           />
@@ -400,7 +400,7 @@ export function DetailPanel({
         <div
           style={{
             height: 180,
-            background: `linear-gradient(160deg,${rarityConfig.artBg},#08100a)`,
+            background: `linear-gradient(160deg,${rarityConfig.artBg},#e8d8c0)`,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -437,7 +437,7 @@ export function DetailPanel({
               position: "absolute",
               top: 10,
               left: 12,
-              background: "rgba(0,0,0,.3)",
+              background: "rgba(245,240,228,.7)",
               border: `1px solid ${borderColor}`,
               borderRadius: 20,
               padding: "3px 9px",
@@ -470,7 +470,7 @@ export function DetailPanel({
               style={{
                 fontFamily: "Outfit,sans-serif",
                 fontSize: 9,
-                color: "rgba(232,240,228,.25)",
+                color: "rgba(28,46,30,.3)",
               }}
             >
               {species.no}
@@ -487,7 +487,7 @@ export function DetailPanel({
               fontFamily: "Syne,sans-serif",
               fontSize: 24,
               fontWeight: 800,
-              color: "#e8f0e4",
+              color: "#1c2e1e",
               textTransform: "uppercase",
               letterSpacing: ".05em",
               lineHeight: 1,
@@ -500,7 +500,7 @@ export function DetailPanel({
             style={{
               fontFamily: "Outfit,sans-serif",
               fontSize: 11,
-              color: "#2e5a3a",
+              color: "#6a9a78",
               fontStyle: "italic",
               marginTop: 3,
             }}
@@ -536,11 +536,11 @@ export function DetailPanel({
             {species.habitat && (
               <span
                 style={{
-                  background: "rgba(114,204,74,.12)",
-                  border: "1px solid rgba(114,204,74,.2)",
+                  background: "rgba(42,122,72,.1)",
+                  border: "1px solid rgba(42,122,72,.18)",
                   fontFamily: "Outfit,sans-serif",
                   fontSize: 10,
-                  color: "#72cc4a",
+                  color: "#2a7a48",
                   padding: "5px 12px",
                   borderRadius: 20,
                 }}
@@ -554,7 +554,7 @@ export function DetailPanel({
           <div
             style={{
               marginTop: 14,
-              borderTop: "1px solid rgba(255,255,255,.06)",
+              borderTop: "1px solid rgba(28,46,30,.1)",
               paddingTop: 12,
               display: "flex",
               justifyContent: "space-around",
@@ -570,7 +570,7 @@ export function DetailPanel({
                     fontFamily: "Syne,sans-serif",
                     fontSize: 18,
                     fontWeight: 800,
-                    color: "#e8f0e4",
+                    color: "#1c2e1e",
                     lineHeight: 1,
                   }}
                 >
@@ -580,7 +580,7 @@ export function DetailPanel({
                   style={{
                     fontFamily: "Outfit,sans-serif",
                     fontSize: 8,
-                    color: "#2e5a3a",
+                    color: "#6a9a78",
                     textTransform: "uppercase",
                     letterSpacing: ".08em",
                     marginTop: 3,

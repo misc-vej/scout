@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 function IconNearby({ active }: { active: boolean }) {
-  const s = active ? "#72cc4a" : "#2e5a3a";
+  const s = active ? "#2a7a48" : "#a0b8a0";
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="10" r="3.5" stroke={s} strokeWidth="1.7"/>
@@ -13,7 +13,7 @@ function IconNearby({ active }: { active: boolean }) {
 }
 
 function IconLogbook({ active }: { active: boolean }) {
-  const s = active ? "#72cc4a" : "#2e5a3a";
+  const s = active ? "#2a7a48" : "#a0b8a0";
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <rect x="3" y="3" width="8" height="8" rx="1.5" stroke={s} strokeWidth="1.7"/>
@@ -37,15 +37,15 @@ export default function NavShell({ children }: NavShellProps) {
   const pathname = usePathname();
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0a1410", display: "flex", flexDirection: "column", maxWidth: 390, margin: "0 auto" }}>
+    <div style={{ minHeight: "100vh", background: "#f5f0e4", display: "flex", flexDirection: "column", maxWidth: 390, margin: "0 auto" }}>
       {/* Desktop sidebar */}
       <nav
         className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:left-0 md:w-56 md:z-40"
-        style={{ background: "#0d1c12", borderRight: "1px solid rgba(114,204,74,.1)" }}
+        style={{ background: "#f5f0e4", borderRight: "1px solid rgba(28,46,30,.06)" }}
         aria-label="Main navigation"
       >
         <div style={{ padding: "24px 24px 16px" }}>
-          <span style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800, color: "#e8f0e4", letterSpacing: ".07em", textTransform: "uppercase" }}>
+          <span style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800, color: "#1c2e1e", letterSpacing: ".07em", textTransform: "uppercase" }}>
             SCOUT
           </span>
         </div>
@@ -67,8 +67,8 @@ export default function NavShell({ children }: NavShellProps) {
                     fontSize: 14,
                     fontWeight: 500,
                     fontFamily: "Outfit, sans-serif",
-                    background: active ? "rgba(114,204,74,.1)" : "transparent",
-                    color: active ? "#72cc4a" : "#2e5a3a",
+                    background: active ? "rgba(42,122,72,.1)" : "transparent",
+                    color: active ? "#2a7a48" : "#a0b8a0",
                     transition: "color 0.15s, background 0.15s",
                   }}
                 >
@@ -89,8 +89,8 @@ export default function NavShell({ children }: NavShellProps) {
           top: 0,
           zIndex: 50,
           height: 56,
-          background: "linear-gradient(180deg,#0d1c12,#091410)",
-          borderBottom: "1px solid rgba(114,204,74,.1)",
+          background: "#f5f0e4",
+          borderBottom: "1px solid rgba(28,46,30,.06)",
           padding: "0 20px",
           display: "flex",
           alignItems: "center",
@@ -98,7 +98,7 @@ export default function NavShell({ children }: NavShellProps) {
           flexShrink: 0,
         }}
       >
-        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 17, fontWeight: 800, color: "#e8f0e4", letterSpacing: ".07em", textTransform: "uppercase" }}>
+        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 17, fontWeight: 800, color: "#1c2e1e", letterSpacing: ".07em", textTransform: "uppercase" }}>
           SCOUT
         </span>
       </div>
@@ -119,7 +119,7 @@ export default function NavShell({ children }: NavShellProps) {
           transform: "translateX(-50%)",
           width: "100%",
           maxWidth: 390,
-          background: "linear-gradient(to top,#0a1410 65%,rgba(10,20,16,0))",
+          background: "linear-gradient(to top,#f5f0e4 65%,rgba(245,240,228,0))",
           padding: "8px 0 20px",
           display: "flex",
           justifyContent: "space-around",
@@ -138,10 +138,10 @@ export default function NavShell({ children }: NavShellProps) {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Icon active={active} />
               </div>
-              <div style={{ fontFamily: "Outfit, sans-serif", fontSize: 9, fontWeight: 600, color: active ? "#72cc4a" : "#2e5a3a", marginTop: 4, letterSpacing: ".06em", textTransform: "uppercase" }}>
+              <div style={{ fontFamily: "Outfit, sans-serif", fontSize: 9, fontWeight: 600, color: active ? "#2a7a48" : "#a0b8a0", marginTop: 4, letterSpacing: ".06em", textTransform: "uppercase" }}>
                 {label}
               </div>
-              {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#72cc4a", margin: "3px auto 0" }} />}
+              {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#2a7a48", margin: "3px auto 0" }} />}
             </Link>
           );
         })}
