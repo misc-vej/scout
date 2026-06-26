@@ -102,6 +102,8 @@ export default async function BeastiaryPage() {
                     rarityTier: s.rarityTier,
                     funFact: s.funFact ?? null,
                     conservationStatus: s.conservationStatus ?? null,
+                    spottingTips: s.spottingTips ?? null,
+                    sensitivityLevel: s.sensitivityLevel,
                   }}
                   sightingCount={entry?.sightingCount}
                   personalityTrait={entry?.personalityTrait ?? null}

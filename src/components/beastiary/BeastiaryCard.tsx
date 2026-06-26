@@ -1,6 +1,8 @@
 import RarityBadge from '@/components/discover/RarityBadge';
 import { PersonalityPicker } from './PersonalityPicker';
 import { ConservationBadge } from './ConservationBadge';
+import { EthicsSection } from './EthicsSection';
+import { SensitivityBadge } from './SensitivityBadge';
 
 const RARITY_RING: Record<string, string> = {
   common:     'ring-1 ring-gray-500/30 shadow-sm',
@@ -20,6 +22,8 @@ type BeastiaryCardProps = {
     rarityTier: string;
     funFact: string | null;
     conservationStatus: string | null;
+    spottingTips: string | null;
+    sensitivityLevel: string;
   };
   sightingCount?: number;
   personalityTrait?: string | null;
@@ -68,6 +72,7 @@ export function BeastiaryCard({ species, sightingCount, personalityTrait, isShin
       <div className="p-3 flex flex-col gap-1">
         <p className="font-bold text-white">{species.commonName}</p>
         <p className="text-xs italic text-gray-500">{species.scientificName}</p>
+        <SensitivityBadge level={species.sensitivityLevel} />
         {species.funFact && (
           <p className="text-xs text-gray-400 mt-1 italic">{species.funFact}</p>
         )}
@@ -75,6 +80,7 @@ export function BeastiaryCard({ species, sightingCount, personalityTrait, isShin
           <p className="text-xs text-green-400 font-semibold mt-1">{sightingCount}× spotted</p>
         )}
         <PersonalityPicker speciesId={species.id} currentTrait={personalityTrait ?? null} />
+        {species.spottingTips && <EthicsSection tips={species.spottingTips} />}
       </div>
     </div>
   );
