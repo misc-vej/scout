@@ -80,6 +80,7 @@ export async function POST(req: NextRequest) {
       sensitivityLevel: species.sensitivityLevel,
       canBeShiny: species.canBeShiny,
       taxonomyGroup: species.taxonomyGroup,
+      speciesType: species.speciesType,
       recordCount: occurrences.recordCount,
       seasonLockStart: species.seasonLockStart,
       seasonLockEnd: species.seasonLockEnd,
@@ -88,6 +89,9 @@ export async function POST(req: NextRequest) {
     .innerJoin(species, eq(occurrences.speciesId, species.id))
     .where(eq(occurrences.gridSquare, gridSquare))
     .orderBy(desc(occurrences.recordCount));
+
+  // Compute likelihood normalised from recordCount
+  const maxCount = results.length > 0 ? Math.max(...results.map(r => r.recordCount)) : 0;
 
   // Include all species but flag season-locked restricted ones instead of filtering them out
   const filtered: SpeciesResult[] = results.map((row) => {
@@ -100,10 +104,15 @@ export async function POST(req: NextRequest) {
 
     return {
       ...rest,
+      speciesType: row.speciesType ?? null,
+      likelihood: maxCount > 0 ? row.recordCount / maxCount : 0,
       isSeasonLocked,
       seasonUnlocksAt: isSeasonLocked ? seasonLockEnd : null,
     };
   });
 
-  return NextResponse.json(filtered);
+  // Sort by likelihood descending (most likely first)
+  const sorted = filtered.sort((a, b) => b.likelihood - a.likelihood);
+
+  return NextResponse.json(sorted);
 }

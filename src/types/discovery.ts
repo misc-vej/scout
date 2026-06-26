@@ -6,7 +6,9 @@ export type SpeciesResult = {
   sensitivityLevel: string;
   canBeShiny: boolean;
   taxonomyGroup: string | null;
+  speciesType: string | null;
   recordCount: number;
+  likelihood: number;
   isSeasonLocked: boolean;
   seasonUnlocksAt: string | null;  // MM-DD format e.g. "08-31"
 };
