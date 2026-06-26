@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase_complete
-stopped_at: "Phase 06 complete — conservationStatus + isShiny schema; shiny roll 1-in-50 at first collection; rarity glow ring + shiny treatment + ConservationBadge on BeastiaryCard; BEAST-04 + BEAST-05 + BEAST-06 satisfied"
-last_updated: "2026-06-26T09:00:00.000Z"
+status: milestone_complete
+stopped_at: "Phase 07 complete — Spotter's Pledge modal gate; spottingTips seeded for all 115 species; EthicsSection + SensitivityBadge on BeastiaryCard; season-lock flag in discover API + disabled button in SpeciesCard. ALL 7 PHASES COMPLETE — Scout v1.0 feature-complete."
+last_updated: "2026-06-26T10:00:00.000Z"
 last_activity: 2026-06-26
 progress:
   total_phases: 7
-  completed_phases: 6
-  total_plans: 19
-  completed_plans: 19
-  percent: 86
+  completed_phases: 7
+  total_plans: 21
+  completed_plans: 21
+  percent: 100
 ---
 
 # Project State
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-06-24)
 ## Current Position
 
 Phase: 7 of 7 (Responsible Spotting UX)
-Plan: 0 of ? (planning not yet started)
-Status: Phase 06 COMPLETE ✓ — Ready to plan and execute Phase 07
+Plan: 2 of 2
+Status: ALL PHASES COMPLETE ✓ — Scout v1.0 milestone done
 Last activity: 2026-06-26
 
 Progress: [█████████░] 94%
