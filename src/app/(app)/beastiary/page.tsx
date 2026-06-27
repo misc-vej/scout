@@ -24,17 +24,21 @@ export default async function BeastiaryPage() {
       sensitivityLevel: species.sensitivityLevel,
       taxonomyGroup: species.taxonomyGroup,
       imageUrl: species.imageUrl,
+      description: species.description,
+      conservationStatus: species.conservationStatus,
     })
     .from(species)
     .orderBy(asc(species.id));
 
   const userCollections = await db
     .select({
+      id: collections.id,
       speciesId: collections.speciesId,
       sightingCount: collections.sightingCount,
       personalityTrait: collections.personalityTrait,
       isShiny: collections.isShiny,
       firstSightedAt: collections.firstSightedAt,
+      verificationStatus: collections.verificationStatus,
     })
     .from(collections)
     .where(eq(collections.userId, userId));
@@ -42,20 +46,24 @@ export default async function BeastiaryPage() {
   const collectedMap: Record<
     string,
     {
+      collectionId: string;
       sightingCount: number;
       personalityTrait: string | null;
       isShiny: boolean;
       firstSightedAt: string | null;
+      verificationStatus: string;
     }
   > = {};
   for (const c of userCollections) {
     collectedMap[c.speciesId] = {
+      collectionId: c.id,
       sightingCount: c.sightingCount,
       personalityTrait: c.personalityTrait,
       isShiny: c.isShiny,
       firstSightedAt: c.firstSightedAt
         ? c.firstSightedAt.toISOString()
         : null,
+      verificationStatus: c.verificationStatus,
     };
   }
 
@@ -75,11 +83,15 @@ export default async function BeastiaryPage() {
     no: "#" + String(index + 1).padStart(3, "0"),
     habitat: s.taxonomyGroup ?? null,
     imageUrl: s.imageUrl ?? null,
+    description: s.description ?? null,
+    conservationStatus: s.conservationStatus ?? null,
     // collection fields (null when not collected)
+    collectionId: collectedMap[s.id]?.collectionId ?? null,
     sightingCount: collectedMap[s.id]?.sightingCount ?? undefined,
     personalityTrait: collectedMap[s.id]?.personalityTrait ?? null,
     isShiny: collectedMap[s.id]?.isShiny ?? false,
     firstSightedAt: collectedMap[s.id]?.firstSightedAt ?? null,
+    verificationStatus: collectedMap[s.id]?.verificationStatus ?? null,
   }));
 
   return (

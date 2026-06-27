@@ -3,6 +3,7 @@ import { auth } from '@/auth';
 import { db } from '@/lib/db';
 import { sightings, collections } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
+import { checkAndAwardBadges } from '@/lib/badges';
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -38,17 +39,30 @@ export async function POST(req: NextRequest) {
 
   let sightingCount: number;
 
+  let firstSighting: boolean;
+  let isShiny: boolean;
+
   if (existing.length === 0) {
     // First collection — roll shiny (1-in-50 chance, server-side only)
-    const isShiny = Math.random() < 0.02;
+    isShiny = Math.random() < 0.02;
     await db.insert(collections).values({ userId, speciesId, sightingCount: 1, isShiny });
-    return NextResponse.json({ sightingCount: 1, firstSighting: true, isShiny });
+    sightingCount = 1;
+    firstSighting = true;
   } else {
     sightingCount = existing[0].sightingCount + 1;
+    isShiny = existing[0].isShiny;
     await db
       .update(collections)
       .set({ sightingCount, lastSightedAt: new Date() })
       .where(and(eq(collections.userId, userId), eq(collections.speciesId, speciesId)));
-    return NextResponse.json({ sightingCount, firstSighting: false, isShiny: existing[0].isShiny });
+    firstSighting = false;
   }
+
+  const newBadges = await checkAndAwardBadges(userId);
+  return NextResponse.json({
+    sightingCount,
+    firstSighting,
+    isShiny,
+    newBadges: newBadges.map(b => ({ slug: b.slug, name: b.name, icon: b.icon })),
+  });
 }

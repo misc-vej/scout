@@ -120,6 +120,8 @@ export const collections = pgTable(
     lastSightedAt: timestamp("last_sighted_at").defaultNow().notNull(),
     personalityTrait: text("personality_trait"),
     isShiny: boolean("is_shiny").notNull().default(false),
+    verificationStatus: text("verification_status").notNull().default("unverified"),
+    // 'unverified' | 'pending' | 'verified' | 'rejected'
   },
   (table) => ({
     uniqueUserSpecies: uniqueIndex("collections_user_species_idx").on(
@@ -127,5 +129,46 @@ export const collections = pgTable(
       table.speciesId
     ),
     userIdIdx: index("collections_user_id_idx").on(table.userId),
+  })
+);
+
+export const userBadges = pgTable(
+  "user_badges",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    slug: text("slug").notNull(),
+    earnedAt: timestamp("earned_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userSlugUniq: uniqueIndex("user_badges_user_slug_idx").on(table.userId, table.slug),
+    userIdIdx: index("user_badges_user_id_idx").on(table.userId),
+  })
+);
+
+export const verificationRequests = pgTable(
+  "verification_requests",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    collectionId: uuid("collection_id")
+      .notNull()
+      .references(() => collections.id, { onDelete: "cascade" }),
+    submittedBy: uuid("submitted_by")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    reviewerId: uuid("reviewer_id").references(() => users.id, { onDelete: "set null" }),
+    evidenceType: text("evidence_type").notNull(), // 'photo' | 'description'
+    evidenceData: text("evidence_data"),           // base64 data URL or text
+    status: text("status").notNull().default("pending"), // 'pending' | 'approved' | 'rejected'
+    reviewNote: text("review_note"),
+    submittedAt: timestamp("submitted_at").defaultNow().notNull(),
+    resolvedAt: timestamp("resolved_at"),
+  },
+  (table) => ({
+    collectionIdx: index("verification_requests_collection_idx").on(table.collectionId),
+    submittedByIdx: index("verification_requests_submitted_by_idx").on(table.submittedBy),
+    statusIdx: index("verification_requests_status_idx").on(table.status),
   })
 );

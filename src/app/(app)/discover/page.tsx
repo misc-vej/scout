@@ -11,7 +11,7 @@ export default async function DiscoverPage() {
   return (
     <div
       style={{
-        background: '#0a1410',
+        background: '#f5f0e4',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',

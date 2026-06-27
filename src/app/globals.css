@@ -51,6 +51,70 @@
   50%     { box-shadow: 0 0 15px rgba(255,255,255,.98), 0 0 34px rgba(255,255,255,.48); }
 }
 
+@keyframes card-reveal {
+  0%   { opacity: 0; transform: scale(0.55) rotateY(25deg); }
+  60%  { opacity: 1; transform: scale(1.04) rotateY(-4deg); }
+  100% { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+
+@keyframes row-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes grid-card-in {
+  from { opacity: 0; transform: scale(0.9) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes scout-appear {
+  0%   { opacity: 0; transform: translateY(28px) scaleX(0.92); }
+  65%  { opacity: 1; transform: translateY(-4px) scaleX(1.02); }
+  100% { opacity: 1; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sensitivity-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* ─── Logo animations (from design doc) ─────────────────────────────────── */
+
+/* Dawn — letters emerge from parchment once, S→C→O→U→T stagger, hold Forest green */
+@keyframes dawn-char {
+  0%, 100% { color: #c0b4a0; text-shadow: none; }
+  50%       { color: #1c2e1e; text-shadow: 0 0 14px rgba(42,122,72,.35), 0 0 32px rgba(42,122,72,.12); }
+}
+@keyframes dawn-char-in {
+  0%   { color: #c0b4a0; text-shadow: none; }
+  55%  { color: #1c2e1e; text-shadow: 0 0 14px rgba(42,122,72,.35), 0 0 32px rgba(42,122,72,.12); }
+  100% { color: #1c2e1e; text-shadow: none; }
+}
+
+/* Lens Focus — blur in like adjusting binoculars */
+@keyframes focus-in {
+  0%   { filter: blur(12px); opacity: 0; letter-spacing: .55em; }
+  100% { filter: blur(0);    opacity: 1; letter-spacing: .07em; }
+}
+@keyframes focus-sub {
+  0%   { filter: blur(6px); opacity: 0; letter-spacing: .3em; }
+  100% { filter: blur(0);   opacity: .75; letter-spacing: .2em; }
+}
+@keyframes lens-ring {
+  0%   { transform: scale(.6); opacity: 0; }
+  40%  { opacity: .18; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ─── Grain texture utility (D-05) ──────────────────────────────────────── */
 .grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");

@@ -1,12 +1,19 @@
+'use client';
+
 import type { FC } from 'react';
+import { useState } from 'react';
 import type { SpeciesResult } from '@/types/discovery';
 import SpeciesCard from './SpeciesCard';
 
-const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
+const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string; locationLabel?: string }> = ({
   species,
   gridSquare,
+  locationLabel,
 }) => {
+  const [query, setQuery] = useState('');
+
   const sorted = [...species].sort((a, b) => b.likelihood - a.likelihood);
+  const filtered = query.trim() === '' ? sorted : sorted.filter(s => s.commonName.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
@@ -44,6 +51,11 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
             }}
           >
             {species.length} plausible for this area
+            {locationLabel && (
+              <span style={{ marginLeft: 6, color: '#1c2e1e', fontWeight: 600 }}>
+                · {locationLabel}
+              </span>
+            )}
           </div>
         </div>
         <div
@@ -59,9 +71,31 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
         </div>
       </div>
 
+      {/* Search filter input */}
+      <div style={{ padding: '8px 16px', borderBottom: '1px solid rgba(28,46,30,.06)', background: '#f5f0e4', flexShrink: 0 }}>
+        <input
+          type="text"
+          placeholder="Filter by name…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{
+            width: '100%',
+            boxSizing: 'border-box' as const,
+            background: '#e8d8c0',
+            border: '1px solid rgba(28,46,30,.1)',
+            borderRadius: 8,
+            padding: '7px 12px',
+            fontFamily: 'Outfit,sans-serif',
+            fontSize: 13,
+            color: '#1c2e1e',
+            outline: 'none',
+          }}
+        />
+      </div>
+
       {/* Scrollable species list */}
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 80 }}>
-        {sorted.length === 0 ? (
+        {filtered.length === 0 ? (
           <div
             style={{
               padding: '40px 20px',
@@ -71,10 +105,10 @@ const SpeciesList: FC<{ species: SpeciesResult[]; gridSquare: string }> = ({
               color: '#6a9a78',
             }}
           >
-            No species recorded nearby
+            {query.trim() !== '' ? `No matches for '${query}'` : 'No species recorded nearby'}
           </div>
         ) : (
-          sorted.map((s) => (
+          filtered.map((s) => (
             <SpeciesCard key={s.id} species={s} gridSquare={gridSquare} />
           ))
         )}

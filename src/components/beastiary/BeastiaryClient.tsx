@@ -13,6 +13,8 @@ type SpeciesRow = SpeciesCardData & {
   personalityTrait: string | null;
   isShiny: boolean;
   firstSightedAt: string | null;
+  collectionId?: string | null;
+  verificationStatus?: string | null;  // 'unverified' | 'pending' | 'verified' | 'rejected' | null
 };
 
 type BeastiaryClientProps = {
@@ -113,50 +115,6 @@ export function BeastiaryClient({
         margin: "0 auto",
       }}
     >
-      {/* ── Nav bar ── */}
-      <div
-        style={{
-          background: "#f5f0e4",
-          borderBottom: "1px solid rgba(28,46,30,.06)",
-          padding: "0 20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 56,
-          flexShrink: 0,
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "Syne,sans-serif",
-            fontSize: 17,
-            fontWeight: 800,
-            color: "#1c2e1e",
-            letterSpacing: ".07em",
-            textTransform: "uppercase",
-          }}
-        >
-          SCOUT
-        </span>
-        <div
-          style={{
-            background: "rgba(42,122,72,.1)",
-            border: "1px solid rgba(42,122,72,.18)",
-            borderRadius: 20,
-            padding: "4px 10px",
-            fontFamily: "Outfit,sans-serif",
-            fontSize: 11,
-            color: "#2a7a48",
-            fontWeight: 600,
-          }}
-        >
-          {totalCollected}/{totalSpecies}
-        </div>
-      </div>
-
       {/* ── Tab bar ── */}
       <div
         style={{
@@ -263,7 +221,7 @@ export function BeastiaryClient({
               gap: 8,
             }}
           >
-            {list.map((s) => (
+            {list.map((s, idx) => (
               <BeastiaryCard
                 key={s.id}
                 species={{
@@ -277,12 +235,18 @@ export function BeastiaryClient({
                   sensitivityLevel: s.sensitivityLevel,
                   no: s.no,
                   habitat: s.habitat,
+                  imageUrl: s.imageUrl ?? null,
+                  description: s.description ?? null,
+                  conservationStatus: s.conservationStatus ?? null,
                 }}
                 sightingCount={s.sightingCount}
                 personalityTrait={s.personalityTrait}
                 isShiny={s.isShiny}
                 firstSightedAt={s.firstSightedAt}
+                collectionId={s.collectionId ?? null}
+                verificationStatus={s.verificationStatus ?? null}
                 onCardTap={handleCardTap}
+                style={{ animation: `grid-card-in 0.35s ${Math.min(idx * 0.04, 0.6)}s ease both` }}
               />
             ))}
           </div>
@@ -314,86 +278,6 @@ export function BeastiaryClient({
         )}
       </div>
 
-      {/* ── Bottom nav ── */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "100%",
-          maxWidth: 390,
-          background:
-            "linear-gradient(to top,#f5f0e4 65%,rgba(245,240,228,0))",
-          padding: "8px 0 20px",
-          display: "flex",
-          justifyContent: "space-around",
-          zIndex: 40,
-        }}
-      >
-        <Link
-          href="/discover"
-          style={{
-            textAlign: "center",
-            cursor: "pointer",
-            minWidth: 80,
-            padding: "4px 0",
-            textDecoration: "none",
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <IconNearby active={false} />
-          </div>
-          <div
-            style={{
-              fontFamily: "Outfit,sans-serif",
-              fontSize: 9,
-              fontWeight: 600,
-              color: "#a0b8a0",
-              marginTop: 4,
-              letterSpacing: ".06em",
-              textTransform: "uppercase",
-            }}
-          >
-            Nearby
-          </div>
-        </Link>
-        <div
-          style={{
-            textAlign: "center",
-            cursor: "pointer",
-            minWidth: 80,
-            padding: "4px 0",
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <IconLogbook active={true} />
-          </div>
-          <div
-            style={{
-              fontFamily: "Outfit,sans-serif",
-              fontSize: 9,
-              fontWeight: 600,
-              color: "#2a7a48",
-              marginTop: 4,
-              letterSpacing: ".06em",
-              textTransform: "uppercase",
-            }}
-          >
-            Logbook
-          </div>
-          <div
-            style={{
-              width: 4,
-              height: 4,
-              borderRadius: "50%",
-              background: "#2a7a48",
-              margin: "3px auto 0",
-            }}
-          />
-        </div>
-      </div>
-
       {/* ── Detail panel ── */}
       {selected && (
         <DetailPanel
@@ -408,11 +292,16 @@ export function BeastiaryClient({
             sensitivityLevel: selected.sensitivityLevel,
             no: selected.no,
             habitat: selected.habitat,
+            imageUrl: selected.imageUrl,
+            description: selected.description,
+            conservationStatus: selected.conservationStatus,
           }}
           personalityTrait={selectedPersonality}
           firstSightedAt={selected.firstSightedAt}
           sightingCount={selected.sightingCount ?? 1}
           isShiny={selected.isShiny}
+          collectionId={selected.collectionId ?? null}
+          verificationStatus={selected.verificationStatus ?? null}
           onClose={() => setSelected(null)}
         />
       )}

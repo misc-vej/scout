@@ -21,7 +21,7 @@ function SpeciesRow({
 }) {
   const rarityConfig = getRarityConfig(sp.rarityTier);
   const [hovered, setHovered] = useState(false);
-  const iconColor = rarityConfig.borderColor + '66';
+  const iconColor = 'rgba(255,255,255,0.7)';
 
   const isSensitive =
     sp.sensitivityLevel === 'sensitive' || sp.sensitivityLevel === 'restricted';
@@ -37,6 +37,7 @@ function SpeciesRow({
         background: hovered ? 'rgba(42,122,72,.04)' : 'transparent',
         transition: 'background .1s',
         cursor: 'default',
+        animation: 'row-in 0.3s ease both',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

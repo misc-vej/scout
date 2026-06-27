@@ -21,7 +21,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@400;500;600;700&display=swap"
         />
       </head>
-      <body style={{ background: '#0d1c12', minHeight: '100vh' }}>{children}</body>
+      <body style={{ background: '#f5f0e4', minHeight: '100vh' }}>{children}</body>
     </html>
   );
 }

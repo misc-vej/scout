@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import { signOut } from "next-auth/react";
-import PasskeyPrompt from "@/components/PasskeyPrompt";
 
 interface HomeClientProps {
   userId: string;
@@ -9,22 +7,51 @@ interface HomeClientProps {
   showPasskeyPrompt: boolean;
 }
 
-export default function HomeClient({ userId, email, showPasskeyPrompt }: HomeClientProps) {
-  const [promptVisible, setPromptVisible] = useState(showPasskeyPrompt);
-
+export default function HomeClient({ email }: HomeClientProps) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      {promptVisible && (
-        <PasskeyPrompt userId={userId} onDismiss={() => setPromptVisible(false)} />
-      )}
-      <h1 className="text-4xl font-bold text-green-500 mb-2">Scout</h1>
-      <p className="text-gray-600 mb-1">Welcome, {email}</p>
-      <p className="text-gray-400 text-sm mb-8">
-        Your beastiary is coming — go find something.
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#f5f0e4",
+        fontFamily: "Outfit, sans-serif",
+        padding: "0 32px",
+        textAlign: "center",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: "Syne, sans-serif",
+          fontSize: 42,
+          fontWeight: 800,
+          color: "#1c2e1e",
+          letterSpacing: ".06em",
+          textTransform: "uppercase",
+          marginBottom: 10,
+        }}
+      >
+        Scout
+      </div>
+      <p style={{ fontSize: 14, color: "#1c2e1e", marginBottom: 4 }}>
+        Welcome, {email}
+      </p>
+      <p style={{ fontSize: 12, color: "#6a9a78", marginBottom: 32 }}>
+        Head to Nearby or your Logbook to get started.
       </p>
       <button
         onClick={() => signOut({ callbackUrl: "/auth" })}
-        className="text-sm text-gray-500 underline hover:text-gray-700"
+        style={{
+          fontSize: 12,
+          color: "#a0b8a0",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          textDecoration: "underline",
+        }}
       >
         Sign out
       </button>

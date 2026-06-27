@@ -1345,7 +1345,7 @@ export const seedData: SpeciesSeed[] = [
     description: "The UK's most recognisable predator. Adapts to everything from Dartmoor to Dalston — always watching, always judging.",
     funFact: "Urban foxes have learned to open bins, navigate traffic, and find food in places that should be inaccessible. Scientists are genuinely baffled by the speed of behavioural adaptation. The fox is not waiting for science to catch up.",
     conservationStatus: null,
-    imageUrl: null,
+    imageUrl: '/cards/fox.png',
     speciesType: "fox",
     spottingTips: "Observe from a distance — urban foxes may seem tame but stay 10m+. Never feed them as it can disrupt natural behaviour and create dependency on human food sources.",
   },

@@ -4,10 +4,20 @@ export default function ProfilePasskeyButton() {
   return (
     <button
       onClick={() =>
-        alert("Passkey setup will be available in the next update — you're already signed in!")
+        alert("Passkey setup: sign in with email/password once, then your device will offer to save it as a passkey for future logins.")
       }
-      className="bg-green-500 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-green-600 transition-colors"
       type="button"
+      style={{
+        background: "#2a7a48",
+        color: "#f5f0e4",
+        border: "none",
+        borderRadius: 10,
+        padding: "10px 20px",
+        fontFamily: "Outfit,sans-serif",
+        fontSize: 13,
+        fontWeight: 600,
+        cursor: "pointer",
+      }}
     >
       Set up passkey
     </button>

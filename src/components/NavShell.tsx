@@ -31,10 +31,41 @@ const navItems = [
 
 interface NavShellProps {
   children: React.ReactNode;
+  userInitial?: string;
 }
 
-export default function NavShell({ children }: NavShellProps) {
+function UserAvatar({ initial, isProfileActive }: { initial: string; isProfileActive: boolean }) {
+  return (
+    <Link
+      href="/profile"
+      aria-label="Profile"
+      style={{
+        width: 34,
+        height: 34,
+        borderRadius: "50%",
+        background: isProfileActive ? "#2a7a48" : "#e8d8c0",
+        border: `2px solid ${isProfileActive ? "#2a7a48" : "rgba(28,46,30,.12)"}`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "Syne, sans-serif",
+        fontSize: 13,
+        fontWeight: 800,
+        color: isProfileActive ? "#f5f0e4" : "#6a9a78",
+        textDecoration: "none",
+        flexShrink: 0,
+        transition: "all .15s",
+        letterSpacing: ".01em",
+      }}
+    >
+      {initial}
+    </Link>
+  );
+}
+
+export default function NavShell({ children, userInitial = "?" }: NavShellProps) {
   const pathname = usePathname();
+  const isProfileActive = pathname.startsWith("/profile");
 
   return (
     <div style={{ minHeight: "100vh", background: "#f5f0e4", display: "flex", flexDirection: "column", maxWidth: 390, margin: "0 auto" }}>
@@ -44,10 +75,13 @@ export default function NavShell({ children }: NavShellProps) {
         style={{ background: "#f5f0e4", borderRight: "1px solid rgba(28,46,30,.06)" }}
         aria-label="Main navigation"
       >
-        <div style={{ padding: "24px 24px 16px" }}>
-          <span style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800, color: "#1c2e1e", letterSpacing: ".07em", textTransform: "uppercase" }}>
-            SCOUT
+        <div style={{ padding: "24px 24px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800, letterSpacing: ".07em", textTransform: "uppercase", display: "inline-flex" }}>
+            {"SCOUT".split("").map((ch, i) => (
+              <span key={i} style={{ display: "inline-block", animation: "dawn-char-in 1.0s ease-out both", animationDelay: `${i * 0.28}s` }}>{ch}</span>
+            ))}
           </span>
+          <UserAvatar initial={userInitial} isProfileActive={isProfileActive} />
         </div>
         <ul style={{ flex: 1, padding: "0 12px", display: "flex", flexDirection: "column", gap: 4 }}>
           {navItems.map(({ label, href, Icon }) => {
@@ -81,7 +115,7 @@ export default function NavShell({ children }: NavShellProps) {
         </ul>
       </nav>
 
-      {/* Top nav bar — mobile (hidden on desktop via md:hidden equivalent) */}
+      {/* Top nav bar — mobile */}
       <div
         className="md:hidden"
         style={{
@@ -98,32 +132,38 @@ export default function NavShell({ children }: NavShellProps) {
           flexShrink: 0,
         }}
       >
-        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 17, fontWeight: 800, color: "#1c2e1e", letterSpacing: ".07em", textTransform: "uppercase" }}>
-          SCOUT
+        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 17, fontWeight: 800, letterSpacing: ".07em", textTransform: "uppercase", display: "inline-flex" }}>
+          {"SCOUT".split("").map((ch, i) => (
+            <span key={i} style={{ display: "inline-block", animation: "dawn-char-in 1.0s ease-out both", animationDelay: `${i * 0.28}s` }}>{ch}</span>
+          ))}
         </span>
+        <UserAvatar initial={userInitial} isProfileActive={isProfileActive} />
       </div>
 
       {/* Main content area */}
-      <main style={{ flex: 1, paddingBottom: 80 }}>
+      <main style={{ flex: 1, paddingBottom: 100 }}>
         {children}
       </main>
 
-      {/* Mobile bottom tab bar */}
+      {/* Mobile bottom tab bar — 2 items now, profile moved to avatar */}
       <nav
         className="md:hidden"
         aria-label="Tab bar"
         style={{
           position: "fixed",
-          bottom: 0,
+          bottom: 20,
           left: "50%",
           transform: "translateX(-50%)",
-          width: "100%",
-          maxWidth: 390,
-          background: "linear-gradient(to top,#f5f0e4 65%,rgba(245,240,228,0))",
-          padding: "8px 0 20px",
           display: "flex",
-          justifyContent: "space-around",
-          zIndex: 40,
+          gap: 4,
+          padding: "8px 10px",
+          borderRadius: 50,
+          background: "rgba(245,240,228,0.55)",
+          backdropFilter: "blur(24px) saturate(180%)",
+          WebkitBackdropFilter: "blur(24px) saturate(180%)",
+          border: "1px solid rgba(255,255,255,0.55)",
+          boxShadow: "0 8px 32px rgba(28,46,30,0.13), 0 2px 8px rgba(28,46,30,0.07), inset 0 1px 0 rgba(255,255,255,0.5)",
+          zIndex: 100,
         }}
       >
         {navItems.map(({ label, href, Icon }) => {
@@ -133,15 +173,31 @@ export default function NavShell({ children }: NavShellProps) {
               key={href}
               href={href}
               aria-label={label}
-              style={{ textAlign: "center", cursor: "pointer", minWidth: 80, padding: "4px 0", textDecoration: "none" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 3,
+                padding: "7px 22px",
+                borderRadius: 40,
+                textDecoration: "none",
+                background: active ? "rgba(42,122,72,0.13)" : "transparent",
+                transition: "background 0.2s ease, transform 0.15s ease",
+                transform: active ? "scale(1)" : "scale(0.94)",
+                minWidth: 72,
+              }}
             >
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Icon active={active} />
-              </div>
-              <div style={{ fontFamily: "Outfit, sans-serif", fontSize: 9, fontWeight: 600, color: active ? "#2a7a48" : "#a0b8a0", marginTop: 4, letterSpacing: ".06em", textTransform: "uppercase" }}>
+              <Icon active={active} />
+              <span style={{
+                fontFamily: "Outfit, sans-serif",
+                fontSize: 9,
+                fontWeight: 600,
+                color: active ? "#2a7a48" : "#a0b8a0",
+                letterSpacing: ".06em",
+                textTransform: "uppercase",
+              }}>
                 {label}
-              </div>
-              {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#2a7a48", margin: "3px auto 0" }} />}
+              </span>
             </Link>
           );
         })}
